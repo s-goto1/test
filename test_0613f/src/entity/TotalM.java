@@ -3,15 +3,15 @@ package entity;
 public class TotalM {
 
 	private String id;
-	private int totalM_id;
-	private int money;
+	private Integer totalM_id;
+	private Integer money;
 
 	private String name;
 	private String date;
 	private String depature;
 	private String destination;
 
-	public TotalM(String id, int totalM_id, int money, String name, String date, String depature, String destination) {
+	public TotalM(String id, Integer totalM_id, Integer money, String name, String date, String depature, String destination) {
 		this.id = id;
 		this.totalM_id = totalM_id;
 		this.money = money;
@@ -69,7 +69,7 @@ public class TotalM {
 		return totalM_id;
 	}
 
-	public void setTotalM_id(int totalM_id) {
+	public void setTotalM_id(Integer totalM_id) {
 		this.totalM_id = totalM_id;
 	}
 
@@ -77,7 +77,7 @@ public class TotalM {
 		return money;
 	}
 
-	public void setMoney(int money) {
+	public void setMoney(Integer money) {
 		this.money = money;
 	}
 }
