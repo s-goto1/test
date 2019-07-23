@@ -1,6 +1,7 @@
 package servlet2;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -54,12 +55,14 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("pass");
 		//"xxxx";
 
-		//		Calendar cal = Calendar.getInstance();
-		//		int month = cal.get(Calendar.MONTH);
-		String month = "7";
+		Calendar cal = Calendar.getInstance();
+		int m = cal.get(Calendar.MONTH)+1;
+
+		String month = String.valueOf(m);
 
 		LoginUser lu = new LoginUser();
 		UserInfo ui = lu.findUser(id);
+
 
 		boolean isLogin = (ui != null && id.equals(ui.getId()) &&
 				pass.equals(ui.getPass()));
@@ -75,11 +78,11 @@ public class LoginServlet extends HttpServlet {
 
 			List<TotalM> list = tmd.findAllByMonth(id, month);
 
-				session.setAttribute("list", list);
+			session.setAttribute("list", list);
 
-				System.out.println(list);
+			System.out.println(list);
 
-				session.setAttribute("nolist", "登録されているデータがありません。");
+			session.setAttribute("nolist", "登録されているデータがありません。");
 
 			RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
 			dispatch.forward(request, response);

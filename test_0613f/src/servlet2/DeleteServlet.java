@@ -52,6 +52,9 @@ public class DeleteServlet extends HttpServlet {
 
 		String id = "1";
 		String[] totalM_id = request.getParameterValues("totalM_id");
+		String select = request.getParameter("selectTest");
+
+		System.out.println(select);
 
 		if (totalM_id == null) {
 
@@ -79,7 +82,6 @@ public class DeleteServlet extends HttpServlet {
 
 			HttpSession session = request.getSession();
 			session.setAttribute("list", list);
-
 
 			System.out.println(id);
 

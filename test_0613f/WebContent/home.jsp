@@ -13,16 +13,34 @@
 <script type="text/javascript" src="subtest.js"></script>
 </head>
 <body>
-	<form id="form" name="form" action="" method="post">
-		<select name="linkselect" onChange="kakunin()">
-			<option value="">選択して下さい</option>
-			<option value="http://www.yahoo.co.jp/">Yahoo!Japan</option>
-			<option value="http://www.google.co.jp/">Google</option>
-		</select>
+	<form id="formTest" name="formTest" action="Test" method="post">
 
-		<c:if test="${not empty list}">
-			<p><c:out value="${list.get(0).name}です" /></p>
-		</c:if>
+		<select name="selectTest">
+
+			<option value="">選択して下さい</option>
+			<option value="1">1月</option>
+			<option value="2">2月</option>
+			<option value="3">3月</option>
+			<option value="4">4月</option>
+			<option value="5">5月</option>
+			<option value="6">6月</option>
+			<option value="7">7月</option>
+			<option value="8">8月</option>
+			<option value="9">9月</option>
+			<option value="10月">10月</option>
+			<option value="11月">11月</option>
+			<option value="12">12月</option>
+		</select>
+		<input type="submit" id="Test" value="月ごとテスト">
+	</form>
+	<form id="form" name="form" action="" method="post">
+
+
+
+			<p>
+				<c:out value="${id}です" />
+			</p>
+
 		<table border="3">
 			<tr>
 				<th colspan="2" rowspan="2">月日</th>
@@ -37,25 +55,24 @@
 
 			<c:forEach var="item" items="${list}">
 				<tr>
-						<c:if test="${not empty list}">
-							<td><c:out value="${item.date}月" /></td>
-						</c:if>
-						<td><c:if test="${not empty list}">
-								<c:out value="${item.date}日" />
-							</c:if></td>
-						<td><c:if test="${not empty list}">
-								<c:out value="${item.depature}" />
-							</c:if></td>
-						<td><c:if test="${not empty list}">
-								<c:out value="${item.destination}" />
-							</c:if></td>
-						<td><c:if test="${not empty list}">
-								<c:out value="${item.money}" />
-							</c:if></td>
-						<td><c:if test="${not empty list}">
-								<input type="checkbox" name="totalM_id"
-									value="${item.totalM_id}">
-							</c:if></td>
+					<c:if test="${not empty list}">
+						<td><c:out value="${item.date}月" /></td>
+					</c:if>
+					<td><c:if test="${not empty list}">
+							<c:out value="${item.date}日" />
+						</c:if></td>
+					<td><c:if test="${not empty list}">
+							<c:out value="${item.depature}" />
+						</c:if></td>
+					<td><c:if test="${not empty list}">
+							<c:out value="${item.destination}" />
+						</c:if></td>
+					<td><c:if test="${not empty list}">
+							<c:out value="${item.money}" />
+						</c:if></td>
+					<td><c:if test="${not empty list}">
+							<input type="checkbox" name="totalM_id" value="${item.totalM_id}">
+						</c:if></td>
 				</tr>
 			</c:forEach>
 
@@ -66,17 +83,19 @@
 				<input type="hidden" name="testId" value="${list.get(0).id}">
 			</c:when>
 			<c:otherwise>
-				<p><c:out value=" ${nolist}" /></p>
+				<p>
+					<c:out value=" ${nolist}" />
+				</p>
 			</c:otherwise>
 		</c:choose>
 
 		<input type="button" onclick="location.href='./modify.jsp'"
 			value="修正(テスト)">
-			 <input type="button" id="register"
+			<input type="button" id="register"
 			value="登録テスト">
-			 <input type="button" id="excelout" value="出力">
+			<input type="button" id="excelout" value="出力">
 		<input type="button" id="delete" value="削除（テスト)">
-		<input
+		 <input
 			type="button" onclick="location.href='./logout.jsp'" value="ログアウト">
 	</form>
 
