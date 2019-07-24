@@ -72,6 +72,7 @@ public class LoginServlet extends HttpServlet {
 		if (isLogin) {
 
 			session.setAttribute("id", ui.getId());
+			session.setAttribute("name", ui.getName());
 
 			TotalMDao tmd = new TotalMDao();
 			//			List<TotalM> list = tmd.findAll(id);

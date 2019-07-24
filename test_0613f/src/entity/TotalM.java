@@ -6,16 +6,16 @@ public class TotalM {
 	private Integer totalM_id;
 	private Integer money;
 
-	private String name;
+
+
 	private String date;
 	private String depature;
 	private String destination;
 
-	public TotalM(String id, Integer totalM_id, Integer money, String name, String date, String depature, String destination) {
+	public TotalM(String id, Integer totalM_id, Integer money, String date, String depature, String destination) {
 		this.id = id;
 		this.totalM_id = totalM_id;
 		this.money = money;
-		this.name = name;
 		this.date = date;
 		this.depature = depature;
 		this.destination = destination;
@@ -23,14 +23,6 @@ public class TotalM {
 
 	public TotalM() {
 
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getDate() {
@@ -69,10 +61,6 @@ public class TotalM {
 		return totalM_id;
 	}
 
-	public void setTotalM_id(Integer totalM_id) {
-		this.totalM_id = totalM_id;
-	}
-
 	public int getMoney() {
 		return money;
 	}
@@ -80,4 +68,9 @@ public class TotalM {
 	public void setMoney(Integer money) {
 		this.money = money;
 	}
+
+	public void setTotalM_id(Integer totalM_id) {
+		this.totalM_id = totalM_id;
+	}
+
 }

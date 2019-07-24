@@ -42,7 +42,6 @@ public class TotalMDao {
 				tom.setId(rset.getString("id"));
 				tom.setTotalM_id(rset.getInt("totalM_id"));
 				tom.setMoney(rset.getInt("money"));
-				tom.setName(rset.getString("name"));
 				tom.setDate(rset.getString("date"));
 				tom.setDepature(rset.getString("depature"));
 				tom.setDestination(rset.getString("destination"));
@@ -89,7 +88,6 @@ public class TotalMDao {
 				tom.setId(rset.getString("id"));
 				tom.setTotalM_id(rset.getInt("totalM_id"));
 				tom.setMoney(rset.getInt("money"));
-				tom.setName(rset.getString("name"));
 				tom.setDate(rset.getString("date"));
 				tom.setDepature(rset.getString("depature"));
 				tom.setDestination(rset.getString("destination"));

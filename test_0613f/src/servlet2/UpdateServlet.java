@@ -75,7 +75,7 @@ public class UpdateServlet extends HttpServlet {
 		// 配列の番地ごとに入力値を代入
 		for(int i = 0; i < idLength; i++) {
 			totalM[i] = new TotalM(null, Integer.valueOf(totalM_id[i]),
-					Integer.valueOf(money[i]), null, date[i], depature[i],
+					Integer.valueOf(money[i]),  date[i], depature[i],
 					destination[i]);
 		}
 

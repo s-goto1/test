@@ -18,9 +18,9 @@ public class UpdateDao {
 		try {
 			Class.forName("org.postgresql.Driver");
 			con = DriverManager.getConnection(
-					"jdbc:postgresql:axiz_db",
-					"axizuser",
-					"axiz");
+					"jdbc:postgresql:postgres",
+					"postgres",
+					"Asdf123");
 
 			presmt = con.prepareStatement(sql);
 

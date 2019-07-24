@@ -14,7 +14,7 @@
 </head>
 <body>
 	<form id="form1" name="form1" action="Update" method="post">
-		<p>${list.get(0).name}です</p>
+		<p>${name}です</p>
 
 		<table border="3">
 			<tr>
