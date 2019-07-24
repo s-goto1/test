@@ -31,6 +31,40 @@
 	$(document).ready(document_onready);
 })();
 
+function clickBtn1() {
+	// 入力フォームを取得
+    var money = document.getElementById("money");
+
+    // ボタンを取得
+    var element = document.getElementById('train');
+
+    // 往復運賃を表示
+    money.value = money.value * 2;
+
+    // onclickの関数名を変更
+    element.onclick = new Function("clickBtn2()");
+
+    // valueを「片道」に変更
+    element.value = "片道";
+}
+
+function clickBtn2() {
+	// 入力フォームを取得
+    var money = document.getElementById("money");
+
+    // ボタンを取得
+    var element = document.getElementById('train');
+
+    // 片道運賃を表示
+    money.value = money.value / 2;
+
+    // onclickの関数名を変更
+    element.onclick = new Function("clickBtn1()");
+
+    // valueを「往復」に変更
+    element.value = "往復";
+}
+
 jQuery(function($) {
 	// セレクトボックスが変更されたら処理をする
 	$('#pref-select').change(function() {
