@@ -45,10 +45,12 @@
 				<c:forEach var="item" items="${list}">
 					<tr>
 
-						<td><input type = "text" name="totalM_id"
+						<td><input type="text" name="totalM_id"
 							value="${item.totalM_id}" size="5" readonly></td>
 
-						<td>7月</td>
+						<td><input type="text" name="month"
+							value="${item.month}" size="5" required>
+							<span style="display: inline-block;">月</span></td>
 
 						<td><input type="text" name="date"
 							value="${item.date}" size="5" required>

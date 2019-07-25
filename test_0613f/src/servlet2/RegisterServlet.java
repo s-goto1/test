@@ -49,10 +49,8 @@ public class RegisterServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
-
-		String month = request.getParameter("month");
-
 		String id = request.getParameter("id");
+		String month = request.getParameter("month");
 		String date = request.getParameter("date");
 		String depature = request.getParameter("depature");
 		String destination = request.getParameter("destination");
@@ -61,7 +59,7 @@ public class RegisterServlet extends HttpServlet {
 		int money = Integer.parseInt(money1);
 
 		InsertDao IDao = new InsertDao();
-		IDao.insert(id, date, depature, destination, money);
+		IDao.insert(id, month, date, depature, destination, money);
 
 		HttpSession session = request.getSession();
 		TotalMDao tmd = new TotalMDao();

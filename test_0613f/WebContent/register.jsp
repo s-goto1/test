@@ -11,15 +11,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="subtest.js"></script>
-<script>
-function CheckSearch() {
-if (confirm("全件表示されます。")) {}
-else {
-alert("全件検索をやめました。");
-return false;
-}
-}
-</script>
 </head>
 <body>
 
@@ -29,7 +20,7 @@ return false;
 
 			<table border="3" class="table table-striped">
 				<tr>
-					<th rowspan="3">月日</th>
+					<th colspan="2" rowspan="3">月日</th>
 					<th colspan="2">区間</th>
 					<th rowspan="3">金額</th>
 				</tr>
@@ -44,18 +35,19 @@ return false;
 				</tr>
 				<tr>
 
-					<td><input type="text" name="date" value="" size=""></td>
+					<td><input type="text" name="month" value="" size="5"><span style="display: inline-block;">月</span></td>
+					<td><input type="text" name="date" value="" size="5"><span style="display: inline-block;">日</span></td>
 					<td><input type="text" name="depature" value="" size=""></td>
 					<td><input type="text" name="destination" id="test" value="" size=""></td>
-					<td><input type="number" name="money" id="money" value="0" size=""></td>
+					<td><input type="number" name="money" id="money" value="0" size="5"></td>
 
 				</tr>
 			</table>
 		    <input type="hidden" name="id" value="${id}" size="">
 
-			<input type="submit" id="regist" name="確認用" class="btn btn-primary" value="登録確定">
-			<input type="button" id="today" name="" class="btn btn-secondary" onclick="location.href='./home.jsp'" value="今日の日付">
-			<input type="button" id="back" name="" class="btn btn-warning" onclick="location.href='./home.jsp'" value="戻る">
+			<input type="submit" id="regist" name="確認用" class="btn btn-primary mr-2" value="登録確定">
+			<input type="button" id="today" name="" class="btn btn-secondary mr-2" onclick="location.href='./home.jsp'" value="今日の日付">
+			<input type="button" id="back" name="" class="btn btn-warning mr-2" onclick="location.href='./home.jsp'" value="戻る">
 			<input type="button" id="train" name="" class="btn btn-info"  onclick="clickBtn1()" value="往復">
 
 		</form>

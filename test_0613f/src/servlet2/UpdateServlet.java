@@ -56,7 +56,8 @@ public class UpdateServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// 入力値を取得（forEachで回しているため配列で受け取る）
-		String date[] = request.getParameterValues("date");					// 日付
+		String month[] = request.getParameterValues("month");				// 月
+		String date[] = request.getParameterValues("date");					// 日
 		String depature[] = request.getParameterValues("depature");			// 出発駅
 		String destination[] = request.getParameterValues("destination");	// 到着駅
 		String money[] = request.getParameterValues("money");				// 金額
@@ -75,7 +76,7 @@ public class UpdateServlet extends HttpServlet {
 		// 配列の番地ごとに入力値を代入
 		for(int i = 0; i < idLength; i++) {
 			totalM[i] = new TotalM(null, Integer.valueOf(totalM_id[i]),
-					Integer.valueOf(money[i]),  date[i], depature[i],
+					Integer.valueOf(money[i]), month[i],  date[i], depature[i],
 					destination[i]);
 		}
 
@@ -99,7 +100,7 @@ public class UpdateServlet extends HttpServlet {
 
 		// 変更分だけ更新
 		for(int i = 0; i < listLength; i++) {
-			updateDao.update(date[i], depature[i], destination[i],
+			updateDao.update(month[i], date[i], depature[i], destination[i],
 					Integer.valueOf(money[i]), Integer.valueOf(totalM_id[i]));
 		}
 

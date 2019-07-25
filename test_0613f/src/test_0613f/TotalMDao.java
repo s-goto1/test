@@ -27,11 +27,11 @@ public class TotalMDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			PreparedStatement presmt = null;
-			String sql = "SELECT * FROM totalm WHERE id = ? AND date = ? ";
+			String sql = "SELECT * FROM totalm WHERE id = ? AND month = ? ";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, id);
 			presmt.setString(2, month);
@@ -45,6 +45,7 @@ public class TotalMDao {
 				tom.setId(rset.getString("id"));
 				tom.setTotalM_id(rset.getInt("totalM_id"));
 				tom.setMoney(rset.getInt("money"));
+				tom.setMonth(rset.getString("month"));
 				tom.setDate(rset.getString("date"));
 				tom.setDepature(rset.getString("depature"));
 				tom.setDestination(rset.getString("destination"));

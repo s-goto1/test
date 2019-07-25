@@ -67,7 +67,7 @@
 				<c:forEach var="item" items="${list}">
 					<tr>
 						<c:if test="${not empty list}">
-							<td><c:out value="${item.date}月" /></td>
+							<td><c:out value="${item.month}月" /></td>
 						</c:if>
 						<td><c:if test="${not empty list}">
 								<c:out value="${item.date}日" />

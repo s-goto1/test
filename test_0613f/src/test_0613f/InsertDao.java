@@ -9,28 +9,28 @@ import java.sql.SQLException;
 //import entity.TotalM;
 
 public class InsertDao {
-	public void insert(String id,  String date, String depature, String destination, int money) {
+	public void insert(String id, String month, String date, String depature, String destination, int money) {
 
 		Connection con = null;
 		PreparedStatement presmt = null;
 		ResultSet rs = null;
 
-		String sql = "INSERT INTO totalm (ID,DATE,DEPATURE,DESTINATION,MONEY)VALUES (?,?,?,?,?) ";
+		String sql = "INSERT INTO totalm (ID,MONTH,DATE,DEPATURE,DESTINATION,MONEY)VALUES (?,?,?,?,?,?) ";
 
 		try {
 			Class.forName("org.postgresql.Driver");
 			con = DriverManager.getConnection(
-					"jdbc:postgresql:postgres",
-					"postgres",
-					"Asdf123");
+					"jdbc:postgresql:axiz_db",
+					"axizuser",
+					"axiz");
 
 			presmt = con.prepareStatement(sql);
 
 			presmt.setString(1, id);
-			presmt.setString(2, date);
-			presmt.setString(3, depature);
-			presmt.setString(4, destination);
-
+			presmt.setString(2, month);
+			presmt.setString(3, date);
+			presmt.setString(4, depature);
+			presmt.setString(5, destination);
 			presmt.setInt(6, money);
 
 			presmt.executeUpdate();
