@@ -3,7 +3,6 @@ package servlet2;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,17 +43,13 @@ public class DeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 
 		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
 		//TotalM tom = new TotalM();
 
-		String id = "1";
+		String id = (String) session.getAttribute("id");
 		String[] totalM_id = request.getParameterValues("totalM_id");
-		String select = request.getParameter("selectTest");
-
-		System.out.println(select);
 
 		if (totalM_id == null) {
 
@@ -63,8 +58,9 @@ public class DeleteServlet extends HttpServlet {
 			//			HttpSession session = request.getSession();
 			//			session.setAttribute("list", list);
 
-			RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
-			dispatch.forward(request, response);
+			response.sendRedirect("./home.jsp");
+			//RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
+			//dispatch.forward(request, response);
 
 		} else {
 
@@ -80,13 +76,14 @@ public class DeleteServlet extends HttpServlet {
 			TotalMDao tmd = new TotalMDao();
 			List<TotalM> list = tmd.findAll(id);
 
-			HttpSession session = request.getSession();
 			session.setAttribute("list", list);
+			request.setAttribute("deleteComplete", "該当のデータを削除しました");
 
 			System.out.println(id);
 
-			RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
-			dispatch.forward(request, response);
+			response.sendRedirect("./home.jsp");
+			//RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
+			//dispatch.forward(request, response);
 
 		}
 	}
