@@ -51,18 +51,15 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String id = request.getParameter("id");
-		//"1";
 		String pass = request.getParameter("pass");
-		//"xxxx";
 
 		Calendar cal = Calendar.getInstance();
-		int m = cal.get(Calendar.MONTH)+1;
+		int m = cal.get(Calendar.MONTH) + 1;
 
 		String month = String.valueOf(m);
 
 		LoginUser lu = new LoginUser();
 		UserInfo ui = lu.findUser(id);
-
 
 		boolean isLogin = (ui != null && id.equals(ui.getId()) &&
 				pass.equals(ui.getPass()));
@@ -75,14 +72,11 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("name", ui.getName());
 
 			TotalMDao tmd = new TotalMDao();
-			//			List<TotalM> list = tmd.findAll(id);
+
 
 			List<TotalM> list = tmd.findAllByMonth(id, month);
 
 			session.setAttribute("list", list);
-
-			System.out.println(list);
-
 			session.setAttribute("nolist", "登録されているデータがありません。");
 
 			RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");

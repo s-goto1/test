@@ -49,14 +49,10 @@ public class RegisterServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
-		//		TotalM tom = new TotalM();
+
+		String month = request.getParameter("month");
 
 		String id = request.getParameter("id");
-		;
-		//int totalM_id =  10;
-		String name = "name1";
-		//仮の値、idと一緒にログイン時セッション保存でいいかも？ちなみにテーブル違う
-		//request.getParameter("name");
 		String date = request.getParameter("date");
 		String depature = request.getParameter("depature");
 		String destination = request.getParameter("destination");
@@ -65,11 +61,11 @@ public class RegisterServlet extends HttpServlet {
 		int money = Integer.parseInt(money1);
 
 		InsertDao IDao = new InsertDao();
-		IDao.insert(id, name, date, depature, destination, money);
+		IDao.insert(id, date, depature, destination, money);
 
 		HttpSession session = request.getSession();
 		TotalMDao tmd = new TotalMDao();
-		List<TotalM> list = tmd.findAll(id);
+		List<TotalM> list = tmd.findAllByMonth(id,month);
 		session.setAttribute("list", list);
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");

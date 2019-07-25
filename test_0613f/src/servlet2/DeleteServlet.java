@@ -74,7 +74,7 @@ public class DeleteServlet extends HttpServlet {
 			}
 
 			TotalMDao tmd = new TotalMDao();
-			List<TotalM> list = tmd.findAll(id);
+			List<TotalM> list = tmd.findAllByMonth(id,"7");
 
 			session.setAttribute("list", list);
 			request.setAttribute("deleteComplete", "該当のデータを削除しました");

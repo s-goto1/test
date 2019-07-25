@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
-
 </script>
 <script type="text/javascript" src="subtest.js"></script>
 <script>
@@ -20,6 +19,39 @@ return false;
 }
 }
 </script>
+<script>function clickBtn1() {
+	// 入力フォームを取得
+    var money = document.getElementById("money");
+
+    // ボタンを取得
+    var element = document.getElementById('train');
+
+    // 往復運賃を表示
+    money.value = money.value * 2;
+
+    // onclickの関数名を変更
+    element.onclick = new Function("clickBtn2()");
+
+    // valueを「片道」に変更
+    element.value = "片道";
+}
+
+function clickBtn2() {
+	// 入力フォームを取得
+    var money = document.getElementById("money");
+
+    // ボタンを取得
+    var element = document.getElementById('train');
+
+    // 片道運賃を表示
+    money.value = money.value / 2;
+
+    // onclickの関数名を変更
+    element.onclick = new Function("clickBtn1()");
+
+    // valueを「往復」に変更
+    element.value = "往復";
+}</script>
 </head>
 <body>
 	<form action="/test_0613f/Register" name="form" onsubmit="return CheckSearch()" method="post">
@@ -42,7 +74,7 @@ return false;
 				<td><input type="text" name="date" value="" size=""></td>
 				<td><input type="text" name="depature" value="" size=""></td>
 				<td><input type="text" name="destination" id="test" value="" size=""></td>
-				<td><input type="number" name="money" id="money" value="" size=""></td>
+				<td><input type="number" name="money" id="money" value="100" size=""></td>
 
 			</tr>
 		</table>

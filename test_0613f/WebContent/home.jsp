@@ -17,9 +17,9 @@
 <body>
 	<div class="container col-md-9 col-md-offset-2 mt-4">
 
-		<form id="formTest" name="formTest" action="Test" method="post">
+		<form id="month" name="month" action="Month" method="post">
 
-			<select name="selectTest">
+			<select name="month">
 
 				<option value="">選択して下さい</option>
 				<option value="1">1月</option>
