@@ -6,62 +6,72 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
-
-</script>
-
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<form id="form1" name="form1" action="Update" method="post">
-		<p>${name}です</p>
 
-		<table border="3">
-			<tr>
+	<div class="container col-md-9 col-md-offset-2 mt-4">
 
-				<th rowspan="2">管理ID<!-- テストのため表示 --></th>
+		<form id="form1" name="form1" action="Update" method="post">
+			<p class="mt-3">
+				<b><c:out value="${name}さん" /></b>の出張清算一覧データ
+			</p>
 
-				<th colspan="2" rowspan="2">月日</th>
-
-				<th colspan="2">区間</th>
-
-
-				<th rowspan="2">金額</th>
-			</tr>
-			<tr>
-
-				<th>発</th>
-				<th>着</th>
-
-			</tr>
-			<c:forEach var="item" items="${list}">
+			<table border="3" class="table table-striped">
 				<tr>
 
-					<td><input type = "text" name="totalM_id"
-						value="${item.totalM_id}" size="5" readonly></td>
+					<th rowspan="3"><div class="text-center">管理ID<!-- テストのため表示 --></div></th>
 
-					<td>7月</td>
+					<th colspan="2" rowspan="3"><div class="text-center">月日</div></th>
 
-					<td><input type="text" name="date"
-						value="${item.date}" size="5" required>
-						<span style="display: inline-block;">日</span></td>
+					<th colspan="2"><div class="text-center">区間</div></th>
 
-					<td><input type="text" name="depature"
-						value="${item.depature}" required></td>
 
-					<td><input type="text" name="destination"
-						value="${item.destination}" required></td>
+					<th rowspan="3"><div class="text-center">金額</div></th>
+				</tr>
+				<tr>
 
-					<td><input type="text" name="money"
-						value="${item.money}" size="5" required></td>
+					<th rowspan="2"><div class="text-center">発</div></th>
+					<th rowspan="2"><div class="text-center">着</div></th>
 
 				</tr>
-			</c:forEach>
+				<tr>
+					<!-- table-stripedのための空列 -->
+				</tr>
 
-		</table>
-		<input type="submit" name="uptest" value="修正(テスト)">
-		<input type="button" onclick="location.href='./home.jsp'"value="戻る(まだ使えない)">
-	</form>
+				<c:forEach var="item" items="${list}">
+					<tr>
+
+						<td><input type = "text" name="totalM_id"
+							value="${item.totalM_id}" size="5" readonly></td>
+
+						<td>7月</td>
+
+						<td><input type="text" name="date"
+							value="${item.date}" size="5" required>
+							<span style="display: inline-block;">日</span></td>
+
+						<td><input type="text" name="depature"
+							value="${item.depature}" required></td>
+
+						<td><input type="text" name="destination"
+							value="${item.destination}" required></td>
+
+						<td><input type="text" name="money"
+							value="${item.money}" size="5" required></td>
+
+					</tr>
+				</c:forEach>
+
+			</table>
+			<input type="submit" name="uptest" class="btn btn-success mr-2" value="修正(テスト)">
+			<input type="button" class="btn btn-warning" onclick="location.href='./home.jsp'"value="戻る(まだ使えない)">
+		</form>
+
+	</div>
 
 </body>
 </html>
