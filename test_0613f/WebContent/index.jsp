@@ -6,14 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="test.css"/>
 </head>
 <body>
-	<form action="./Login" method="post">
-		ユーザー名：<input type="text" name="id"><br>
-		パスワード：<input type="password" name="pass"><br> <input type="submit" name="確認用" value="ログイン">
-	</form>
-	<c:if test="${not empty error}">
-		${error}
-	</c:if>
+	<fieldset>
+		<h1>Login Form</h1>
+		<form action="./Login" method="post">
+			<div class="iconUser"></div>
+			<input type="text" name="id" placeholder="UserId" required>
+			<div class="iconPassword"></div>
+			<input type="password" name="pass" placeholder="Password" required>
+			<input type="submit" name="確認用" value="Login">
+		</form>
+		<c:if test="${not empty error}">
+			<div style="color: red;">
+				${error}
+			</div>
+		</c:if>
+    </fieldset>
 </body>
 </html>

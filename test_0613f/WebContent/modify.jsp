@@ -23,8 +23,6 @@
 			<table border="3" class="table table-striped">
 				<tr>
 
-					<th rowspan="3"><div class="text-center">管理ID<!-- テストのため表示 --></div></th>
-
 					<th colspan="2" rowspan="3"><div class="text-center">月日</div></th>
 
 					<th colspan="2"><div class="text-center">区間</div></th>
@@ -45,9 +43,6 @@
 				<c:forEach var="item" items="${list}">
 					<tr>
 
-						<td><input type="text" name="totalM_id"
-							value="${item.totalM_id}" size="5" readonly></td>
-
 						<td><input type="text" name="month"
 							value="${item.month}" size="5" required>
 							<span style="display: inline-block;">月</span></td>
@@ -62,8 +57,11 @@
 						<td><input type="text" name="destination"
 							value="${item.destination}" required></td>
 
-						<td><input type="text" name="money"
-							value="${item.money}" size="5" required></td>
+						<td><input type="number" name="money"
+							value="${item.money}" step="10" required>
+
+							<input type="hidden" name="totalM_id"
+							value="${item.totalM_id}" size="5" readonly></td>
 
 					</tr>
 				</c:forEach>

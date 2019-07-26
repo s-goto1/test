@@ -121,7 +121,7 @@
 			本当に削除しますか？<br>
 			<div class="mb-3"></div>
 			<form id="formDelete" name="formDelete" action="Delete" method="post">
-				<input type="text" id="modal_totalM_id" name="totalM_id" value="" readonly>
+				<input type="hidden" id="modal_totalM_id" name="totalM_id" value="" readonly>
 				<ul class="text-center list-inline">
 					<li class="list-inline-item">
 						<button type="submit" id="delete" class="btn btn-danger">YES</button>

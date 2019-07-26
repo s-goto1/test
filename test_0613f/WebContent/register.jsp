@@ -39,7 +39,7 @@
 					<td><input type="text" name="date" value="" size="5"><span style="display: inline-block;">日</span></td>
 					<td><input type="text" name="depature" value="" size=""></td>
 					<td><input type="text" name="destination" id="test" value="" size=""></td>
-					<td><input type="number" name="money" id="money" value="0" size="5"></td>
+					<td><input type="number" name="money" id="money" value="0" step="10"></td>
 
 				</tr>
 			</table>
