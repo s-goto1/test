@@ -3,6 +3,7 @@ package servlet2;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -109,11 +110,41 @@ public class UpdateServlet extends HttpServlet {
 					Integer.valueOf(money[i]), Integer.valueOf(totalM_id[i]));
 		}
 
+		// 現在日時を取得
+		Calendar cal = Calendar.getInstance();
+
+		// 現在月を取得
+		int mon = cal.get(Calendar.MONTH) + 1;
+
 		// 変更後のリスト取得
-		List<TotalM> totalMListUpdate = totalMDao.findAllByMonth(id,7);
+		List<TotalM> totalMListUpdate = totalMDao.findAllByMonth(id,mon);
+
+		// リストのレコード数取得
+		int size = totalMListUpdate.size();
+
+		// String型のListオブジェクトを生成
+		List<String> divisionList = new ArrayList<>();
+
+		// リストのレコード分繰り返す
+		for(int i = 0; i < size; i++) {
+			// 区分を取得
+			String divi = totalMListUpdate.get(i).getDivision();
+			// 区分が片道？
+			if(divi.equals("片道")) {
+				// 往復をセット
+				divi = "往復";
+				divisionList.add(divi);
+			// 区分が往復？
+			} else {
+				// 片道をセット
+				divi = "片道";
+				divisionList.add(divi);
+			}
+		}
 
 		// セッションに情報をセット
 		session.setAttribute("list", totalMListUpdate);
+		session.setAttribute("divisionList", divisionList);
 
 		// リストに変換するための二次元配列を生成
 		//String updateTable [][]= new String[idLength][5];
