@@ -9,7 +9,7 @@ import java.sql.SQLException;
 //import entity.TotalM;
 
 public class InsertDao {
-	public void insert(String id, String month, String date, String depature, String destination, int money) {
+	public void insert(String id, Integer month, Integer date, String depature, String destination, int money) {
 
 		Connection con = null;
 		PreparedStatement presmt = null;
@@ -27,8 +27,8 @@ public class InsertDao {
 			presmt = con.prepareStatement(sql);
 
 			presmt.setString(1, id);
-			presmt.setString(2, month);
-			presmt.setString(3, date);
+			presmt.setInt(2, month);
+			presmt.setInt(3, date);
 			presmt.setString(4, depature);
 			presmt.setString(5, destination);
 			presmt.setInt(6, money);

@@ -53,8 +53,11 @@ public class TestServlet extends HttpServlet {
 		String id = (String) session.getAttribute("id");
 		String month = request.getParameter("month");
 
+		Integer m= Integer.valueOf(month);
+
+
 		TotalMDao tmd = new TotalMDao();
-		List<TotalM> list = tmd.findAllByMonth(id, month);
+		List<TotalM> list = tmd.findAllByMonth(id, m);
 		session.setAttribute("list", list);
 
 		session.setAttribute("nolist", "登録されているデータがありません。");

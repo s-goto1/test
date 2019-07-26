@@ -63,9 +63,14 @@ public class UpdateServlet extends HttpServlet {
 		String money[] = request.getParameterValues("money");				// 金額
 		String totalM_id[] = request.getParameterValues("totalM_id");		// 管理ID
 
+
+
 		// セッションの取得
 		List<TotalM> totalMListBefore = (List<TotalM>) session.getAttribute("list");
 		String id = (String) session.getAttribute("id");
+
+
+
 
 		// 入力フォームの行数を取得
 		int idLength = totalM_id.length;
@@ -76,7 +81,7 @@ public class UpdateServlet extends HttpServlet {
 		// 配列の番地ごとに入力値を代入
 		for(int i = 0; i < idLength; i++) {
 			totalM[i] = new TotalM(null, Integer.valueOf(totalM_id[i]),
-					Integer.valueOf(money[i]), month[i],  date[i], depature[i],
+					Integer.valueOf(money[i]), Integer.valueOf(month[i]),  Integer.valueOf(date[i]), depature[i],
 					destination[i]);
 		}
 
@@ -100,12 +105,12 @@ public class UpdateServlet extends HttpServlet {
 
 		// 変更分だけ更新
 		for(int i = 0; i < listLength; i++) {
-			updateDao.update(month[i], date[i], depature[i], destination[i],
+			updateDao.update(Integer.valueOf(month[i]), Integer.valueOf(date[i]), depature[i], destination[i],
 					Integer.valueOf(money[i]), Integer.valueOf(totalM_id[i]));
 		}
 
 		// 変更後のリスト取得
-		List<TotalM> totalMListUpdate = totalMDao.findAllByMonth(id, "7");
+		List<TotalM> totalMListUpdate = totalMDao.findAllByMonth(id,7);
 
 		// セッションに情報をセット
 		session.setAttribute("list", totalMListUpdate);

@@ -54,9 +54,12 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("pass");
 
 		Calendar cal = Calendar.getInstance();
-		int m = cal.get(Calendar.MONTH) + 1;
+		int month = cal.get(Calendar.MONTH) + 1;
 
-		String month = String.valueOf(m);
+		//String month = String.valueOf(m);
+
+
+
 
 		LoginUser lu = new LoginUser();
 		UserInfo ui = lu.findUser(id);

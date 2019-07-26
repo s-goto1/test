@@ -54,4 +54,14 @@ public class valueEx {
 
 	}
 
+	public Integer monthStoI (String month) {
+
+		Integer m= Integer.valueOf(month);
+
+
+		return m;
+
+
+	}
+
 }

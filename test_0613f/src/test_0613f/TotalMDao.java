@@ -13,7 +13,7 @@ import entity.TotalM;
 public class TotalMDao {
 
 
-	public List<TotalM> findAllByMonth(String id, String month) {
+	public List<TotalM> findAllByMonth(String id, Integer month) {
 
 		List<TotalM> list = new ArrayList<TotalM>();
 
@@ -27,14 +27,14 @@ public class TotalMDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:axiz_db",
-				"axizuser",
-				"axiz");) {
+				"jdbc:postgresql:postgres",
+				"postgres",
+				"Asdf123");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM totalm WHERE id = ? AND month = ? ";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, id);
-			presmt.setString(2, month);
+			presmt.setInt(2, month);
 			ResultSet rset = presmt.executeQuery();
 
 			// データベースから取得した値がある間、
@@ -45,8 +45,8 @@ public class TotalMDao {
 				tom.setId(rset.getString("id"));
 				tom.setTotalM_id(rset.getInt("totalM_id"));
 				tom.setMoney(rset.getInt("money"));
-				tom.setMonth(rset.getString("month"));
-				tom.setDate(rset.getString("date"));
+				tom.setMonth(rset.getInt("month"));
+				tom.setDate(rset.getInt("date"));
 				tom.setDepature(rset.getString("depature"));
 				tom.setDestination(rset.getString("destination"));
 				list.add(tom);

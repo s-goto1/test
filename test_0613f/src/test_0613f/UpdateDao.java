@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UpdateDao {
-	public void update(String month, String date, String depature, String destination, int money, int totalM_id) {
+	public void update(Integer month, Integer date, String depature, String destination, int money, int totalM_id) {
 
 		Connection con = null;
 		PreparedStatement presmt = null;
@@ -24,8 +24,8 @@ public class UpdateDao {
 
 			presmt = con.prepareStatement(sql);
 
-			presmt.setString(1, month);
-			presmt.setString(2, date);
+			presmt.setInt(1, month);
+			presmt.setInt(2, date);
 			presmt.setString(3, depature);
 			presmt.setString(4, destination);
 			presmt.setInt(5, money);

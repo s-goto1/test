@@ -57,13 +57,16 @@ public class RegisterServlet extends HttpServlet {
 		String money1 = request.getParameter("money");
 
 		int money = Integer.parseInt(money1);
+		Integer m= Integer.valueOf(month);
+		Integer d= Integer.valueOf(date);
+
 
 		InsertDao IDao = new InsertDao();
-		IDao.insert(id, month, date, depature, destination, money);
+		IDao.insert(id, m, d, depature, destination, money);
 
 		HttpSession session = request.getSession();
 		TotalMDao tmd = new TotalMDao();
-		List<TotalM> list = tmd.findAllByMonth(id,month);
+		List<TotalM> list = tmd.findAllByMonth(id,m);
 		session.setAttribute("list", list);
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
