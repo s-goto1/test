@@ -34,6 +34,7 @@
 function clickBtn1() {
 	// 入力フォームを取得
     var money = document.getElementById("money");
+    var division = document.getElementById("division");
 
     // ボタンを取得
     var element = document.getElementById('train');
@@ -46,11 +47,16 @@ function clickBtn1() {
 
     // valueを「片道」に変更
     element.value = "片道";
+
+    // valueを「往復」に変更
+    division.value = "往復";
+
 }
 
 function clickBtn2() {
 	// 入力フォームを取得
     var money = document.getElementById("money");
+    var division = document.getElementById("division");
 
     // ボタンを取得
     var element = document.getElementById('train');
@@ -63,6 +69,43 @@ function clickBtn2() {
 
     // valueを「往復」に変更
     element.value = "往復";
+
+    // valueを「片道」に変更
+    division.value = "片道";
+}
+
+function clickTrainBtn(button) {
+	// ボタンの行数を取得
+	const data = button.dataset['index'];
+
+	// 入力フォームを取得
+	var money = document.getElementById('money' + data);
+	var division = document.getElementById('division' + data);
+
+    // ボタンを取得
+	var element = document.getElementById('train' + data);
+
+    // ボタンのvalue値が「片道」？
+	if(element.value == "片道") {
+		// 片道運賃を表示
+		money.value = money.value / 2;
+
+		// valueを「往復」に変更
+		element.value = "往復";
+
+		// valueを「片道」に変更
+		division.value = "片道";
+	// ボタンのvalue値が「往復」？
+	} else {
+		// 往復運賃を表示
+		money.value = money.value * 2;
+
+		// valueを「片道」に変更
+		element.value = "片道";
+
+		// valueを「往復」に変更
+		division.value = "往復";
+	}
 }
 
 function checkInput(){

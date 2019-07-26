@@ -41,6 +41,7 @@ public class DeleteServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -50,12 +51,11 @@ public class DeleteServlet extends HttpServlet {
 
 		String id = (String) session.getAttribute("id");
 		String[] totalM_id = request.getParameterValues("totalM_id");
-		String month = (String) session.getAttribute("month");
-
-		Integer m= Integer.valueOf(month);
+		List<TotalM> mList = (List<TotalM>) session.getAttribute("list");
 
 
-		if (totalM_id == null) {
+
+		if (totalM_id.length == 1 && totalM_id[0].equals("")) {
 
 			//			TotalMDao tmd = new TotalMDao();
 			//			List<TotalM> list = tmd.findAll(id);
@@ -77,11 +77,12 @@ public class DeleteServlet extends HttpServlet {
 
 			}
 
+			Integer m = mList.get(0).getMonth();
+
 			TotalMDao tmd = new TotalMDao();
 			List<TotalM> list = tmd.findAllByMonth(id,m);
 
 			session.setAttribute("list", list);
-			request.setAttribute("deleteComplete", "該当のデータを削除しました");
 
 			System.out.println(id);
 

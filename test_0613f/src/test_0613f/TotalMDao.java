@@ -27,9 +27,9 @@ public class TotalMDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM totalm WHERE id = ? AND month = ? ";
 			presmt = conn.prepareStatement(sql);
@@ -49,6 +49,7 @@ public class TotalMDao {
 				tom.setDate(rset.getInt("date"));
 				tom.setDepature(rset.getString("depature"));
 				tom.setDestination(rset.getString("destination"));
+				tom.setDivision(rset.getString("division"));
 				list.add(tom);
 				// while文で次のレコードの処理へ?
 

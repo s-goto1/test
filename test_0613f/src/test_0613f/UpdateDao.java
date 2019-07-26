@@ -7,13 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UpdateDao {
-	public void update(Integer month, Integer date, String depature, String destination, int money, int totalM_id) {
+	public void update(Integer month, Integer date, String depature,
+			String destination, String division,int money, int totalM_id) {
 
 		Connection con = null;
 		PreparedStatement presmt = null;
 		ResultSet rs = null;
 
-		String sql = "UPDATE totalm SET month= ?,date= ?,depature= ?,destination= ? ,money=? WHERE totalm_id =? ";
+		String sql = "UPDATE totalm SET month= ?,date= ?,depature= ?,destination= ? ,division =?,money=? WHERE totalm_id =? ";
 
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -28,8 +29,9 @@ public class UpdateDao {
 			presmt.setInt(2, date);
 			presmt.setString(3, depature);
 			presmt.setString(4, destination);
-			presmt.setInt(5, money);
-			presmt.setInt(6, totalM_id);
+			presmt.setString(5, division);
+			presmt.setInt(6, money);
+			presmt.setInt(7, totalM_id);
 
 
 			presmt.executeUpdate();

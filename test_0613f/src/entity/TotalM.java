@@ -10,8 +10,11 @@ public class TotalM {
 	private Integer date;
 	private String depature;
 	private String destination;
+	private String division;
 
-	public TotalM(String id, Integer totalM_id, Integer money, Integer month, Integer date, String depature, String destination) {
+	public TotalM(String id, Integer totalM_id, Integer money,
+			Integer month, Integer date, String depature,
+			String destination, String division) {
 		this.id = id;
 		this.totalM_id = totalM_id;
 		this.money = money;
@@ -19,6 +22,7 @@ public class TotalM {
 		this.date = date;
 		this.depature = depature;
 		this.destination = destination;
+		this.division = division;
 	}
 
 	public TotalM() {
@@ -47,6 +51,14 @@ public class TotalM {
 
 	public void setDestination(String destination) {
 		this.destination = destination;
+	}
+
+	public String getDivision() {
+		return division;
+	}
+
+	public void setDivision(String division) {
+		this.division = division;
 	}
 
 	public String getId() {

@@ -62,7 +62,7 @@ public class UpdateServlet extends HttpServlet {
 		String destination[] = request.getParameterValues("destination");	// 到着駅
 		String money[] = request.getParameterValues("money");				// 金額
 		String totalM_id[] = request.getParameterValues("totalM_id");		// 管理ID
-
+		String division[] = request.getParameterValues("division");
 
 
 		// セッションの取得
@@ -82,7 +82,7 @@ public class UpdateServlet extends HttpServlet {
 		for(int i = 0; i < idLength; i++) {
 			totalM[i] = new TotalM(null, Integer.valueOf(totalM_id[i]),
 					Integer.valueOf(money[i]), Integer.valueOf(month[i]),  Integer.valueOf(date[i]), depature[i],
-					destination[i]);
+					destination[i], division[i]);
 		}
 
 		// リストに変換
@@ -105,7 +105,7 @@ public class UpdateServlet extends HttpServlet {
 
 		// 変更分だけ更新
 		for(int i = 0; i < listLength; i++) {
-			updateDao.update(Integer.valueOf(month[i]), Integer.valueOf(date[i]), depature[i], destination[i],
+			updateDao.update(Integer.valueOf(month[i]), Integer.valueOf(date[i]), depature[i], destination[i], division[i],
 					Integer.valueOf(money[i]), Integer.valueOf(totalM_id[i]));
 		}
 

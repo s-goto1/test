@@ -45,14 +45,11 @@
 				<b><c:out value="${name}さん" /></b>の出張清算一覧データ
 			</p>
 
-			<p class="mt-3">
-				<c:out value="${deleteComplete}" />
-			</p>
-
 			<table border="3" class="table table-striped">
 				<tr>
 					<th colspan="2" rowspan="3"><div class="text-center">月日</div></th>
 					<th colspan="2"><div class="text-center">区間</div></th>
+					<th rowspan="3"><div class="text-center">区分</div></th>
 					<th rowspan="3"><div class="text-center">金額</div></th>
 					<th rowspan="3"><div class="text-center">削除用（仮）</div></th>
 				</tr>
@@ -77,6 +74,9 @@
 							</c:if></td>
 						<td><c:if test="${not empty list}">
 								<c:out value="${item.destination}" />
+							</c:if></td>
+						<td><c:if test="${not empty list}">
+								<c:out value="${item.division}" />
 							</c:if></td>
 						<td><c:if test="${not empty list}">
 								<c:out value="${item.money}" />

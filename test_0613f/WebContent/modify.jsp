@@ -10,6 +10,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="subtest.js"></script>
 </head>
 <body>
 
@@ -27,8 +28,11 @@
 
 					<th colspan="2"><div class="text-center">区間</div></th>
 
+					<th rowspan="3"><div class="text-center">区分</div></th>
 
 					<th rowspan="3"><div class="text-center">金額</div></th>
+
+					<th rowspan="3"><div class="text-center">片道・往復ボタン</div></th>
 				</tr>
 				<tr>
 
@@ -40,7 +44,7 @@
 					<!-- table-stripedのための空列 -->
 				</tr>
 
-				<c:forEach var="item" items="${list}">
+				<c:forEach var="item" items="${list}" varStatus="status">
 					<tr>
 
 						<td><input type="text" name="month"
@@ -57,8 +61,18 @@
 						<td><input type="text" name="destination"
 							value="${item.destination}" required></td>
 
-						<td><input type="number" name="money"
-							value="${item.money}" step="10" required>
+						<td><input type="text" name="division" id="division${status.count}"
+							value="${item.division}" size="5" readonly></td>
+
+						<td><input type="number" name="money" id="money${status.count}"
+							value="${item.money}" step="10" required></td>
+
+						<td><input type="button" name="train" id="train${status.count}"
+							data-index="${status.count}" class="btn btn-info"
+							onclick="clickTrainBtn(this)" value="${divisionList.get(status.index)}">
+
+							<input type="hidden" name="train_id" id="train_id"
+							value="${status.count}" size="5" readonly>
 
 							<input type="hidden" name="totalM_id"
 							value="${item.totalM_id}" size="5" readonly></td>
@@ -68,7 +82,7 @@
 
 			</table>
 			<input type="submit" name="uptest" class="btn btn-success mr-2" value="修正(テスト)">
-			<input type="button" class="btn btn-warning" onclick="location.href='./home.jsp'"value="戻る(まだ使えない)">
+			<input type="button" class="btn btn-warning" onclick="location.href='./home.jsp'" value="戻る(まだ使えない)">
 		</form>
 
 	</div>

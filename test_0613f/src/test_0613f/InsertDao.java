@@ -9,13 +9,13 @@ import java.sql.SQLException;
 //import entity.TotalM;
 
 public class InsertDao {
-	public void insert(String id, Integer month, Integer date, String depature, String destination, int money) {
+	public void insert(String id, Integer month, Integer date, String depature, String destination, String division, int money) {
 
 		Connection con = null;
 		PreparedStatement presmt = null;
 		ResultSet rs = null;
 
-		String sql = "INSERT INTO totalm (ID,MONTH,DATE,DEPATURE,DESTINATION,MONEY)VALUES (?,?,?,?,?,?) ";
+		String sql = "INSERT INTO totalm (ID,MONTH,DATE,DEPATURE,DESTINATION,DIVISION,MONEY)VALUES (?,?,?,?,?,?,?) ";
 
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -31,7 +31,8 @@ public class InsertDao {
 			presmt.setInt(3, date);
 			presmt.setString(4, depature);
 			presmt.setString(5, destination);
-			presmt.setInt(6, money);
+			presmt.setString(6, division);
+			presmt.setInt(7, money);
 
 			presmt.executeUpdate();
 

@@ -1,6 +1,7 @@
 package servlet2;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -55,11 +56,27 @@ public class TestServlet extends HttpServlet {
 
 		Integer m= Integer.valueOf(month);
 
-
 		TotalMDao tmd = new TotalMDao();
-		List<TotalM> list = tmd.findAllByMonth(id, m);
-		session.setAttribute("list", list);
 
+		List<TotalM> list = tmd.findAllByMonth(id, m);
+
+		int size = list.size();
+
+		List<TotalM> divisionList = new ArrayList<>();
+
+		for(int i = 0; i < size; i++) {
+			String division = list.get(i).getDestination();
+			if(division.equals("片道")) {
+				division = "往復";
+				divisionList.get(i).setDivision(division);
+			} else {
+				division = "片道";
+				divisionList.get(i).setDivision(division);
+			}
+		}
+
+		session.setAttribute("list", list);
+		session.setAttribute("divisionList", divisionList);
 		session.setAttribute("nolist", "登録されているデータがありません。");
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");

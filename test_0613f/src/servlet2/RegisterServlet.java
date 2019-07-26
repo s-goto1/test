@@ -54,6 +54,7 @@ public class RegisterServlet extends HttpServlet {
 		String date = request.getParameter("date");
 		String depature = request.getParameter("depature");
 		String destination = request.getParameter("destination");
+		String division = request.getParameter("division");
 		String money1 = request.getParameter("money");
 
 		int money = Integer.parseInt(money1);
@@ -62,7 +63,7 @@ public class RegisterServlet extends HttpServlet {
 
 
 		InsertDao IDao = new InsertDao();
-		IDao.insert(id, m, d, depature, destination, money);
+		IDao.insert(id, m, d, depature, destination, division, money);
 
 		HttpSession session = request.getSession();
 		TotalMDao tmd = new TotalMDao();
