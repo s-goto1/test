@@ -75,9 +75,15 @@ input[type="submit"]{
   transition:background .3s;
   -webkit-transition:background .3s;
 }
-
 input[type="submit"]:hover{
   background:#00aaaa;
+}
+label{
+  margin-bottom:4%;
+  padding:4% 4% 4% 4%;
+  font-family:'Open Sans',sans-serif;
+  font-size:95%;
+  color:#555;
 }
 ::-webkit-input-placeholder {
 
