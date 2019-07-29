@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-ログアウトしました。
-5秒語
-
+ログアウトしました。<br>
+5秒後に画面遷移します。<br>
+少々お待ち下さい．．．<br>
 </body>
 </html>

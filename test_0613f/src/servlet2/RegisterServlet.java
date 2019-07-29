@@ -76,7 +76,7 @@ public class RegisterServlet extends HttpServlet {
 		List<String> divisionList = new ArrayList<>();
 
 		for(int i = 0; i < size; i++) {
-			String divi = list.get(i).getDestination();
+			String divi = list.get(i).getDivision();
 			if(divi.equals("片道")) {
 				divi = "往復";
 				divisionList.add(divi);

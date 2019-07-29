@@ -1,6 +1,7 @@
 package servlet2;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -80,9 +81,26 @@ public class DeleteServlet extends HttpServlet {
 			Integer m = mList.get(0).getMonth();
 
 			TotalMDao tmd = new TotalMDao();
+
 			List<TotalM> list = tmd.findAllByMonth(id,m);
 
+			int size = list.size();
+
+			List<String> divisionList = new ArrayList<>();
+
+			for(int i = 0; i < size; i++) {
+				String division = list.get(i).getDivision();
+				if(division.equals("片道")) {
+					division = "往復";
+					divisionList.add(division);
+				} else {
+					division = "片道";
+					divisionList.add(division);
+				}
+			}
+
 			session.setAttribute("list", list);
+			session.setAttribute("divisionList", divisionList);
 
 			System.out.println(id);
 

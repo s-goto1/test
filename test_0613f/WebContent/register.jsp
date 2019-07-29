@@ -20,15 +20,15 @@
 
 			<table border="3" class="table table-striped">
 				<tr>
-					<th colspan="2" rowspan="3">月日</th>
-					<th colspan="2">区間</th>
-					<th rowspan="3">区分</th>
-					<th rowspan="3">金額</th>
+					<th colspan="2" rowspan="3"><div class="text-center">月日</div></th>
+					<th colspan="2"><div class="text-center">区間</div></th>
+					<th rowspan="3"><div class="text-center">区分</div></th>
+					<th rowspan="3"><div class="text-center">金額</div></th>
 				</tr>
 				<tr>
 
-					<th rowspan="2">発</th>
-					<th rowspan="2">着</th>
+					<th rowspan="2"><div class="text-center">発</div></th>
+					<th rowspan="2"><div class="text-center">着</div></th>
 
 				</tr>
 				<tr>
@@ -48,8 +48,8 @@
 		    <input type="hidden" name="id" value="${id}" size="">
 
 			<input type="submit" id="regist" name="確認用" class="btn btn-primary mr-2" value="登録確定">
+			<input type="button" id="back" name="" class="btn btn-warning mr-4" onclick="location.href='./home.jsp'" value="戻る">
 			<input type="button" id="today" name="today" class="btn btn-secondary mr-2" value="今日の日付">
-			<input type="button" id="back" name="" class="btn btn-warning mr-2" onclick="location.href='./home.jsp'" value="戻る">
 			<input type="button" id="train" name="" class="btn btn-info"  onclick="clickBtn1()" value="往復">
 
 		</form>
