@@ -65,14 +65,11 @@
 							value="${item.division}" size="5" readonly></td>
 
 						<td><input type="number" name="money" id="money${status.count}"
-							value="${item.money}" step="10" required></td>
+							value="${item.money}" max="99999" step="10" required></td>
 
 						<td><input type="button" name="train" id="train${status.count}"
 							data-index="${status.count}" class="btn btn-info"
 							onclick="clickTrainBtn(this)" value="${divisionList.get(status.index)}">
-
-							<input type="hidden" name="train_id" id="train_id"
-							value="${status.count}" size="5" readonly>
 
 							<input type="hidden" name="totalM_id"
 							value="${item.totalM_id}" size="5" readonly></td>

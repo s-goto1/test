@@ -62,16 +62,16 @@ public class TestServlet extends HttpServlet {
 
 		int size = list.size();
 
-		List<TotalM> divisionList = new ArrayList<>();
+		List<String> divisionList = new ArrayList<>();
 
 		for(int i = 0; i < size; i++) {
 			String division = list.get(i).getDestination();
 			if(division.equals("片道")) {
 				division = "往復";
-				divisionList.get(i).setDivision(division);
+				divisionList.add(division);
 			} else {
 				division = "片道";
-				divisionList.get(i).setDivision(division);
+				divisionList.add(division);
 			}
 		}
 

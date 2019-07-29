@@ -132,6 +132,21 @@ function checkInput(){
 }
 
 jQuery(function($) {
+	$(document).on('click', '#today', function() {
+		// 今日の日時を取得
+		var today = new Date();
+
+		// 入力フォームを取得
+		var month = document.getElementById('month');
+		var date = document.getElementById('date');
+
+		// 今日の月日を表示
+		month.value = today.getMonth() + 1;
+		date.value = today.getDate();
+	});
+});
+
+jQuery(function($) {
 	$(document).on('click', '.open-options', function(event) {
 		// モーダルウィンドウを開ける
 		event.preventDefault();

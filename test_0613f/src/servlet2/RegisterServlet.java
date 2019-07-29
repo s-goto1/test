@@ -1,6 +1,7 @@
 package servlet2;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -67,8 +68,26 @@ public class RegisterServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		TotalMDao tmd = new TotalMDao();
+
 		List<TotalM> list = tmd.findAllByMonth(id,m);
+
+		int size = list.size();
+
+		List<String> divisionList = new ArrayList<>();
+
+		for(int i = 0; i < size; i++) {
+			String divi = list.get(i).getDestination();
+			if(divi.equals("片道")) {
+				divi = "往復";
+				divisionList.add(divi);
+			} else {
+				divi = "片道";
+				divisionList.add(divi);
+			}
+		}
+
 		session.setAttribute("list", list);
+		session.setAttribute("divisionList", divisionList);
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
 		dispatch.forward(request, response);

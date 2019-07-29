@@ -36,19 +36,19 @@
 				</tr>
 				<tr>
 
-					<td><input type="text" name="month" value="" size="5"><span style="display: inline-block;">月</span></td>
-					<td><input type="text" name="date" value="" size="5"><span style="display: inline-block;">日</span></td>
-					<td><input type="text" name="depature" value="" size=""></td>
-					<td><input type="text" name="destination" id="test" value="" size=""></td>
+					<td><input type="text" name="month" id="month" value="" size="5" required><span style="display: inline-block;">月</span></td>
+					<td><input type="text" name="date" id="date" value="" size="5" required><span style="display: inline-block;">日</span></td>
+					<td><input type="text" name="depature" id="depature" value="" size="" required></td>
+					<td><input type="text" name="destination" id="destination" value="" size="" required></td>
 					<td><input type="text" name="division" id="division" value="片道" size="5" readonly></td>
-					<td><input type="number" name="money" id="money" value="0" step="10"></td>
+					<td><input type="number" name="money" id="money" value="100" max="99999" step="10" required></td>
 
 				</tr>
 			</table>
 		    <input type="hidden" name="id" value="${id}" size="">
 
 			<input type="submit" id="regist" name="確認用" class="btn btn-primary mr-2" value="登録確定">
-			<!--<input type="button" id="today" name="" class="btn btn-secondary mr-2" onclick="location.href='./home.jsp'" value="今日の日付">-->
+			<input type="button" id="today" name="today" class="btn btn-secondary mr-2" value="今日の日付">
 			<input type="button" id="back" name="" class="btn btn-warning mr-2" onclick="location.href='./home.jsp'" value="戻る">
 			<input type="button" id="train" name="" class="btn btn-info"  onclick="clickBtn1()" value="往復">
 
