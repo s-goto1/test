@@ -15,11 +15,13 @@ import entity.TotalM;
 public class ExcelTest2 {
 
 	//エクセルファイルを置いているフォルダー
-	static final String INPUT_DIR = "C:\\Users\\jsd01\\Desktop\\";
+	//static final String INPUT_DIR = "C:\\Users\\jsd01\\Desktop\\";
 
-	public void excelOut(TotalM totalM, int test) throws FileNotFoundException {
+	public void excelOut(TotalM totalM, int test, String path) throws FileNotFoundException {
 
 		// 変更するエクセルファイルを指定
+		//エクセルファイルを置いているフォルダー
+		String INPUT_DIR = path+"/";
 
 		String fileName = "d1470e67a491f5e34e3520fa0bee5ce9.xls";
 

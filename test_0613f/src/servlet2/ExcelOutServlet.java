@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import entity.TotalM;
 import test_0613f.ExcelTest2;
+import util.GetPath;
 
 /**
  * Servlet implementation class ExcelOutServlet
@@ -48,17 +49,19 @@ public class ExcelOutServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 
+
 		HttpSession session = request.getSession();
 		List<TotalM> list = (List<TotalM>) session.getAttribute("list");
 
 		ExcelTest2 ext = new ExcelTest2();
 
 
-
+		 GetPath gp = new GetPath();
+		 String INPUT_DIR = gp.getDesktopPath();
 		int i = 0;
 		for (TotalM totalm : list) {
 
-			ext.excelOut(totalm,i++);
+			ext.excelOut(totalm,i++,INPUT_DIR );
 
 		}
 
