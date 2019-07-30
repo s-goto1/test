@@ -48,7 +48,6 @@ public class ExcelOutServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 
-
 		HttpSession session = request.getSession();
 		List<TotalM> list = (List<TotalM>) session.getAttribute("list");
 
