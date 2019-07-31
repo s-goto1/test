@@ -6,13 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="iziModal.css">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script type="text/javascript"
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="subtest.js"></script>
 <script type="text/javascript" src="iziModal.min.js"></script>
+
+
+
+
 </head>
 <body>
 	<div class="container col-md-9 col-md-offset-2 mt-4">
@@ -34,9 +42,8 @@
 				<option value="10">10月</option>
 				<option value="11">11月</option>
 				<option value="12">12月</option>
-			</select>
-
-			<input type="submit" id="Test" class="btn btn-info ml-2" value="月ごとテスト">
+			</select> <input type="submit" id="Test" class="btn btn-info ml-2"
+				value="月ごとテスト">
 
 		</form>
 
@@ -83,7 +90,8 @@
 							</c:if></td>
 						<td><c:if test="${not empty list}">
 								<div class="text-center">
-									<input type="checkbox" name="totalM_id" value="${item.totalM_id}">
+									<input type="checkbox" name="totalM_id"
+										value="${item.totalM_id}">
 								</div>
 							</c:if></td>
 					</tr>
@@ -102,26 +110,30 @@
 				</c:otherwise>
 			</c:choose>
 
-			<br>
-
-			<input type="button" id="config" class="btn btn-success mr-2" onclick="location.href='./modify.jsp'" value="修正(テスト)">
-			<input type="button" id="register" class="btn btn-primary mr-2" value="登録テスト">
-			<input type="button" id="excelout" class="btn btn-warning mr-2" value="出力">
-			<input type="button" id="modal" class="btn btn-danger open-options mr-2" onclick="checkInput()" value="削除（テスト)">
-			<input type="button" id="logout" class="btn btn-secondary" onclick="location.href='./logout.jsp'" value="ログアウト">
+			<br> <input type="button" id="config"
+				class="btn btn-success mr-2" onclick="location.href='./modify.jsp'"
+				value="修正(テスト)"> <input type="button" id="register"
+				class="btn btn-primary mr-2" value="登録テスト"> <input
+				type="button" id="excelout" class="btn btn-warning mr-2" value="出力">
+			<input type="button" id="modal"
+				class="btn btn-danger open-options mr-2" onclick="checkInput()"
+				value="削除（テスト)"> <input type="button" id="logout"
+				class="btn btn-secondary" onclick="location.href='./logout.jsp'"
+				value="ログアウト">
 
 		</form>
 
 	</div>
 
 
-	<div class="iziModal" id="modal-options" data-izimodal-title="選択データの削除" data-izimodal-subtitle="選択した出張精算データを削除します">
+	<div class="iziModal" id="modal-options" data-izimodal-title="選択データの削除"
+		data-izimodal-subtitle="選択した出張精算データを削除します">
 		<div class="text-center mb-3">
-			一度削除したデータは再び復元する事ができません。<br>
-			本当に削除しますか？<br>
+			一度削除したデータは再び復元する事ができません。<br> 本当に削除しますか？<br>
 			<div class="mb-3"></div>
 			<form id="formDelete" name="formDelete" action="Delete" method="post">
-				<input type="hidden" id="modal_totalM_id" name="totalM_id" value="" readonly>
+				<input type="hidden" id="modal_totalM_id" name="totalM_id" value=""
+					readonly>
 				<ul class="text-center list-inline">
 					<li class="list-inline-item">
 						<button type="submit" id="delete" class="btn btn-danger">YES</button>
@@ -133,6 +145,13 @@
 			</form>
 		</div>
 	</div>
+	<c:if test="${not empty excelComp}">
+		<script>
+			var test;
+			test = " ${excelComp}";
 
+			alert(test);
+		</script>
+	</c:if>
 </body>
 </html>
