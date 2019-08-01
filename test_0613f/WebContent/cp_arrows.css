@@ -12,7 +12,7 @@
 }
 .cp_arrows .cp_arrow {
 	position: absolute;
-	top: 50%;/*着地点（サンプルは[class:cp_arrows]height300pxの50%）*/
+	top: 75%;/*着地点（サンプルは[class:cp_arrows]height300pxの50%）*/
 	left: 50%;
 	-webkit-transform: translate(-50%, -50%);
 	        transform: translate(-50%, -50%);
@@ -52,7 +52,7 @@
 }
 @-webkit-keyframes arrow-move08 {
 	0% {
-		top: 40%;/*スタート地点（サンプルは[class:cp_arrows]height300pxの35%）*/
+		top: 25%;/*スタート地点（サンプルは[class:cp_arrows]height300pxの35%）*/
 		opacity: 0;
 	}
 	70% {
@@ -64,7 +64,7 @@
 }
 @keyframes arrow-move08 {
 	0% {
-		top: 40%;/*スタート地点（サンプルは[class:cp_arrows]height300pxの35%）*/
+		top: 25%;/*スタート地点（サンプルは[class:cp_arrows]height300pxの35%）*/
 		opacity: 0;
 	}
 	70% {
