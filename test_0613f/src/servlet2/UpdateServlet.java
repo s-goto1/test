@@ -3,8 +3,8 @@ package servlet2;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.commons.collections4.ListUtils;
 
 import entity.TotalM;
 import test_0613f.TotalMDao;
@@ -63,26 +61,23 @@ public class UpdateServlet extends HttpServlet {
 		String destination[] = request.getParameterValues("destination");	// 到着駅
 		String money[] = request.getParameterValues("money");				// 金額
 		String totalM_id[] = request.getParameterValues("totalM_id");		// 管理ID
-		String division[] = request.getParameterValues("division");
+		String division[] = request.getParameterValues("division");			// 区分
 
-
-		// セッションの取得
+		// セッションから情報を取得
 		List<TotalM> totalMListBefore = (List<TotalM>) session.getAttribute("list");
 		String id = (String) session.getAttribute("id");
 
-
-
-
 		// 入力フォームの行数を取得
-		int idLength = totalM_id.length;
+		int length = totalM_id.length;
 
 		// TotalM型の配列を生成
-		TotalM totalM[] = new TotalM[idLength];
+		TotalM totalM[] = new TotalM[length];
 
 		// 配列の番地ごとに入力値を代入
-		for(int i = 0; i < idLength; i++) {
-			totalM[i] = new TotalM(null, Integer.valueOf(totalM_id[i]),
-					Integer.valueOf(money[i]), Integer.valueOf(month[i]),  Integer.valueOf(date[i]), depature[i],
+		for(int i = 0; i < length; i++) {
+			totalM[i] = new TotalM(id, Integer.valueOf(totalM_id[i]),
+					Integer.valueOf(money[i]), Integer.valueOf(month[i]),
+					Integer.valueOf(date[i]), depature[i],
 					destination[i], division[i]);
 		}
 
@@ -90,45 +85,103 @@ public class UpdateServlet extends HttpServlet {
 		List<TotalM> totalMListAfter = Arrays.asList(totalM);
 
 		// 非重複リストを取得する準備
-		List<TotalM> totalMList = new ArrayList<>();
+//		HashSet<TotalM> hashSetBefore = new HashSet<>(totalMListBefore);
+//		HashSet<TotalM> hashSetAfter = new HashSet<>(totalMListAfter);
+//
+//		// 変更前と変更後を比較して変更点のあったレコードのみ取得
+//		// 比較用
+//		List<TotalM> totalMListUp = totalMListBefore.stream()
+//				.filter(t -> {
+//					return (! hashSetAfter.contains(t));
+//				})
+//				.collect(Collectors.toList());
+//
+//		// 更新用
+//		List<TotalM> totalMListComp = totalMListAfter.stream()
+//				.filter(t -> {
+//					return (! hashSetBefore.contains(t));
+//				})
+//				.collect(Collectors.toList());
 
 		// 変更前と変更後を比較して変更点のあったレコードのみ取得
-		ListUtils.subtract(totalMListBefore, totalMListAfter)
-				.stream()
-				.forEach(t -> totalMList.add(t));
+		// 生成：それぞれのListに対応するListのstreamを生成
+		// 中間操作：totalMに対し、対称のtotalMと比較し要素を変更したか確認
+		// 終端操作：streamの結果をListに変換
+		// 比較用
+		List<TotalM> totalMListUp = totalMListBefore.stream()
+				.filter(t1 -> totalMListAfter.stream()
+						.allMatch(t2 -> t1.getMoney() != t2.getMoney() ||
+								t1.getMonth() != t2.getMonth() ||
+								t1.getDate() != t2.getDate() ||
+								!t1.getDepature().equals(t2.getDepature()) ||
+								!t1.getDestination().equals(t2.getDestination()) ||
+								!t1.getDivision().equals(t2.getDivision())))
+				.collect(Collectors.toList());
+
+		// 更新用
+		List<TotalM> totalMListComp = totalMListAfter.stream()
+				.filter(t2 -> totalMListBefore.stream()
+						.allMatch(t1 -> t2.getMoney() != t1.getMoney() ||
+								t2.getMonth() != t1.getMonth() ||
+								t2.getDate() != t1.getDate() ||
+								!t2.getDepature().equals(t1.getDepature()) ||
+								!t2.getDestination().equals(t1.getDestination()) ||
+								!t2.getDivision().equals(t1.getDivision())))
+				.collect(Collectors.toList());
+
+		// 非重複リストを取得する準備
+//		List<TotalM> totalMListUp = new ArrayList<>();
+//		List<TotalM> totalMListComp = new ArrayList<>();
+//
+//		// 変更前と変更後を比較して変更点のあったレコードのみ取得
+//		// 比較用
+//		ListUtils.subtract(totalMListBefore, totalMListAfter)
+//				.stream()
+//				.forEach(t -> totalMListUp.add(t));
+//		// 更新用
+//		ListUtils.subtract(totalMListAfter, totalMListBefore)
+//				.stream()
+//				.forEach(t -> totalMListComp.add(t));
 
 		// リストのサイズを取得
-		int listLength = totalMList.size();
+		int size = totalMListComp.size();
+
+		// 変更なし？
+		if(size == 0) {
+			// home.jspに遷移
+			RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
+			dispatch.forward(request, response);
+			return;
+		}
 
 		// DAOの宣言
 		UpdateDao updateDao = new UpdateDao();
 		TotalMDao totalMDao = new TotalMDao();
 
 		// 変更分だけ更新
-		for(int i = 0; i < listLength; i++) {
-			updateDao.update(Integer.valueOf(month[i]), Integer.valueOf(date[i]), depature[i], destination[i], division[i],
-					Integer.valueOf(money[i]), Integer.valueOf(totalM_id[i]));
+		for(int i = 0; i < size; i++) {
+			updateDao.update(totalMListComp.get(i).getMonth(), totalMListComp.get(i).getDate(),
+					totalMListComp.get(i).getDepature(), totalMListComp.get(i).getDestination(),
+					totalMListComp.get(i).getDivision(), totalMListComp.get(i).getMoney(),
+					totalMListComp.get(i).getTotalM_id());
 		}
 
-		// 現在日時を取得
-		Calendar cal = Calendar.getInstance();
-
-		// 現在月を取得
-		int mon = cal.get(Calendar.MONTH) + 1;
+		// 変更前データの該当月を取得
+		int mon = totalMListBefore.get(0).getMonth();
 
 		// 変更後のリスト取得
-		List<TotalM> totalMListUpdate = totalMDao.findAllByMonth(id,mon);
+		List<TotalM> totalMList = totalMDao.findAllByMonth(id,mon);
 
 		// リストのレコード数取得
-		int size = totalMListUpdate.size();
+		int upSize = totalMList.size();
 
 		// String型のListオブジェクトを生成
 		List<String> divisionList = new ArrayList<>();
 
 		// リストのレコード分繰り返す
-		for(int i = 0; i < size; i++) {
+		for(int i = 0; i < upSize; i++) {
 			// 区分を取得
-			String divi = totalMListUpdate.get(i).getDivision();
+			String divi = totalMList.get(i).getDivision();
 			// 区分が片道？
 			if(divi.equals("片道")) {
 				// 往復をセット
@@ -142,8 +195,12 @@ public class UpdateServlet extends HttpServlet {
 			}
 		}
 
+		// リクエストに情報をセット
+		request.setAttribute("totalMListUp", totalMListUp);
+		request.setAttribute("totalMListComp", totalMListComp);
+
 		// セッションに情報をセット
-		session.setAttribute("list", totalMListUpdate);
+		session.setAttribute("list", totalMList);
 		session.setAttribute("divisionList", divisionList);
 
 		// リストに変換するための二次元配列を生成
@@ -172,8 +229,8 @@ public class UpdateServlet extends HttpServlet {
 		//		UpdateDao ud = new UpdateDao();
 		//ud.update(date, depature, destination, money, totalM_id);
 
-		// home.jspに遷移
-		RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
+		// modifyResult.jspに遷移
+		RequestDispatcher dispatch = request.getRequestDispatcher("/modifyResult.jsp");
 		dispatch.forward(request, response);
 	}
 

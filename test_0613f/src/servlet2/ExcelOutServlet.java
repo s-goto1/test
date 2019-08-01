@@ -65,7 +65,6 @@ public class ExcelOutServlet extends HttpServlet {
 
 		}
 
-		request.setAttribute("excelComp", INPUT_DIR + "/テスト.xlx 完了メッセージ（仮）");
 
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");

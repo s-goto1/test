@@ -55,6 +55,7 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("pass");
 
 		Calendar cal = Calendar.getInstance();
+		//int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;
 
 		//String month = String.valueOf(m);
@@ -94,11 +95,13 @@ public class LoginServlet extends HttpServlet {
 				}
 			}
 
+			//session.setAttribute("year", year);
+			session.setAttribute("month", month);
 			session.setAttribute("list", list);
 			session.setAttribute("divisionList", divisionList);
 			session.setAttribute("nolist", "登録されているデータがありません。");
 
-			RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/menu.jsp");
 			dispatch.forward(request, response);
 
 		} else {

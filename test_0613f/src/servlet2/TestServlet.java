@@ -75,6 +75,7 @@ public class TestServlet extends HttpServlet {
 			}
 		}
 
+		session.setAttribute("month", month);
 		session.setAttribute("list", list);
 		session.setAttribute("divisionList", divisionList);
 		session.setAttribute("nolist", "登録されているデータがありません。");

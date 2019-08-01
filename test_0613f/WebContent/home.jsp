@@ -6,21 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="iziModal.css">
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script type="text/javascript"
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="subtest.js"></script>
 <script type="text/javascript" src="iziModal.min.js"></script>
-
-
-
-
 </head>
 <body>
 	<div class="container col-md-9 col-md-offset-2 mt-4">
@@ -28,28 +20,111 @@
 		<form id="month" name="month" action="Month" method="post">
 
 			<select name="month">
+				<c:choose>
+					<c:when test="${month eq 1}">
+						<option value="1" selected>1月</option>
+					</c:when>
+					<c:otherwise>
+						<option value="1">1月</option>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${month eq 2}">
+						<option value="2" selected>2月</option>
+					</c:when>
+					<c:otherwise>
+						<option value="2">2月</option>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${month eq 3}">
+						<option value="3" selected>3月</option>
+					</c:when>
+					<c:otherwise>
+						<option value="3">3月</option>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${month eq 4}">
+						<option value="4" selected>4月</option>
+					</c:when>
+					<c:otherwise>
+						<option value="4">4月</option>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${month eq 5}">
+						<option value="5" selected>5月</option>
+					</c:when>
+					<c:otherwise>
+						<option value="5">5月</option>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${month eq 6}">
+						<option value="6" selected>6月</option>
+					</c:when>
+					<c:otherwise>
+						<option value="6">6月</option>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${month eq 7}">
+						<option value="7" selected>7月</option>
+					</c:when>
+					<c:otherwise>
+						<option value="7">7月</option>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${month eq 8}">
+						<option value="8" selected>8月</option>
+					</c:when>
+					<c:otherwise>
+						<option value="8">8月</option>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${month eq 9}">
+						<option value="9" selected>9月</option>
+					</c:when>
+					<c:otherwise>
+						<option value="9">9月</option>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${month eq 10}">
+						<option value=10" selected>10月</option>
+					</c:when>
+					<c:otherwise>
+						<option value="10">10月</option>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${month eq 11}">
+						<option value="11" selected>11月</option>
+					</c:when>
+					<c:otherwise>
+						<option value="11">11月</option>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${month eq 12}">
+						<option value="12" selected>12月</option>
+					</c:when>
+					<c:otherwise>
+						<option value="12">12月</option>
+					</c:otherwise>
+				</c:choose>
+			</select>
 
-				<option value="">選択して下さい</option>
-				<option value="1">1月</option>
-				<option value="2">2月</option>
-				<option value="3">3月</option>
-				<option value="4">4月</option>
-				<option value="5">5月</option>
-				<option value="6">6月</option>
-				<option value="7">7月</option>
-				<option value="8">8月</option>
-				<option value="9">9月</option>
-				<option value="10">10月</option>
-				<option value="11">11月</option>
-				<option value="12">12月</option>
-			</select> <input type="submit" id="Test" class="btn btn-info ml-2"
-				value="月ごとテスト">
+			<input type="submit" id="Test" class="btn btn-info ml-2" value="月ごとテスト">
 
 		</form>
 
 		<form id="form" name="form" action="" method="post">
 			<p class="mt-3">
-				<b><c:out value="${name}さん" /></b>の出張清算一覧データ
+				<b><c:out value="${name}さん" /></b>の出張清算一覧データ（2019年<c:out value="${month}月分" />）
 			</p>
 
 			<table border="3" class="table table-striped">
@@ -70,9 +145,9 @@
 
 				<c:forEach var="item" items="${list}">
 					<tr>
-						<c:if test="${not empty list}">
-							<td><c:out value="${item.month}月" /></td>
-						</c:if>
+						<td><c:if test="${not empty list}">
+							<c:out value="${item.month}月" />
+							</c:if></td>
 						<td><c:if test="${not empty list}">
 								<c:out value="${item.date}日" />
 							</c:if></td>
@@ -90,14 +165,14 @@
 							</c:if></td>
 						<td><c:if test="${not empty list}">
 								<div class="text-center">
-									<input type="checkbox" name="totalM_id"
-										value="${item.totalM_id}">
+									<input type="checkbox" name="totalM_id" value="${item.totalM_id}">
 								</div>
 							</c:if></td>
 					</tr>
 				</c:forEach>
 
 			</table>
+
 			<c:choose>
 				<c:when test="${not empty list}">
 					<input type="hidden" name="test" value="${list.size()}">
@@ -110,30 +185,31 @@
 				</c:otherwise>
 			</c:choose>
 
-			<br> <input type="button" id="config"
-				class="btn btn-success mr-2" onclick="location.href='./modify.jsp'"
-				value="修正(テスト)"> <input type="button" id="register"
-				class="btn btn-primary mr-2" value="登録テスト"> <input
-				type="button" id="excelout" class="btn btn-warning mr-2" value="出力">
-			<input type="button" id="modal"
-				class="btn btn-danger open-options mr-2" onclick="checkInput()"
-				value="削除（テスト)"> <input type="button" id="logout"
-				class="btn btn-secondary" onclick="location.href='./logout.jsp'"
-				value="ログアウト">
+			<br>
+
+			<c:if test="${not empty list}">
+				<input type="button" id="config" class="btn btn-success mr-2" onclick="location.href='./modify.jsp'" value="修正(テスト)">
+			</c:if>
+			<input type="button" id="register" class="btn btn-primary mr-2" value="登録テスト">
+			<c:if test="${not empty list}">
+				<input type="button" id="excelout" class="btn btn-warning mr-2" value="Excelに出力">
+				<input type="button" id="modal" class="btn btn-danger open-options mr-2" onclick="checkInput()" value="削除（テスト)">
+			</c:if>
+			<input type="button" id="logout" class="btn btn-light mr-2" onclick="location.href='./menu.jsp'" value="メニュー">
+			<input type="button" id="logout" class="btn btn-secondary" onclick="location.href='./logout.jsp'" value="ログアウト">
 
 		</form>
 
 	</div>
 
 
-	<div class="iziModal" id="modal-options" data-izimodal-title="選択データの削除"
-		data-izimodal-subtitle="選択した出張精算データを削除します">
+	<div class="iziModal" id="modal-options" data-izimodal-title="選択データの削除" data-izimodal-subtitle="選択した出張精算データを削除します">
 		<div class="text-center mb-3">
-			一度削除したデータは再び復元する事ができません。<br> 本当に削除しますか？<br>
+			一度削除したデータは再び復元する事ができません。<br>
+			本当に削除しますか？<br>
 			<div class="mb-3"></div>
 			<form id="formDelete" name="formDelete" action="Delete" method="post">
-				<input type="hidden" id="modal_totalM_id" name="totalM_id" value=""
-					readonly>
+				<input type="hidden" id="modal_totalM_id" name="totalM_id" value="" readonly>
 				<ul class="text-center list-inline">
 					<li class="list-inline-item">
 						<button type="submit" id="delete" class="btn btn-danger">YES</button>
@@ -145,13 +221,6 @@
 			</form>
 		</div>
 	</div>
-	<c:if test="${not empty excelComp}">
-		<script>
-			var test;
-			test = " ${excelComp}";
 
-			alert(test);
-		</script>
-	</c:if>
 </body>
 </html>

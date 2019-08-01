@@ -62,7 +62,6 @@ public class RegisterServlet extends HttpServlet {
 		Integer m= Integer.valueOf(month);
 		Integer d= Integer.valueOf(date);
 
-
 		InsertDao IDao = new InsertDao();
 		IDao.insert(id, m, d, depature, destination, division, money);
 
@@ -86,10 +85,16 @@ public class RegisterServlet extends HttpServlet {
 			}
 		}
 
+		request.setAttribute("month", month);
+		request.setAttribute("date", date);
+		request.setAttribute("depature", depature);
+		request.setAttribute("destination", destination);
+		request.setAttribute("division", division);
+		request.setAttribute("money", money);
 		session.setAttribute("list", list);
 		session.setAttribute("divisionList", divisionList);
 
-		RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("/registerResult.jsp");
 		dispatch.forward(request, response);
 
 	}

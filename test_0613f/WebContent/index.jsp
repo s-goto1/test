@@ -25,7 +25,7 @@
 		</form>
 		<c:if test="${not empty error}">
 			<div style="color: red;">
-				${error}
+				<c:out value="${error}"/>
 			</div>
 		</c:if>
     </fieldset>

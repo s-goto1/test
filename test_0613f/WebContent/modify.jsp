@@ -18,7 +18,7 @@
 
 		<form id="form1" name="form1" action="Update" method="post">
 			<p class="mt-3">
-				<b><c:out value="${name}さん" /></b>の出張清算一覧データ
+				<b><c:out value="${name}さん" /></b>の出張清算一覧データ（2019年<c:out value="${month}月分" />）
 			</p>
 
 			<table border="3" class="table table-striped">
@@ -47,12 +47,12 @@
 				<c:forEach var="item" items="${list}" varStatus="status">
 					<tr>
 
-						<td><input type="text" name="month"
-							value="${item.month}" size="5" required>
+						<td><input type="number" name="month"
+							value="${item.month}" min="1" max="12" required>
 							<span style="display: inline-block;">月</span></td>
 
-						<td><input type="text" name="date"
-							value="${item.date}" size="5" required>
+						<td><input type="number" name="date"
+							value="${item.date}" min="1" max="31" required>
 							<span style="display: inline-block;">日</span></td>
 
 						<td><input type="text" name="depature"
