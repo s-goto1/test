@@ -90,4 +90,84 @@
 			<option value="2020">2020年</option>
 		</c:otherwise>
 	</c:choose>
+	<c:choose>
+		<c:when test="${year eq 2021}">
+			<option value="2021" selected>2021年</option>
+		</c:when>
+		<c:otherwise>
+			<option value="2021">2021年</option>
+		</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${year eq 2022}">
+			<option value="2022" selected>2022年</option>
+		</c:when>
+		<c:otherwise>
+			<option value="2022">2022年</option>
+		</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${year eq 2023}">
+			<option value="2023" selected>2023年</option>
+		</c:when>
+		<c:otherwise>
+			<option value="2023">2023年</option>
+		</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${year eq 2024}">
+			<option value="2024" selected>2024年</option>
+		</c:when>
+		<c:otherwise>
+			<option value="2024">2024年</option>
+		</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${year eq 2025}">
+			<option value="2025" selected>2025年</option>
+		</c:when>
+		<c:otherwise>
+			<option value="2025">2025年</option>
+		</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${year eq 2026}">
+			<option value="2026" selected>2026年</option>
+		</c:when>
+		<c:otherwise>
+			<option value="2026">2026年</option>
+		</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${year eq 2027}">
+			<option value="2027" selected>2027年</option>
+		</c:when>
+		<c:otherwise>
+			<option value="2027">2027年</option>
+		</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${year eq 2028}">
+			<option value="2028" selected>2028年</option>
+		</c:when>
+		<c:otherwise>
+			<option value="2028">2028年</option>
+		</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${year eq 2029}">
+			<option value="2029" selected>2029年</option>
+		</c:when>
+		<c:otherwise>
+			<option value="2029">2029年</option>
+		</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${year eq 2030}">
+			<option value="2030" selected>2030年</option>
+		</c:when>
+		<c:otherwise>
+			<option value="2030">2030年</option>
+		</c:otherwise>
+	</c:choose>
 </select>

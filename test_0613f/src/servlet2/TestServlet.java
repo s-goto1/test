@@ -18,7 +18,7 @@ import test_0613f.TotalMDao;
 /**
  * Servlet implementation class TestServlet
  */
-@WebServlet("/Month")
+@WebServlet("/Date")
 public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -53,12 +53,14 @@ public class TestServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		String month = request.getParameter("month");
+		String year = request.getParameter("year");
 
-		Integer m= Integer.valueOf(month);
+		Integer y = Integer.valueOf(year);
+		Integer m = Integer.valueOf(month);
 
 		TotalMDao tmd = new TotalMDao();
 
-		List<TotalM> list = tmd.findAllByMonth(id, m);
+		List<TotalM> list = tmd.findAllByMonth(id, y, m);
 
 		int size = list.size();
 
@@ -75,7 +77,8 @@ public class TestServlet extends HttpServlet {
 			}
 		}
 
-		session.setAttribute("month", month);
+		session.setAttribute("year", y);
+		session.setAttribute("month", m);
 		session.setAttribute("list", list);
 		session.setAttribute("divisionList", divisionList);
 		session.setAttribute("nolist", "登録されているデータがありません。");

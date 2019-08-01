@@ -63,7 +63,7 @@ public class RegisterServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		int year = (int) session.getAttribute("year");
+		Integer year = (Integer) session.getAttribute("year");
 		int money = Integer.parseInt(money1);
 		Integer m= Integer.valueOf(month);
 		Integer d= Integer.valueOf(day);
@@ -74,7 +74,7 @@ public class RegisterServlet extends HttpServlet {
 
 		TotalMDao tmd = new TotalMDao();
 
-		List<TotalM> list = tmd.findAllByMonth(id,m);
+		List<TotalM> list = tmd.findAllByMonth(id, year, m);
 
 		int size = list.size();
 

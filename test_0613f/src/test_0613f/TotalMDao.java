@@ -13,7 +13,7 @@ import entity.TotalM;
 public class TotalMDao {
 
 
-	public List<TotalM> findAllByMonth(String id, Integer month) {
+	public List<TotalM> findAllByMonth(String id, Integer year, Integer month) {
 
 		List<TotalM> list = new ArrayList<TotalM>();
 
@@ -31,10 +31,11 @@ public class TotalMDao {
 				"axizuser",
 				"axiz");) {
 			PreparedStatement presmt = null;
-			String sql = "SELECT * FROM totalm WHERE id = ? AND month = ? ORDER BY day, totalm_id";
+			String sql = "SELECT * FROM totalm WHERE id = ? AND year = ? AND month = ? ORDER BY day, totalm_id";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, id);
-			presmt.setInt(2, month);
+			presmt.setInt(2, year);
+			presmt.setInt(3, month);
 			ResultSet rset = presmt.executeQuery();
 
 			// データベースから取得した値がある間、

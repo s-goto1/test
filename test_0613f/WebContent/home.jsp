@@ -17,12 +17,12 @@
 <body>
 	<div class="container col-md-10 col-md-offset-2 mt-4">
 
-		<form id="month" name="month" action="Month" method="post">
+		<form id="date" name="date" action="Date" method="post">
 
 			<%@ include file="year.jsp"%>
 			<%@ include file="month.jsp"%>
 
-			<input type="submit" id="Test" class="btn btn-info ml-2" value="該当月表示">
+			<input type="submit" id="Test" class="btn btn-info ml-2" value="該当年月表示">
 
 		</form>
 

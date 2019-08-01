@@ -76,7 +76,7 @@ public class LoginServlet extends HttpServlet {
 
 			TotalMDao tmd = new TotalMDao();
 
-			List<TotalM> list = tmd.findAllByMonth(id, month);
+			List<TotalM> list = tmd.findAllByMonth(id, year, month);
 
 			int size = list.size();
 

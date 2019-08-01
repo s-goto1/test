@@ -58,6 +58,7 @@ public class DeleteServlet extends HttpServlet {
 
 		// セッションから情報を取得
 		String id = (String) session.getAttribute("id");
+		Integer year = (Integer) session.getAttribute("year");
 		List<TotalM> mList = (List<TotalM>) session.getAttribute("list");
 
 		// チェックボックスにチェックがない？
@@ -96,7 +97,7 @@ public class DeleteServlet extends HttpServlet {
 			Integer m = mList.get(0).getMonth();
 
 			// 削除後のリスト取得
-			List<TotalM> list = tmd.findAllByMonth(id,m);
+			List<TotalM> list = tmd.findAllByMonth(id, year, m);
 
 			// リストのレコード数取得
 			int size = list.size();
