@@ -57,15 +57,27 @@
 								<c:out value="${item.destination}" />
 							</div>
 						</c:if></td>
-					<td><!-- 交通機関 --></td>
-					<td><!-- 訪問先 --></td>
+					<td><c:if test="${not empty list}">
+							<div class="text-center">
+								<c:out value="${item.transportation}" />
+							</div>
+						</c:if></td>
+					<td><c:if test="${not empty list}">
+							<div class="text-center">
+								<c:out value="${item.place}" />
+							</div>
+						</c:if></td>
 					<td><c:if test="${not empty list}">
 							<div class="text-right">
 								<c:out value="${item.money}" />
 							</div>
 						</c:if></td>
-					<td><!-- 日当② --></td>
-					<td><!-- 用件 --></td>
+					<td></td>
+					<td><c:if test="${not empty list}">
+							<div class="text-center">
+								<c:out value="${item.purpose}" />
+							</div>
+						</c:if>></td>
 				</tr>
 			</c:forEach>
 
