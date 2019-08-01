@@ -14,9 +14,10 @@ public class TotalM {
 	private String division;
 	private String place;
 	private String purpose;
+	private String transpotation;
 
 	public TotalM(String id, Integer totalM_id, Integer money,
-			Integer year,Integer month, Integer day, String depature,
+			Integer year,Integer month, Integer day,String transpotation, String depature,
 			String destination, String division, String place, String purpose) {
 		this.id = id;
 		this.totalM_id = totalM_id;
@@ -24,6 +25,7 @@ public class TotalM {
 		this.money = money;
 		this.month = month;
 		this.day = day;
+		this.transpotation = transpotation;
 		this.depature = depature;
 		this.destination = destination;
 		this.division = division;
@@ -123,6 +125,14 @@ public class TotalM {
 
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
+	}
+
+	public String getTranspotation() {
+		return transpotation;
+	}
+
+	public void setTranspotation(String transpotation) {
+		this.transpotation = transpotation;
 	}
 
 }
