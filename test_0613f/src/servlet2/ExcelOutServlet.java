@@ -58,14 +58,21 @@ public class ExcelOutServlet extends HttpServlet {
 
 		 GetPath gp = new GetPath();
 		 String INPUT_DIR = gp.getDesktopPath();
+
 		int i = 0;
+		int total = 0;
+		int size = 20 - list.size();
+
 		for (TotalM totalm : list) {
 
 			ext.excelOut(totalm,i++,INPUT_DIR );
 
+			total += totalm.getMoney();
+
 		}
 
-
+		request.setAttribute("size", size);
+		request.setAttribute("total", total);
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("/excelOutResult.jsp");
 		dispatch.forward(request, response);
