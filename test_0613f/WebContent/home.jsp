@@ -15,7 +15,7 @@
 <script type="text/javascript" src="iziModal.min.js"></script>
 </head>
 <body>
-	<div class="container col-md-9 col-md-offset-2 mt-4">
+	<div class="container col-md-10 col-md-offset-2 mt-4">
 
 		<form id="month" name="month" action="Month" method="post">
 
@@ -118,7 +118,7 @@
 				</c:choose>
 			</select>
 
-			<input type="submit" id="Test" class="btn btn-info ml-2" value="月ごとテスト">
+			<input type="submit" id="Test" class="btn btn-info ml-2" value="該当月表示">
 
 		</form>
 
@@ -132,8 +132,11 @@
 					<th colspan="2" rowspan="3"><div class="text-center">月日</div></th>
 					<th colspan="2"><div class="text-center">区間</div></th>
 					<th rowspan="3"><div class="text-center">区分</div></th>
+					<th rowspan="3"><div class="text-center">交通機関</div></th>
+					<th rowspan="3"><div class="text-center">訪問先</div></th>
 					<th rowspan="3"><div class="text-center">金額</div></th>
-					<th rowspan="3"><div class="text-center">削除用（仮）</div></th>
+					<th rowspan="3"><div class="text-center">用件</div></th>
+					<th rowspan="3"><div class="text-center">削除</div></th>
 				</tr>
 				<tr>
 					<th rowspan="2"><div class="text-center">発</div></th>
@@ -161,7 +164,16 @@
 								<c:out value="${item.division}" />
 							</c:if></td>
 						<td><c:if test="${not empty list}">
+								<!--<c:out value="${item.money}" />-->
+							</c:if></td>
+						<td><c:if test="${not empty list}">
+								<!--<c:out value="${item.money}" />-->
+							</c:if></td>
+						<td><c:if test="${not empty list}">
 								<c:out value="${item.money}" />
+							</c:if></td>
+						<td><c:if test="${not empty list}">
+								<!--<c:out value="${item.money}" />-->
 							</c:if></td>
 						<td><c:if test="${not empty list}">
 								<div class="text-center">
@@ -188,12 +200,12 @@
 			<br>
 
 			<c:if test="${not empty list}">
-				<input type="button" id="config" class="btn btn-success mr-2" onclick="location.href='./modify.jsp'" value="修正(テスト)">
+				<input type="button" id="config" class="btn btn-success mr-2" onclick="location.href='./modify.jsp'" value="修正">
 			</c:if>
-			<input type="button" id="register" class="btn btn-primary mr-2" value="登録テスト">
+			<input type="button" id="register" class="btn btn-primary mr-2" value="登録">
 			<c:if test="${not empty list}">
 				<input type="button" id="excelout" class="btn btn-warning mr-2" value="Excelに出力">
-				<input type="button" id="modal" class="btn btn-danger open-options mr-2" onclick="checkInput()" value="削除（テスト)">
+				<input type="button" id="modal" class="btn btn-danger open-options mr-2" onclick="checkInput()" value="削除">
 			</c:if>
 			<input type="button" id="logout" class="btn btn-light mr-2" onclick="location.href='./menu.jsp'" value="メニュー">
 			<input type="button" id="logout" class="btn btn-secondary" onclick="location.href='./logout.jsp'" value="ログアウト">

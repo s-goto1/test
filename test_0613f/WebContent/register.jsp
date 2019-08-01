@@ -14,7 +14,7 @@
 </head>
 <body>
 
-	<div class="container col-md-9 col-md-offset-2 mt-4">
+	<div class="container col-md-10 col-md-offset-2 mt-4">
 
 		<form action="Register" id="form" name="form" method="post">
 
@@ -23,7 +23,10 @@
 					<th colspan="2" rowspan="3"><div class="text-center">月日</div></th>
 					<th colspan="2"><div class="text-center">区間</div></th>
 					<th rowspan="3"><div class="text-center">区分</div></th>
+					<th rowspan="3"><div class="text-center">交通機関</div></th>
+					<th rowspan="3"><div class="text-center">訪問先</div></th>
 					<th rowspan="3"><div class="text-center">金額</div></th>
+					<th rowspan="3"><div class="text-center">用件</div></th>
 				</tr>
 				<tr>
 
@@ -36,12 +39,37 @@
 				</tr>
 				<tr>
 
-					<td><input type="number" name="month" id="month" value="${month}" min="1" max="12" required><span style="display: inline-block;">月</span></td>
-					<td><input type="number" name="date" id="date" value="" min="1" max="31" required><span style="display: inline-block;">日</span></td>
-					<td><input type="text" name="depature" id="depature" value="" size="" required></td>
-					<td><input type="text" name="destination" id="destination" value="" size="" required></td>
-					<td><input type="text" name="division" id="division" value="片道" size="5" readonly></td>
-					<td><input type="number" name="money" id="money" value="100" max="99999" step="10" required></td>
+					<td><input type="number" name="month" id="month"
+						value="${month}" min="1" max="12" required>
+
+						<span style="display: inline-block;">月</span></td>
+					<td><input type="number" name="date" id="date"
+						value="" min="1" max="31" required>
+
+						<span style="display: inline-block;">日</span></td>
+					<td><input type="text" name="depature" id="depature"
+						value="" size="10" required></td>
+
+					<td><input type="text" name="destination" id="destination"
+						value="" size="10" required></td>
+
+					<td><input type="text" name="division" id="division"
+						value="片道" size="5" readonly></td>
+
+					<td><select name="" id="">
+							<option value="">地下鉄</option>
+							<option value="">地下鉄/JR</option>
+							<option value="">JR</option>
+						</select></td>
+
+					<td><input type="text" name="" id=""
+						value="" size="15" required></td>
+
+					<td><input type="number" name="money" id="money"
+						value="100" min="100" max="9990" step="10" required></td>
+
+					<td><input type="text" name="" id=""
+						value="" size="15" required></td>
 
 				</tr>
 			</table>
