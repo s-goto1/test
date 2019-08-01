@@ -57,9 +57,9 @@
 						value="片道" size="5" readonly></td>
 
 					<td><select name="transportation" id="transportation">
-							<option value="">地下鉄</option>
-							<option value="">地下鉄/JR</option>
-							<option value="">JR</option>
+							<option value="地下鉄">地下鉄</option>
+							<option value="地下鉄/JR">地下鉄/JR</option>
+							<option value="JR">JR</option>
 						</select></td>
 
 					<td><input type="text" name="place" id="place"

@@ -64,9 +64,30 @@
 							value="${item.division}" size="5" readonly></td>
 
 						<td><select name="transportation" id="transportation">
-							<option value="">地下鉄</option>
-							<option value="">地下鉄/JR</option>
-							<option value="">JR</option>
+							<c:choose>
+								<c:when test="${item.transportation} eq '地下鉄'">
+									<option value="地下鉄" selected>地下鉄</option>
+								</c:when>
+								<c:otherwise>
+									<option value="地下鉄">地下鉄</option>
+								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${item.transportation} eq '地下鉄/JR'">
+									<option value="地下鉄/JR" selected>地下鉄/JR</option>
+								</c:when>
+								<c:otherwise>
+									<option value="地下鉄/JR">地下鉄/JR</option>
+								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${item.transportation} eq 'JR'">
+									<option value="JR" selected>JR</option>
+								</c:when>
+								<c:otherwise>
+									<option value="JR">JR</option>
+								</c:otherwise>
+							</c:choose>
 							</select></td>
 
 						<td><input type="text" name="place" id="place"
