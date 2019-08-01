@@ -26,9 +26,18 @@
 
 		</form>
 
+		<form id="search" name="search" action="Search" method="post">
+
+			<input type="text" id="name" name="name" value="" required>
+
+			<input type="submit" id="" class="btn btn-info ml-2" value="名前検索">
+
+		</form>
+
+
 		<form id="form" name="form" action="" method="post">
 			<p class="mt-3">
-				<b><c:out value="${name}さん" /></b>の出張清算一覧データ（2019年<c:out value="${month}月分" />）
+				<b><c:out value="${name}さん" /></b>の出張清算一覧データ（<c:out value="${year}年${month}月分" />）
 			</p>
 
 			<table border="3" class="table table-striped">
@@ -112,14 +121,21 @@
 
 			<br>
 
-			<c:if test="${not empty list}">
-				<input type="button" id="config" class="btn btn-success mr-2" onclick="location.href='./modify.jsp'" value="修正">
-			</c:if>
-			<input type="button" id="register" class="btn btn-primary mr-2" value="登録">
-			<c:if test="${not empty list}">
-				<input type="button" id="excelout" class="btn btn-warning mr-2" value="Excelに出力">
-				<input type="button" id="modal" class="btn btn-danger open-options mr-2" onclick="checkInput()" value="削除">
-			</c:if>
+			<c:choose>
+				<c:when test="${auth eq 1}">
+					<input type="button" id="excelout" class="btn btn-warning mr-2" value="Excelに出力">
+				</c:when>
+				<c:otherwise>
+					<c:if test="${not empty list}">
+						<input type="button" id="config" class="btn btn-success mr-2" onclick="location.href='./modify.jsp'" value="修正">
+					</c:if>
+					<input type="button" id="register" class="btn btn-primary mr-2" value="登録">
+					<c:if test="${not empty list}">
+						<input type="button" id="excelout" class="btn btn-warning mr-2" value="Excelに出力">
+						<input type="button" id="modal" class="btn btn-danger open-options mr-2" onclick="checkInput()" value="削除">
+					</c:if>
+				</c:otherwise>
+			</c:choose>
 			<input type="button" id="logout" class="btn btn-light mr-2" onclick="location.href='./menu.jsp'" value="メニュー">
 			<input type="button" id="logout" class="btn btn-secondary" onclick="location.href='./logout.jsp'" value="ログアウト">
 
