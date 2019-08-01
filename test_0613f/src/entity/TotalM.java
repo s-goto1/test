@@ -6,36 +6,36 @@ public class TotalM {
 	private Integer totalM_id;
 	private Integer money;
 
+	private Integer year;
 	private Integer month;
-	private Integer date;
+	private Integer day;
 	private String depature;
 	private String destination;
 	private String division;
+	private String place;
+	private String purpose;
 
 	public TotalM(String id, Integer totalM_id, Integer money,
-			Integer month, Integer date, String depature,
-			String destination, String division) {
+			Integer year,Integer month, Integer day, String depature,
+			String destination, String division, String place, String purpose) {
 		this.id = id;
 		this.totalM_id = totalM_id;
+		this.year = year;
 		this.money = money;
 		this.month = month;
-		this.date = date;
+		this.day = day;
 		this.depature = depature;
 		this.destination = destination;
 		this.division = division;
+		this.place = place;
+		this.purpose = purpose;
 	}
 
 	public TotalM() {
 
 	}
 
-	public Integer getDate() {
-		return date;
-	}
 
-	public void setDate(Integer date) {
-		this.date = date;
-	}
 
 	public String getDepature() {
 		return depature;
@@ -91,6 +91,38 @@ public class TotalM {
 
 	public void setTotalM_id(Integer totalM_id) {
 		this.totalM_id = totalM_id;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public Integer getDay() {
+		return day;
+	}
+
+	public void setDay(Integer day) {
+		this.day = day;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
+	public String getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
 	}
 
 }
