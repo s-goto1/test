@@ -36,7 +36,7 @@
 				</tr>
 				<tr>
 
-					<td><input type="number" name="month" id="month" value="" min="1" max="12" required><span style="display: inline-block;">月</span></td>
+					<td><input type="number" name="month" id="month" value="${month}" min="1" max="12" required><span style="display: inline-block;">月</span></td>
 					<td><input type="number" name="date" id="date" value="" min="1" max="31" required><span style="display: inline-block;">日</span></td>
 					<td><input type="text" name="depature" id="depature" value="" size="" required></td>
 					<td><input type="text" name="destination" id="destination" value="" size="" required></td>
