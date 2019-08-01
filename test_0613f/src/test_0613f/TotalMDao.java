@@ -47,7 +47,7 @@ public class TotalMDao {
 				tom.setYear(rset.getInt("year"));
 				tom.setMonth(rset.getInt("month"));
 				tom.setDay(rset.getInt("day"));
-				tom.setTranspotation(rset.getString("transportation"));
+				tom.setTransportation(rset.getString("transportation"));
 				tom.setDepature(rset.getString("depature"));
 				tom.setDestination(rset.getString("destination"));
 				tom.setDivision(rset.getString("division"));

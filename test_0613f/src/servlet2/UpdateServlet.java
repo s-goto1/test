@@ -117,7 +117,7 @@ public class UpdateServlet extends HttpServlet {
 						.allMatch(t2 -> t1.getMoney() != t2.getMoney() ||
 								t1.getMonth() != t2.getMonth() ||
 								t1.getDay() != t2.getDay() ||
-								!t1.getTranspotation().equals(t2.getTranspotation()) ||
+								!t1.getTransportation().equals(t2.getTransportation()) ||
 								!t1.getDepature().equals(t2.getDepature()) ||
 								!t1.getDestination().equals(t2.getDestination()) ||
 								!t1.getDivision().equals(t2.getDivision()) ||
@@ -131,7 +131,7 @@ public class UpdateServlet extends HttpServlet {
 						.allMatch(t1 -> t2.getMoney() != t1.getMoney() ||
 								t2.getMonth() != t1.getMonth() ||
 								t2.getDay() != t1.getDay() ||
-								!t2.getTranspotation().equals(t1.getTranspotation()) ||
+								!t2.getTransportation().equals(t1.getTransportation()) ||
 								!t2.getDepature().equals(t1.getDepature()) ||
 								!t2.getDestination().equals(t1.getDestination()) ||
 								!t2.getDivision().equals(t1.getDivision()) ||
@@ -171,7 +171,7 @@ public class UpdateServlet extends HttpServlet {
 		// 変更分だけ更新
 		for(int i = 0; i < size; i++) {
 			updateDao.update(totalMListComp.get(i).getMonth(), totalMListComp.get(i).getDay(),
-					totalMListComp.get(i).getTranspotation(), totalMListComp.get(i).getDepature(),
+					totalMListComp.get(i).getTransportation(), totalMListComp.get(i).getDepature(),
 					totalMListComp.get(i).getDestination(), totalMListComp.get(i).getDivision(),
 					totalMListComp.get(i).getMoney(), totalMListComp.get(i).getPlace(),
 					totalMListComp.get(i).getPurpose(), totalMListComp.get(i).getTotalM_id());
