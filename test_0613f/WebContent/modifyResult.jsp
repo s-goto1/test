@@ -22,7 +22,10 @@
 				<th colspan="2" rowspan="3"><div class="text-center">月日</div></th>
 				<th colspan="2"><div class="text-center">区間</div></th>
 				<th rowspan="3"><div class="text-center">区分</div></th>
+				<th rowspan="3"><div class="text-center">交通機関</div></th>
+				<th rowspan="3"><div class="text-center">訪問先</div></th>
 				<th rowspan="3"><div class="text-center">金額</div></th>
+				<th rowspan="3"><div class="text-center">用件</div></th>
 			</tr>
 			<tr>
 				<th rowspan="2"><div class="text-center">発</div></th>
@@ -32,25 +35,42 @@
 				<!-- table-stripedのための空列 -->
 			</tr>
 
-			<c:forEach var="item" items="${totalMListUp}">
+			<c:forEach var="item" items="${totalMListUp}" varStatus="status">
 				<tr>
 					<td><c:if test="${not empty list}">
 						<c:out value="${item.month}月" />
 						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<c:out value="${item.date}日" />
 						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<c:out value="${item.depature}" />
 						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<c:out value="${item.destination}" />
 						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<c:out value="${item.division}" />
 						</c:if></td>
+
+					<td><c:if test="${not empty list}">
+							<c:out value="" />
+						</c:if></td>
+
+					<td><c:if test="${not empty list}">
+							<c:out value="" />
+						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<c:out value="${item.money}" />
+						</c:if></td>
+
+					<td><c:if test="${not empty list}">
+							<c:out value="" />
 						</c:if></td>
 				</tr>
 			</c:forEach>
@@ -67,7 +87,10 @@
 				<th colspan="2" rowspan="3"><div class="text-center">月日</div></th>
 				<th colspan="2"><div class="text-center">区間</div></th>
 				<th rowspan="3"><div class="text-center">区分</div></th>
+				<th rowspan="3"><div class="text-center">交通機関</div></th>
+				<th rowspan="3"><div class="text-center">訪問先</div></th>
 				<th rowspan="3"><div class="text-center">金額</div></th>
+				<th rowspan="3"><div class="text-center">用件</div></th>
 			</tr>
 			<tr>
 				<th rowspan="2"><div class="text-center">発</div></th>
@@ -77,25 +100,42 @@
 				<!-- table-stripedのための空列 -->
 			</tr>
 
-			<c:forEach var="item" items="${totalMListComp}">
+			<c:forEach var="item" items="${totalMListComp}" varStatus="status">
 				<tr>
 					<td><c:if test="${not empty list}">
 						<c:out value="${item.month}月" />
 						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<c:out value="${item.date}日" />
 						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<c:out value="${item.depature}" />
 						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<c:out value="${item.destination}" />
 						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<c:out value="${item.division}" />
 						</c:if></td>
+
+					<td><c:if test="${not empty list}">
+							<c:out value="" />
+						</c:if></td>
+
+					<td><c:if test="${not empty list}">
+							<c:out value="" />
+						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<c:out value="${item.money}" />
+						</c:if></td>
+
+					<td><c:if test="${not empty list}">
+							<c:out value="" />
 						</c:if></td>
 				</tr>
 			</c:forEach>

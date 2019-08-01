@@ -21,7 +21,10 @@
 				<th colspan="2" rowspan="3"><div class="text-center">月日</div></th>
 				<th colspan="2"><div class="text-center">区間</div></th>
 				<th rowspan="3"><div class="text-center">区分</div></th>
+				<th rowspan="3"><div class="text-center">交通機関</div></th>
+				<th rowspan="3"><div class="text-center">訪問先</div></th>
 				<th rowspan="3"><div class="text-center">金額</div></th>
+				<th rowspan="3"><div class="text-center">用件</div></th>
 			</tr>
 			<tr>
 				<th rowspan="2"><div class="text-center">発</div></th>
@@ -48,7 +51,16 @@
 					<c:out value="${division}" />
 				</td>
 				<td>
+					<c:out value="" />
+				</td>
+				<td>
+					<c:out value="" />
+				</td>
+				<td>
 					<c:out value="${money}" />
+				</td>
+				<td>
+					<c:out value="" />
 				</td>
 			</tr>
 
