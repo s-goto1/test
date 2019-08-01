@@ -70,13 +70,13 @@
 							</select></td>
 
 						<td><input type="text" name="place" id="place"
-							value="" size="15" required></td>
+							value="${item.place}" size="15" required></td>
 
 						<td><input type="number" name="money" id="money${status.count}"
 							value="${item.money}" min="100" max="9990" step="10" required></td>
 
 						<td><input type="text" name="purpose" id="purpose"
-							value="" size="15" required></td>
+							value="${item.purpose}" size="15" required></td>
 
 						<td><input type="button" name="train" id="train${status.count}"
 							data-index="${status.count}" class="btn btn-info"
