@@ -65,7 +65,7 @@
 
 						<td><select name="transportation" id="transportation">
 							<c:choose>
-								<c:when test="${item.transportation} eq '地下鉄'">
+								<c:when test="${item.transportation eq '地下鉄'}">
 									<option value="地下鉄" selected>地下鉄</option>
 								</c:when>
 								<c:otherwise>
@@ -73,7 +73,7 @@
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
-								<c:when test="${item.transportation} eq '地下鉄/JR'">
+								<c:when test="${item.transportation eq '地下鉄/JR'}">
 									<option value="地下鉄/JR" selected>地下鉄/JR</option>
 								</c:when>
 								<c:otherwise>
@@ -81,7 +81,7 @@
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
-								<c:when test="${item.transportation} eq 'JR'">
+								<c:when test="${item.transportation eq 'JR'}">
 									<option value="JR" selected>JR</option>
 								</c:when>
 								<c:otherwise>
