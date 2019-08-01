@@ -55,30 +55,39 @@
 						<td><c:if test="${not empty list}">
 							<c:out value="${item.month}月" />
 							</c:if></td>
+
 						<td><c:if test="${not empty list}">
 								<c:out value="${item.date}日" />
 							</c:if></td>
+
 						<td><c:if test="${not empty list}">
 								<c:out value="${item.depature}" />
 							</c:if></td>
+
 						<td><c:if test="${not empty list}">
 								<c:out value="${item.destination}" />
 							</c:if></td>
+
 						<td><c:if test="${not empty list}">
 								<c:out value="${item.division}" />
 							</c:if></td>
+
 						<td><c:if test="${not empty list}">
 								<!--<c:out value="${item.money}" />-->
 							</c:if></td>
+
 						<td><c:if test="${not empty list}">
 								<!--<c:out value="${item.money}" />-->
 							</c:if></td>
+
 						<td><c:if test="${not empty list}">
 								<c:out value="${item.money}" />
 							</c:if></td>
+
 						<td><c:if test="${not empty list}">
 								<!--<c:out value="${item.money}" />-->
 							</c:if></td>
+
 						<td><c:if test="${not empty list}">
 								<div class="text-center">
 									<input type="checkbox" name="totalM_id" value="${item.totalM_id}">
