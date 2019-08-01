@@ -37,6 +37,7 @@ public class LoginUser {
 				ui.setId(rset.getString("id"));
 				ui.setPass(rset.getString("pass"));
 				ui.setName(rset.getString("name"));
+				ui.setAurh(rset.getInt("auth"));
 
 				// while文で次のレコードの処理へ?
 

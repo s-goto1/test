@@ -31,7 +31,7 @@ public class TotalMDao {
 				"axizuser",
 				"axiz");) {
 			PreparedStatement presmt = null;
-			String sql = "SELECT * FROM totalm WHERE id = ? AND month = ? ORDER BY date, totalm_id";
+			String sql = "SELECT * FROM totalm WHERE id = ? AND month = ? ORDER BY day, totalm_id";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, id);
 			presmt.setInt(2, month);
