@@ -73,7 +73,7 @@
 							</c:if></td>
 
 						<td><c:if test="${not empty list}">
-								<<c:out value="${item.transportation}" />
+								<c:out value="${item.transportation}" />
 							</c:if></td>
 
 						<td><c:if test="${not empty list}">
