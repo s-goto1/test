@@ -94,7 +94,7 @@
 				</c:choose>
 				<c:choose>
 					<c:when test="${month eq 10}">
-						<option value=10" selected>10月</option>
+						<option value="10" selected>10月</option>
 					</c:when>
 					<c:otherwise>
 						<option value="10">10月</option>
