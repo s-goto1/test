@@ -13,7 +13,7 @@ public class UpdateDao {
 		Connection con = null;
 		PreparedStatement presmt = null;
 
-		String sql = "UPDATE totalm SET month= ?,date= ?,transportation= ?,depature= ?,destination= ?,division= ?,money= ?, place= ?,purpose= ? WHERE totalm_id =? ";
+		String sql = "UPDATE totalm SET month= ?,day= ?,transportation= ?,depature= ?,destination= ?,division= ?,money= ?, place= ?,purpose= ? WHERE totalm_id =? ";
 
 		try {
 			Class.forName("org.postgresql.Driver");
