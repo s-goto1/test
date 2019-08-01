@@ -55,13 +55,10 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("pass");
 
 		Calendar cal = Calendar.getInstance();
-		//int year = cal.get(Calendar.YEAR);
+		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;
 
 		//String month = String.valueOf(m);
-
-
-
 
 		LoginUser lu = new LoginUser();
 		UserInfo ui = lu.findUser(id);
@@ -95,7 +92,7 @@ public class LoginServlet extends HttpServlet {
 				}
 			}
 
-			//session.setAttribute("year", year);
+			session.setAttribute("year", year);
 			session.setAttribute("month", month);
 			session.setAttribute("list", list);
 			session.setAttribute("divisionList", divisionList);
