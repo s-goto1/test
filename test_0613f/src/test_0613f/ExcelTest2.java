@@ -68,14 +68,8 @@ public class ExcelTest2 {
 			case 5:
 				cell.setCellValue(totalM.getDestination());
 				break;
-			case 7:
-				cell.setCellValue(totalM.getTranspotation());
-				break;
-			case 9:
-				cell.setCellValue(totalM.getPlace());
-				break;
 			case 10:
-				cell.setCellValue(totalM.getDivision() + totalM.getMoney());
+				cell.setCellValue(totalM.getMoney());
 				break;
 			default:
 				System.out.println("error");

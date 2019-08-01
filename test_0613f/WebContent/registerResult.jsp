@@ -35,33 +35,15 @@
 			</tr>
 
 			<tr>
-				<td>
-					<c:out value="${month}月" />
-				</td>
-				<td>
-					<c:out value="${date}日" />
-				</td>
-				<td>
-					<c:out value="${depature}" />
-				</td>
-				<td>
-					<c:out value="${destination}" />
-				</td>
-				<td>
-					<c:out value="${division}" />
-				</td>
-				<td>
-					<c:out value="" />
-				</td>
-				<td>
-					<c:out value="" />
-				</td>
-				<td>
-					<c:out value="${money}" />
-				</td>
-				<td>
-					<c:out value="" />
-				</td>
+				<td><c:out value="${month}月" /></td>
+				<td><c:out value="${date}日" /></td>
+				<td><c:out value="${depature}" /></td>
+				<td><c:out value="${destination}" /></td>
+				<td><c:out value="${division}" /></td>
+				<td><c:out value="${transportation}" /></td>
+				<td><c:out value="${place}" /></td>
+				<td><c:out value="${money}" /></td>
+				<td><c:out value="${purpose}" /></td>
 			</tr>
 
 		</table>

@@ -49,7 +49,7 @@ public class ExcelBreak {
 			switch (j) {
 			case 1:
 				//取得したセルにセットする値を指定
-				cell.setCellValue(totalM.getDate());
+				cell.setCellValue(totalM.getDay());
 				break;
 			case 3:
 				cell.setCellValue(totalM.getDepature());

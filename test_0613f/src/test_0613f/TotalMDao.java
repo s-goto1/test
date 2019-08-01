@@ -44,12 +44,16 @@ public class TotalMDao {
 
 				tom.setId(rset.getString("id"));
 				tom.setTotalM_id(rset.getInt("totalM_id"));
-				tom.setMoney(rset.getInt("money"));
+				tom.setYear(rset.getInt("year"));
 				tom.setMonth(rset.getInt("month"));
-				tom.setDate(rset.getInt("date"));
+				tom.setDay(rset.getInt("day"));
+				tom.setTranspotation(rset.getString("transportation"));
 				tom.setDepature(rset.getString("depature"));
 				tom.setDestination(rset.getString("destination"));
 				tom.setDivision(rset.getString("division"));
+				tom.setMoney(rset.getInt("money"));
+				tom.setPlace(rset.getString("place"));
+				tom.setPurpose(rset.getString("purpose"));
 				list.add(tom);
 				// while文で次のレコードの処理へ?
 

@@ -55,17 +55,21 @@ public class UpdateServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// 入力値を取得（forEachで回しているため配列で受け取る）
-		String month[] = request.getParameterValues("month");				// 月
-		String date[] = request.getParameterValues("date");					// 日
-		String depature[] = request.getParameterValues("depature");			// 出発駅
-		String destination[] = request.getParameterValues("destination");	// 到着駅
-		String money[] = request.getParameterValues("money");				// 金額
-		String totalM_id[] = request.getParameterValues("totalM_id");		// 管理ID
-		String division[] = request.getParameterValues("division");			// 区分
+		String totalM_id[] = request.getParameterValues("totalM_id");			// 管理ID
+		String month[] = request.getParameterValues("month");					// 月
+		String day[] = request.getParameterValues("day");						// 日
+		String depature[] = request.getParameterValues("depature");				// 出発駅
+		String destination[] = request.getParameterValues("destination");		// 到着駅
+		String division[] = request.getParameterValues("division");				// 区分
+		String transportation[] = request.getParameterValues("transportation");	// 交通期間
+		String place[] = request.getParameterValues("place");					// 訪問先
+		String money[] = request.getParameterValues("money");					// 金額
+		String purpose[] = request.getParameterValues("purpose");				// 用件
 
 		// セッションから情報を取得
 		List<TotalM> totalMListBefore = (List<TotalM>) session.getAttribute("list");
 		String id = (String) session.getAttribute("id");
+		int year = (int) session.getAttribute("year");
 
 		// 入力フォームの行数を取得
 		int length = totalM_id.length;
@@ -76,9 +80,9 @@ public class UpdateServlet extends HttpServlet {
 		// 配列の番地ごとに入力値を代入
 		for(int i = 0; i < length; i++) {
 			totalM[i] = new TotalM(id, Integer.valueOf(totalM_id[i]),
-					Integer.valueOf(money[i]), Integer.valueOf(month[i]),
-					Integer.valueOf(date[i]), depature[i],
-					destination[i], division[i]);
+					Integer.valueOf(money[i]), year, Integer.valueOf(month[i]),
+					Integer.valueOf(day[i]), transportation[i], depature[i],
+					destination[i], division[i], place[i], purpose[i]);
 		}
 
 		// リストに変換
@@ -112,10 +116,13 @@ public class UpdateServlet extends HttpServlet {
 				.filter(t1 -> totalMListAfter.stream()
 						.allMatch(t2 -> t1.getMoney() != t2.getMoney() ||
 								t1.getMonth() != t2.getMonth() ||
-								t1.getDate() != t2.getDate() ||
+								t1.getDay() != t2.getDay() ||
+								!t1.getTranspotation().equals(t2.getTranspotation()) ||
 								!t1.getDepature().equals(t2.getDepature()) ||
 								!t1.getDestination().equals(t2.getDestination()) ||
-								!t1.getDivision().equals(t2.getDivision())))
+								!t1.getDivision().equals(t2.getDivision()) ||
+								!t1.getPlace().equals(t2.getPlace()) ||
+								!t1.getPurpose().equals(t2.getPurpose())))
 				.collect(Collectors.toList());
 
 		// 更新用
@@ -123,10 +130,13 @@ public class UpdateServlet extends HttpServlet {
 				.filter(t2 -> totalMListBefore.stream()
 						.allMatch(t1 -> t2.getMoney() != t1.getMoney() ||
 								t2.getMonth() != t1.getMonth() ||
-								t2.getDate() != t1.getDate() ||
+								t2.getDay() != t1.getDay() ||
+								!t2.getTranspotation().equals(t1.getTranspotation()) ||
 								!t2.getDepature().equals(t1.getDepature()) ||
 								!t2.getDestination().equals(t1.getDestination()) ||
-								!t2.getDivision().equals(t1.getDivision())))
+								!t2.getDivision().equals(t1.getDivision()) ||
+								!t2.getPlace().equals(t1.getPlace()) ||
+								!t2.getPurpose().equals(t1.getPurpose())))
 				.collect(Collectors.toList());
 
 		// 非重複リストを取得する準備
@@ -160,10 +170,11 @@ public class UpdateServlet extends HttpServlet {
 
 		// 変更分だけ更新
 		for(int i = 0; i < size; i++) {
-			updateDao.update(totalMListComp.get(i).getMonth(), totalMListComp.get(i).getDate(),
-					totalMListComp.get(i).getDepature(), totalMListComp.get(i).getDestination(),
-					totalMListComp.get(i).getDivision(), totalMListComp.get(i).getMoney(),
-					totalMListComp.get(i).getTotalM_id());
+			updateDao.update(totalMListComp.get(i).getMonth(), totalMListComp.get(i).getDay(),
+					totalMListComp.get(i).getTranspotation(), totalMListComp.get(i).getDepature(),
+					totalMListComp.get(i).getDestination(), totalMListComp.get(i).getDivision(),
+					totalMListComp.get(i).getMoney(), totalMListComp.get(i).getPlace(),
+					totalMListComp.get(i).getPurpose(), totalMListComp.get(i).getTotalM_id());
 		}
 
 		// 変更前データの該当月を取得

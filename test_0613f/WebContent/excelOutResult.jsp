@@ -44,7 +44,7 @@
 						</c:if></td>
 					<td width="25"><c:if test="${not empty list}">
 							<div class="text-right">
-								<c:out value="${item.date}" />
+								<c:out value="${item.day}" />
 							</div>
 						</c:if></td>
 					<td><c:if test="${not empty list}">
@@ -85,7 +85,7 @@
 
 			<tr>
 				<td colspan="6">
-					<div style="display:flex; justify-content: space-between;">
+					<div style="display: flex; justify-content: space-between;">
 						<span><c:out value="<<"/></span><span>合</span><span>計</span><span><c:out value=">>"/></span>
 					</div>
 				</td>

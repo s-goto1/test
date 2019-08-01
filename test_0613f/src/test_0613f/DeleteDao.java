@@ -53,13 +53,13 @@ public class DeleteDao {
 				tom.setTotalM_id(rset.getInt("totalM_id"));
 				tom.setYear(rset.getInt("year"));
 				tom.setMonth(rset.getInt("month"));
-				tom.setDay(rset.getInt("daty"));
-				tom.setTranspotation(rset.getString("trasportation"));
-				tom.setPlace(rset.getString("place"));
+				tom.setDay(rset.getInt("day"));
+				tom.setTranspotation(rset.getString("transportation"));
 				tom.setDepature(rset.getString("depature"));
 				tom.setDestination(rset.getString("destination"));
 				tom.setDivision(rset.getString("division"));
 				tom.setMoney(rset.getInt("money"));
+				tom.setPlace(rset.getString("place"));
 				tom.setPurpose(rset.getString("purpose"));
 				list.add(tom);
 			}

@@ -50,8 +50,8 @@
 							value="${item.month}" min="1" max="12" required>
 							<span style="display: inline-block;">月</span></td>
 
-						<td><input type="number" name="date"
-							value="${item.date}" min="1" max="31" required>
+						<td><input type="number" name="day"
+							value="${item.day}" min="1" max="31" required>
 							<span style="display: inline-block;">日</span></td>
 
 						<td><input type="text" name="depature"
@@ -63,19 +63,19 @@
 						<td><input type="text" name="division" id="division${status.count}"
 							value="${item.division}" size="5" readonly></td>
 
-						<td><select name="" id="">
+						<td><select name="transportation" id="transportation">
 							<option value="">地下鉄</option>
 							<option value="">地下鉄/JR</option>
 							<option value="">JR</option>
 							</select></td>
 
-						<td><input type="text" name="" id=""
+						<td><input type="text" name="place" id="place"
 							value="" size="15" required></td>
 
 						<td><input type="number" name="money" id="money${status.count}"
 							value="${item.money}" min="100" max="9990" step="10" required></td>
 
-						<td><input type="text" name="" id=""
+						<td><input type="text" name="purpose" id="purpose"
 							value="" size="15" required></td>
 
 						<td><input type="button" name="train" id="train${status.count}"

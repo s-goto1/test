@@ -37,7 +37,7 @@
 						<c:out value="${item.month}月" />
 						</c:if></td>
 					<td><c:if test="${not empty deleteList}">
-							<c:out value="${item.date}日" />
+							<c:out value="${item.day}日" />
 						</c:if></td>
 					<td><c:if test="${not empty deleteList}">
 							<c:out value="${item.depature}" />

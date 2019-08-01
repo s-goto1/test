@@ -43,7 +43,7 @@
 						value="${month}" min="1" max="12" required>
 
 						<span style="display: inline-block;">月</span></td>
-					<td><input type="number" name="date" id="date"
+					<td><input type="number" name="day" id="day"
 						value="" min="1" max="31" required>
 
 						<span style="display: inline-block;">日</span></td>
@@ -56,19 +56,19 @@
 					<td><input type="text" name="division" id="division"
 						value="片道" size="5" readonly></td>
 
-					<td><select name="" id="">
+					<td><select name="transportation" id="transportation">
 							<option value="">地下鉄</option>
 							<option value="">地下鉄/JR</option>
 							<option value="">JR</option>
 						</select></td>
 
-					<td><input type="text" name="" id=""
+					<td><input type="text" name="place" id="place"
 						value="" size="15" required></td>
 
 					<td><input type="number" name="money" id="money"
 						value="100" min="100" max="9990" step="10" required></td>
 
-					<td><input type="text" name="" id=""
+					<td><input type="text" name="purpose" id="purpose"
 						value="" size="15" required></td>
 
 				</tr>
@@ -78,7 +78,7 @@
 			<input type="submit" id="regist" name="確認用" class="btn btn-primary mr-2" value="登録確定">
 			<input type="button" id="back" name="" class="btn btn-warning mr-4" onclick="location.href='./home.jsp'" value="戻る">
 			<input type="button" id="today" name="today" class="btn btn-secondary mr-2" value="今日の日付">
-			<input type="button" id="train" name="" class="btn btn-info"  onclick="clickBtn1()" value="往復">
+			<input type="button" id="train" name="" class="btn btn-info" onclick="clickBtn1()" value="往復">
 
 		</form>
 

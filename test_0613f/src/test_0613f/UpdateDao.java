@@ -3,18 +3,17 @@ package test_0613f;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UpdateDao {
-	public void update(Integer month, Integer date, String depature,
-			String destination, String division,int money, int totalM_id) {
+	public void update(Integer month, Integer day, String depature,
+			String transportation, String destination, String division,
+			int money, String place, String purpose, int totalM_id) {
 
 		Connection con = null;
 		PreparedStatement presmt = null;
-		ResultSet rs = null;
 
-		String sql = "UPDATE totalm SET month= ?,date= ?,depature= ?,destination= ? ,division =?,money=? WHERE totalm_id =? ";
+		String sql = "UPDATE totalm SET month= ?,date= ?,transportation= ?,depature= ?,destination= ?,division= ?,money= ?, place= ?,purpose= ? WHERE totalm_id =? ";
 
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -26,12 +25,15 @@ public class UpdateDao {
 			presmt = con.prepareStatement(sql);
 
 			presmt.setInt(1, month);
-			presmt.setInt(2, date);
-			presmt.setString(3, depature);
-			presmt.setString(4, destination);
-			presmt.setString(5, division);
-			presmt.setInt(6, money);
-			presmt.setInt(7, totalM_id);
+			presmt.setInt(2, day);
+			presmt.setString(3, transportation);
+			presmt.setString(4, depature);
+			presmt.setString(5, destination);
+			presmt.setString(6, division);
+			presmt.setInt(7, money);
+			presmt.setString(8, place);
+			presmt.setString(9, purpose);
+			presmt.setInt(10, totalM_id);
 
 
 			presmt.executeUpdate();

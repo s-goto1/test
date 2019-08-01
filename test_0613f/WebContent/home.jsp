@@ -53,11 +53,11 @@
 				<c:forEach var="item" items="${list}">
 					<tr>
 						<td><c:if test="${not empty list}">
-							<c:out value="${item.month}月" />
+								<c:out value="${item.month}月" />
 							</c:if></td>
 
 						<td><c:if test="${not empty list}">
-								<c:out value="${item.date}日" />
+								<c:out value="${item.day}日" />
 							</c:if></td>
 
 						<td><c:if test="${not empty list}">
@@ -73,11 +73,11 @@
 							</c:if></td>
 
 						<td><c:if test="${not empty list}">
-								<!--<c:out value="${item.money}" />-->
+								<<c:out value="${item.transportation}" />
 							</c:if></td>
 
 						<td><c:if test="${not empty list}">
-								<!--<c:out value="${item.money}" />-->
+								<c:out value="${item.place}" />
 							</c:if></td>
 
 						<td><c:if test="${not empty list}">
@@ -85,7 +85,7 @@
 							</c:if></td>
 
 						<td><c:if test="${not empty list}">
-								<!--<c:out value="${item.money}" />-->
+								<c:out value="${item.purpose}" />
 							</c:if></td>
 
 						<td><c:if test="${not empty list}">
@@ -127,9 +127,8 @@
 
 	</div>
 
-
 	<div class="iziModal" id="modal-options" data-izimodal-title="選択データの削除" data-izimodal-subtitle="選択した出張精算データを削除します">
-		<div class="text-center mb-3">
+		<div class="text-center mt-3">
 			一度削除したデータは再び復元する事ができません。<br>
 			本当に削除しますか？<br>
 			<div class="mb-3"></div>

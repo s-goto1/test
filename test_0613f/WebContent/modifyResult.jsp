@@ -42,7 +42,7 @@
 						</c:if></td>
 
 					<td><c:if test="${not empty list}">
-							<c:out value="${item.date}日" />
+							<c:out value="${item.day}日" />
 						</c:if></td>
 
 					<td><c:if test="${not empty list}">
@@ -107,7 +107,7 @@
 						</c:if></td>
 
 					<td><c:if test="${not empty list}">
-							<c:out value="${item.date}日" />
+							<c:out value="${item.day}日" />
 						</c:if></td>
 
 					<td><c:if test="${not empty list}">
@@ -123,11 +123,11 @@
 						</c:if></td>
 
 					<td><c:if test="${not empty list}">
-							<c:out value="" />
+							<c:out value="${item.transportation}" />
 						</c:if></td>
 
 					<td><c:if test="${not empty list}">
-							<c:out value="" />
+							<c:out value="${item.place}" />
 						</c:if></td>
 
 					<td><c:if test="${not empty list}">
@@ -135,7 +135,7 @@
 						</c:if></td>
 
 					<td><c:if test="${not empty list}">
-							<c:out value="" />
+							<c:out value="${item.purpose}" />
 						</c:if></td>
 				</tr>
 			</c:forEach>

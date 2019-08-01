@@ -51,30 +51,30 @@ public class RegisterServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String id = request.getParameter("id");
-		String year= request.getParameter("year");
 		String month = request.getParameter("month");
 		String day = request.getParameter("day");
+		String transportation = request.getParameter("transportation");
 		String depature = request.getParameter("depature");
 		String destination = request.getParameter("destination");
-		String transportation = request.getParameter("transportation");
-		String place= request.getParameter("place");
 		String division = request.getParameter("division");
 		String money1 = request.getParameter("money");
+		String place = request.getParameter("place");
 		String purpose = request.getParameter("purpose");
 
+		HttpSession session = request.getSession();
+
+		int year = (int) session.getAttribute("year");
 		int money = Integer.parseInt(money1);
-		Integer y= Integer.valueOf(year);
 		Integer m= Integer.valueOf(month);
 		Integer d= Integer.valueOf(day);
 
 		InsertDao IDao = new InsertDao();
-		IDao.insert(id, y,m, d, depature, destination,transportation,place, division, money,purpose);
+		IDao.insert(id, year, m, d, transportation, depature, destination,
+				division, money, place, purpose);
 
-		HttpSession session = request.getSession();
 		TotalMDao tmd = new TotalMDao();
 
 		List<TotalM> list = tmd.findAllByMonth(id,m);
-//     あとで↑yaerも追加？
 
 		int size = list.size();
 
@@ -91,17 +91,14 @@ public class RegisterServlet extends HttpServlet {
 			}
 		}
 
-
-		request.setAttribute("year", year);
-		request.setAttribute("month", month);
-		request.setAttribute("date", day);
-
+		request.setAttribute("month", m);
+		request.setAttribute("day", d);
+		request.setAttribute("transportation", transportation);
 		request.setAttribute("depature", depature);
 		request.setAttribute("destination", destination);
-		request.setAttribute("transportation", transportation);
-		request.setAttribute("place", place);
 		request.setAttribute("division", division);
 		request.setAttribute("money", money);
+		request.setAttribute("place", place);
 		request.setAttribute("purpose", purpose);
 		session.setAttribute("list", list);
 		session.setAttribute("divisionList", divisionList);
