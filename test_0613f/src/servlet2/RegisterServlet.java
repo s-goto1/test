@@ -51,24 +51,30 @@ public class RegisterServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String id = request.getParameter("id");
+		String year= request.getParameter("year");
 		String month = request.getParameter("month");
-		String date = request.getParameter("date");
+		String day = request.getParameter("day");
 		String depature = request.getParameter("depature");
 		String destination = request.getParameter("destination");
+		String transportation = request.getParameter("transportation");
+		String place= request.getParameter("place");
 		String division = request.getParameter("division");
 		String money1 = request.getParameter("money");
+		String purpose = request.getParameter("purpose");
 
 		int money = Integer.parseInt(money1);
+		Integer y= Integer.valueOf(year);
 		Integer m= Integer.valueOf(month);
-		Integer d= Integer.valueOf(date);
+		Integer d= Integer.valueOf(day);
 
 		InsertDao IDao = new InsertDao();
-		IDao.insert(id, m, d, depature, destination, division, money);
+		IDao.insert(id, y,m, d, depature, destination,transportation,place, division, money,purpose);
 
 		HttpSession session = request.getSession();
 		TotalMDao tmd = new TotalMDao();
 
 		List<TotalM> list = tmd.findAllByMonth(id,m);
+//     あとで↑yaerも追加？
 
 		int size = list.size();
 
@@ -85,12 +91,18 @@ public class RegisterServlet extends HttpServlet {
 			}
 		}
 
+
+		request.setAttribute("year", year);
 		request.setAttribute("month", month);
-		request.setAttribute("date", date);
+		request.setAttribute("date", day);
+
 		request.setAttribute("depature", depature);
 		request.setAttribute("destination", destination);
+		request.setAttribute("transportation", transportation);
+		request.setAttribute("place", place);
 		request.setAttribute("division", division);
 		request.setAttribute("money", money);
+		request.setAttribute("purpose", purpose);
 		session.setAttribute("list", list);
 		session.setAttribute("divisionList", divisionList);
 

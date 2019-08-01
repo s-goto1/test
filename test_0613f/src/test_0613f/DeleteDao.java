@@ -51,12 +51,16 @@ public class DeleteDao {
 
 				tom.setId(rset.getString("id"));
 				tom.setTotalM_id(rset.getInt("totalM_id"));
-				tom.setMoney(rset.getInt("money"));
+				tom.setYear(rset.getInt("year"));
 				tom.setMonth(rset.getInt("month"));
-				tom.setDate(rset.getInt("date"));
+				tom.setDay(rset.getInt("daty"));
+				tom.setTranspotation(rset.getString("trasportation"));
+				tom.setPlace(rset.getString("place"));
 				tom.setDepature(rset.getString("depature"));
 				tom.setDestination(rset.getString("destination"));
 				tom.setDivision(rset.getString("division"));
+				tom.setMoney(rset.getInt("money"));
+				tom.setPurpose(rset.getString("purpose"));
 				list.add(tom);
 			}
 		} catch (SQLException e) {

@@ -9,13 +9,15 @@ import java.sql.SQLException;
 //import entity.TotalM;
 
 public class InsertDao {
-	public void insert(String id, Integer month, Integer date, String depature, String destination, String division, int money) {
+	public void insert(String id, Integer year,Integer month, Integer day,String depature, String destination, String transportation,
+			String place, String division, Integer money,String purpose) {
 
 		Connection con = null;
 		PreparedStatement presmt = null;
 		ResultSet rs = null;
 
-		String sql = "INSERT INTO totalm (ID,MONTH,DATE,DEPATURE,DESTINATION,DIVISION,MONEY)VALUES (?,?,?,?,?,?,?) ";
+		String sql = "INSERT INTO totalm (ID,YEAR,MONTH,DAY,DEPATURE,DESTINATION,TRASPORTATION,"
+				+ "PLACE,DIVISION,MONEY,PURPOSE)VALUES (?,?,?,?,?,?,?,?,?,?) ";
 
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -27,12 +29,16 @@ public class InsertDao {
 			presmt = con.prepareStatement(sql);
 
 			presmt.setString(1, id);
-			presmt.setInt(2, month);
-			presmt.setInt(3, date);
+			presmt.setInt(2, year);
+			presmt.setInt(3, month);
+			presmt.setInt(4, day);
 			presmt.setString(4, depature);
 			presmt.setString(5, destination);
-			presmt.setString(6, division);
-			presmt.setInt(7, money);
+			presmt.setString(6, transportation);
+			presmt.setString(7, place);
+			presmt.setString(8, division);
+			presmt.setInt(9, money);
+			presmt.setString(10, purpose);
 
 			presmt.executeUpdate();
 

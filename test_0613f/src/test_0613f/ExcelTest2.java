@@ -60,7 +60,7 @@ public class ExcelTest2 {
 				cell.setCellValue(totalM.getMonth());
 				break;
 			case 2:
-				cell.setCellValue(totalM.getDate());
+				cell.setCellValue(totalM.getDay());
 				break;
 			case 3:
 				cell.setCellValue(totalM.getDepature());
@@ -68,8 +68,14 @@ public class ExcelTest2 {
 			case 5:
 				cell.setCellValue(totalM.getDestination());
 				break;
+			case 7:
+				cell.setCellValue(totalM.getTranspotation());
+				break;
+			case 9:
+				cell.setCellValue(totalM.getPlace());
+				break;
 			case 10:
-				cell.setCellValue(totalM.getMoney());
+				cell.setCellValue(totalM.getDivision() + totalM.getMoney());
 				break;
 			default:
 				System.out.println("error");
