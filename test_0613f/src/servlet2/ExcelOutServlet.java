@@ -67,7 +67,7 @@ public class ExcelOutServlet extends HttpServlet {
 
 
 
-		RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("/excelOutResult.jsp");
 		dispatch.forward(request, response);
 	}
 
