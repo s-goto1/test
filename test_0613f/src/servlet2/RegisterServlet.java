@@ -19,7 +19,7 @@ import test_0613f.TotalMDao;
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet("/Register")
+@WebServlet("/business/Register")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -103,7 +103,7 @@ public class RegisterServlet extends HttpServlet {
 		session.setAttribute("list", list);
 		session.setAttribute("divisionList", divisionList);
 
-		RequestDispatcher dispatch = request.getRequestDispatcher("/registerResult.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("/business/registerResult.jsp");
 		dispatch.forward(request, response);
 
 	}

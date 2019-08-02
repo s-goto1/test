@@ -18,7 +18,7 @@ import test_0613f.TotalMDao;
 /**
  * Servlet implementation class TestServlet
  */
-@WebServlet("/Date")
+@WebServlet("/business/Date")
 public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -83,7 +83,7 @@ public class TestServlet extends HttpServlet {
 		session.setAttribute("divisionList", divisionList);
 		session.setAttribute("nolist", "登録されているデータがありません。");
 
-		RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
 		dispatch.forward(request, response);
 
 

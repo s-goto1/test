@@ -18,7 +18,7 @@ import util.GetPath;
 /**
  * Servlet implementation class ExcelOutServlet
  */
-@WebServlet("/ExcelOut")
+@WebServlet("/business/ExcelOut")
 public class ExcelOutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -76,7 +76,7 @@ public class ExcelOutServlet extends HttpServlet {
 		request.setAttribute("size", size);
 		request.setAttribute("total", total);
 
-		RequestDispatcher dispatch = request.getRequestDispatcher("/excelOutResult.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("/business/excelOutResult.jsp");
 		dispatch.forward(request, response);
 	}
 

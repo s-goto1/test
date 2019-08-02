@@ -21,7 +21,7 @@ import test_0613f.UpdateDao;
 /**
  * Servlet implementation class UpdateServlet
  */
-@WebServlet("/Update")
+@WebServlet("/business/Update")
 public class UpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -88,7 +88,7 @@ public class UpdateServlet extends HttpServlet {
 		// リストに変換
 		List<TotalM> totalMListAfter = Arrays.asList(totalM);
 
-		// 非重複リストを取得する準備
+//		// 非重複リストを取得する準備
 //		HashSet<TotalM> hashSetBefore = new HashSet<>(totalMListBefore);
 //		HashSet<TotalM> hashSetAfter = new HashSet<>(totalMListAfter);
 //
@@ -139,7 +139,7 @@ public class UpdateServlet extends HttpServlet {
 								!t2.getPurpose().equals(t1.getPurpose())))
 				.collect(Collectors.toList());
 
-		// 非重複リストを取得する準備
+//		// 非重複リストを取得する準備
 //		List<TotalM> totalMListUp = new ArrayList<>();
 //		List<TotalM> totalMListComp = new ArrayList<>();
 //
@@ -159,7 +159,7 @@ public class UpdateServlet extends HttpServlet {
 		// 変更なし？
 		if(size == 0) {
 			// home.jspに遷移
-			RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
 			dispatch.forward(request, response);
 			return;
 		}
@@ -241,7 +241,7 @@ public class UpdateServlet extends HttpServlet {
 		//ud.update(date, depature, destination, money, totalM_id);
 
 		// modifyResult.jspに遷移
-		RequestDispatcher dispatch = request.getRequestDispatcher("/modifyResult.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("/business/modifyResult.jsp");
 		dispatch.forward(request, response);
 	}
 

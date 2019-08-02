@@ -19,7 +19,7 @@ import test_0613f.TotalMDao;
 /**
  * Servlet implementation class DeleteServlet
  */
-@WebServlet("/Delete")
+@WebServlet("/business/Delete")
 public class DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -130,7 +130,7 @@ public class DeleteServlet extends HttpServlet {
 			session.setAttribute("divisionList", divisionList);
 
 			// deleteResult.jspに遷移
-			RequestDispatcher dispatch = request.getRequestDispatcher("/deleteResult.jsp");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/business/deleteResult.jsp");
 			dispatch.forward(request, response);
 
 		}
