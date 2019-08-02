@@ -3,7 +3,6 @@ package test_0613f;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 //import entity.TotalM;
@@ -15,9 +14,10 @@ public class InsertDao {
 
 		Connection con = null;
 		PreparedStatement presmt = null;
-		ResultSet rs = null;
 
-		String sql = "INSERT INTO totalm (ID,YEAR,MONTH,DAY,TRANSPORTATION,DEPATURE,DESTINATION,DIVISION,MONEY,PLACE,PURPOSE)VALUES (?,?,?,?,?,?,?,?,?,?,?) ";
+		String sql = "INSERT INTO totalm (ID, YEAR, MONTH, DAY, TRANSPORTATION,"
+				+ "DEPATURE, DESTINATION, DIVISION, MONEY, PLACE, PURPOSE) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -29,8 +29,8 @@ public class InsertDao {
 			presmt = con.prepareStatement(sql);
 
 			presmt.setString(1, id);
-			presmt.setInt(2, month);
-			presmt.setInt(3, year);
+			presmt.setInt(2, year);
+			presmt.setInt(3, month);
 			presmt.setInt(4, day);
 			presmt.setString(5, transportation);
 			presmt.setString(6, depature);

@@ -20,14 +20,14 @@
 
 		<p>下記の情報を登録しました。</p>
 
-		<table border="1" class="table table-striped"  style="border: solid 3px;">
+		<table border="1" class="table table-striped" style="border: solid 3px;">
 			<tbody style="border: black 2px">
 				<tr>
 					<th colspan="2" rowspan="3">
 						<div class="text-center">月日</div>
 					</th>
 
-					<th rowspan="3">
+					<th colspan="2">
 						<div class="text-center">区間</div>
 					</th>
 
@@ -62,7 +62,7 @@
 
 				<tr>
 					<td><c:out value="${month}月" /></td>
-					<td><c:out value="${date}日" /></td>
+					<td><c:out value="${day}日" /></td>
 					<td><c:out value="${depature}" /></td>
 					<td><c:out value="${destination}" /></td>
 					<td><c:out value="${transportation}" /></td>
