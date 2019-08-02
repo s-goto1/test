@@ -22,81 +22,79 @@
 
 		<form action="Register" id="form" name="form" method="post">
 
-			<table border="3" class="table table-striped">
-				<tr>
-					<th colspan="2" rowspan="3">
-						<div class="text-center">月日</div>
-					</th>
+			<table border="1" class="table table-striped" style="border: solid 3px;">
+				<tbody style="border: black 2px">
+					<tr>
+						<th colspan="2" rowspan="3">
+							<div class="text-center">月日</div>
+						</th>
 
-					<th colspan="2">
-						<div class="text-center">区間</div>
-					</th>
+						<th colspan="2">
+							<div class="text-center">区間</div>
+						</th>
 
-					<th rowspan="3">
-						<div class="text-center">交通機関</div>
-					</th>
+						<th rowspan="3">
+							<div class="text-center">交通機関</div>
+						</th>
 
-					<th rowspan="3">
-						<div class="text-center">訪問先</div>
-					</th>
+						<th rowspan="3">
+							<div class="text-center">訪問先</div>
+						</th>
 
-					<th colspan="2" rowspan="3">
-						<div class="text-center">金額</div>
-					</th>
+						<th colspan="2" rowspan="3">
+							<div class="text-center">金額</div>
+						</th>
 
-					<th rowspan="3">
-						<div class="text-center">用件</div>
-					</th>
-				</tr>
-				<tr>
-					<th rowspan="2">
-						<div class="text-center">発地</div>
-					</th>
+						<th rowspan="3">
+							<div class="text-center">用件</div>
+						</th>
+					</tr>
+					<tr>
+						<th rowspan="2">
+							<div class="text-center">発地</div>
+						</th>
 
-					<th rowspan="2">
-						<div class="text-center">着地点</div>
-					</th>
-				</tr>
-				<tr>
-					<!-- table-stripedのための空列 -->
-				</tr>
-				<tr>
+						<th rowspan="2">
+							<div class="text-center">着地点</div>
+						</th>
+					</tr>
+					<tr>
+						<!-- table-stripedのための空列 -->
+					</tr>
+					<tr>
+						<td><input type="number" name="month" id="month"
+							value="${month}" min="1" max="12" required>
 
-					<td><input type="number" name="month" id="month"
-						value="${month}" min="1" max="12" required>
+							<span style="display: inline-block;">月</span></td>
+						<td><input type="number" name="day" id="day"
+							value="" min="1" max="31" required>
 
-						<span style="display: inline-block;">月</span></td>
-					<td><input type="number" name="day" id="day"
-						value="" min="1" max="31" required>
+							<span style="display: inline-block;">日</span></td>
+						<td><input type="text" name="depature" id="depature"
+							value="" size="10" required></td>
 
-						<span style="display: inline-block;">日</span></td>
-					<td><input type="text" name="depature" id="depature"
-						value="" size="10" required></td>
+						<td><input type="text" name="destination" id="destination"
+							value="" size="10" required></td>
 
-					<td><input type="text" name="destination" id="destination"
-						value="" size="10" required></td>
+						<td><select name="transportation" id="transportation">
+								<option value="地下鉄">地下鉄</option>
+								<option value="地下鉄/JR">地下鉄/JR</option>
+								<option value="JR">JR</option>
+							</select></td>
 
+						<td><input type="text" name="place" id="place"
+							value="" size="15" required></td>
 
+		                <td><input type="text" name="division" id="division"
+							value="片道" size="5" readonly></td>
 
-					<td><select name="transportation" id="transportation">
-							<option value="地下鉄">地下鉄</option>
-							<option value="地下鉄/JR">地下鉄/JR</option>
-							<option value="JR">JR</option>
-						</select></td>
+						<td><input type="number" name="money" id="money"
+							value="100" min="100" max="9990" step="10" required></td>
 
-					<td><input type="text" name="place" id="place"
-						value="" size="15" required></td>
-
-	                <td><input type="text" name="division" id="division"
-						value="片道" size="5" readonly></td>
-
-					<td><input type="number" name="money" id="money"
-						value="100" min="100" max="9990" step="10" required></td>
-
-					<td><input type="text" name="purpose" id="purpose"
-						value="" size="15" required></td>
-
-				</tr>
+						<td><input type="text" name="purpose" id="purpose"
+							value="" size="15" required></td>
+					</tr>
+				</tbody>
 			</table>
 		    <input type="hidden" name="id" value="${id}" size="">
 
@@ -108,6 +106,5 @@
 		</form>
 
 	</div>
-
 </body>
 </html>

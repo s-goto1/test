@@ -26,118 +26,120 @@
 				（2019年<c:out value="${month}月分" />）
 			</p>
 
-			<table border="3" class="table table-striped">
-				<tr>
-
-					<th colspan="2" rowspan="3">
-						<div class="text-center">月日</div>
-					</th>
-
-					<th colspan="2">
-						<div class="text-center">区間</div>
-					</th>
-
-					<th rowspan="3">
-						<div class="text-center">交通機関</div>
-					</th>
-
-					<th rowspan="3">
-						<div class="text-center">訪問先</div>
-					</th>
-
-					<th colspan="2" rowspan="3">
-						<div class="text-center">金額</div>
-					</th>
-
-					<th rowspan="3">
-						<div class="text-center">用件</div>
-					</th>
-
-					<th rowspan="3">
-						<div class="text-center">区分変更</div>
-					</th>
-				</tr>
-				<tr>
-					<th rowspan="2">
-						<div class="text-center">発地</div>
-					</th>
-
-					<th rowspan="2">
-						<div class="text-center">着地</div>
-					</th>
-				</tr>
-				<tr>
-					<!-- table-stripedのための空列 -->
-				</tr>
-
-				<c:forEach var="item" items="${list}" varStatus="status">
+			<table border="1" class="table table-striped" style="border: solid 3px;">
+				<tbody style="border: black 2px">
 					<tr>
 
-						<td><input type="number" name="month"
-							value="${item.month}" min="1" max="12" required>
-							<span style="display: inline-block;">月</span></td>
+						<th colspan="2" rowspan="3">
+							<div class="text-center">月日</div>
+						</th>
 
-						<td><input type="number" name="day"
-							value="${item.day}" min="1" max="31" required>
-							<span style="display: inline-block;">日</span></td>
+						<th colspan="2">
+							<div class="text-center">区間</div>
+						</th>
 
-						<td><input type="text" name="depature"
-							value="${item.depature}" size="10" required></td>
+						<th rowspan="3">
+							<div class="text-center">交通機関</div>
+						</th>
 
-						<td><input type="text" name="destination"
-							value="${item.destination}" size="10" required></td>
+						<th rowspan="3">
+							<div class="text-center">訪問先</div>
+						</th>
 
+						<th colspan="2" rowspan="3">
+							<div class="text-center">金額</div>
+						</th>
 
+						<th rowspan="3">
+							<div class="text-center">用件</div>
+						</th>
 
-						<td><select name="transportation" id="transportation">
-							<c:choose>
-								<c:when test="${item.transportation eq '地下鉄'}">
-									<option value="地下鉄" selected>地下鉄</option>
-								</c:when>
-								<c:otherwise>
-									<option value="地下鉄">地下鉄</option>
-								</c:otherwise>
-							</c:choose>
-							<c:choose>
-								<c:when test="${item.transportation eq '地下鉄/JR'}">
-									<option value="地下鉄/JR" selected>地下鉄/JR</option>
-								</c:when>
-								<c:otherwise>
-									<option value="地下鉄/JR">地下鉄/JR</option>
-								</c:otherwise>
-							</c:choose>
-							<c:choose>
-								<c:when test="${item.transportation eq 'JR'}">
-									<option value="JR" selected>JR</option>
-								</c:when>
-								<c:otherwise>
-									<option value="JR">JR</option>
-								</c:otherwise>
-							</c:choose>
-							</select></td>
-
-						<td><input type="text" name="place" id="place"
-							value="${item.place}" size="15" required></td>
-
-	                   <td><input type="text" name="division" id="division${status.count}"
-							value="${item.division}" size="5" readonly></td>
-
-						<td><input type="number" name="money" id="money${status.count}"
-							value="${item.money}" min="100" max="9990" step="10" required></td>
-
-						<td><input type="text" name="purpose" id="purpose"
-							value="${item.purpose}" size="15" required></td>
-
-						<td><input type="button" name="train" id="train${status.count}"
-							data-index="${status.count}" class="btn btn-info"
-							onclick="clickTrainBtn(this)" value="${divisionList.get(status.index)}">
-
-							<input type="hidden" name="totalM_id"
-							value="${item.totalM_id}" size="5" readonly></td>
-
+						<th rowspan="3">
+							<div class="text-center">区分変更</div>
+						</th>
 					</tr>
-				</c:forEach>
+					<tr>
+						<th rowspan="2">
+							<div class="text-center">発地</div>
+						</th>
 
+						<th rowspan="2">
+							<div class="text-center">着地</div>
+						</th>
+					</tr>
+					<tr>
+						<!-- table-stripedのための空列 -->
+					</tr>
+
+					<c:forEach var="item" items="${list}" varStatus="status">
+						<tr>
+
+							<td><input type="number" name="month"
+								value="${item.month}" min="1" max="12" required>
+								<span style="display: inline-block;">月</span></td>
+
+							<td><input type="number" name="day"
+								value="${item.day}" min="1" max="31" required>
+								<span style="display: inline-block;">日</span></td>
+
+							<td><input type="text" name="depature"
+								value="${item.depature}" size="10" required></td>
+
+							<td><input type="text" name="destination"
+								value="${item.destination}" size="10" required></td>
+
+
+
+							<td><select name="transportation" id="transportation">
+								<c:choose>
+									<c:when test="${item.transportation eq '地下鉄'}">
+										<option value="地下鉄" selected>地下鉄</option>
+									</c:when>
+									<c:otherwise>
+										<option value="地下鉄">地下鉄</option>
+									</c:otherwise>
+								</c:choose>
+								<c:choose>
+									<c:when test="${item.transportation eq '地下鉄/JR'}">
+										<option value="地下鉄/JR" selected>地下鉄/JR</option>
+									</c:when>
+									<c:otherwise>
+										<option value="地下鉄/JR">地下鉄/JR</option>
+									</c:otherwise>
+								</c:choose>
+								<c:choose>
+									<c:when test="${item.transportation eq 'JR'}">
+										<option value="JR" selected>JR</option>
+									</c:when>
+									<c:otherwise>
+										<option value="JR">JR</option>
+									</c:otherwise>
+								</c:choose>
+								</select></td>
+
+							<td><input type="text" name="place" id="place"
+								value="${item.place}" size="15" required></td>
+
+		                   <td><input type="text" name="division" id="division${status.count}"
+								value="${item.division}" size="5" readonly></td>
+
+							<td><input type="number" name="money" id="money${status.count}"
+								value="${item.money}" min="100" max="9990" step="10" required></td>
+
+							<td><input type="text" name="purpose" id="purpose"
+								value="${item.purpose}" size="15" required></td>
+
+							<td><input type="button" name="train" id="train${status.count}"
+								data-index="${status.count}" class="btn btn-info"
+								onclick="clickTrainBtn(this)" value="${divisionList.get(status.index)}">
+
+								<input type="hidden" name="totalM_id"
+								value="${item.totalM_id}" size="5" readonly></td>
+
+						</tr>
+					</c:forEach>
+
+				</tbody>
 			</table>
 			<input type="submit" name="uptest" class="btn btn-success mr-2" value="修正確定">
 			<input type="button" class="btn btn-warning" onclick="location.href='./home.jsp'" value="戻る">

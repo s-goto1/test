@@ -21,130 +21,132 @@
 
 		<p>下記の情報を更新しました。</p>
 
-		<table border="3" class="table table-striped">
-			<tr>
-				<th colspan="2" rowspan="3">
-					<div class="text-center">月日</div>
-				</th>
-
-				<th colspan="2">
-					<div class="text-center">区間</div>
-				</th>
-
-				<th rowspan="3">
-					<div class="text-center">交通機関</div>
-				</th>
-
-				<th rowspan="3">
-					<div class="text-center">訪問先</div>
-				</th>
-
-				<th colspan="2" rowspan="3">
-					<div class="text-center">金額</div>
-				</th>
-
-				<th rowspan="3">
-					<div class="text-center">用件</div>
-				</th>
-			</tr>
-			<tr>
-				<th rowspan="2">
-					<div class="text-center">発地</div>
-				</th>
-
-				<th rowspan="2">
-					<div class="text-center">着地</div>
-				</th>
-			</tr>
-			<tr>
-				<!-- table-stripedのための空列 -->
-			</tr>
-
-			<c:forEach var="item" items="${totalMListUp}" varStatus="status">
+		<table border="1" class="table table-striped" style="border: solid 3px;">
+			<tbody style="border: black 2px">
 				<tr>
-					<td
-					<c:if test="${item.month != totalMListComp.get(status.index).month}">
-						 style="background-color: #ffcccc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.month}月" />
-						</c:if></td>
+					<th colspan="2" rowspan="3">
+						<div class="text-center">月日</div>
+					</th>
 
-					<td
-					<c:if test="${item.day != totalMListComp.get(status.index).day}">
-						 style="background-color: #ffcccc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.day}日" />
-						</c:if></td>
+					<th colspan="2">
+						<div class="text-center">区間</div>
+					</th>
 
-					<td
-					<c:if test="${item.depature != totalMListComp.get(status.index).depature}">
-						 style="background-color: #ffcccc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.depature}" />
-						</c:if></td>
+					<th rowspan="3">
+						<div class="text-center">交通機関</div>
+					</th>
 
-					<td
-					<c:if test="${item.destination != totalMListComp.get(status.index).destination}">
-						 style="background-color: #ffcccc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.destination}" />
-						</c:if></td>
+					<th rowspan="3">
+						<div class="text-center">訪問先</div>
+					</th>
 
-					<td
-					<c:if test="${item.transportation != totalMListComp.get(status.index).transportation}">
-						 style="background-color: #ffcccc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.transportation}" />
-						</c:if></td>
+					<th colspan="2" rowspan="3">
+						<div class="text-center">金額</div>
+					</th>
 
-					<td
-					<c:if test="${item.place != totalMListComp.get(status.index).place}">
-						 style="background-color: #ffcccc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.place}" />
-						</c:if></td>
-
-					<td
-					<c:if test="${item.division != totalMListComp.get(status.index).division}">
-						 style="background-color: #ffcccc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.division}" />
-						</c:if></td>
-
-					<td
-					<c:if test="${item.money != totalMListComp.get(status.index).money}">
-						 style="background-color: #ffcccc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.money}" />
-						</c:if></td>
-
-					<td
-					<c:if test="${item.purpose != totalMListComp.get(status.index).purpose}">
-						 style="background-color: #ffcccc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.purpose}" />
-						</c:if></td>
+					<th rowspan="3">
+						<div class="text-center">用件</div>
+					</th>
 				</tr>
-			</c:forEach>
+				<tr>
+					<th rowspan="2">
+						<div class="text-center">発地</div>
+					</th>
 
+					<th rowspan="2">
+						<div class="text-center">着地</div>
+					</th>
+				</tr>
+				<tr>
+					<!-- table-stripedのための空列 -->
+				</tr>
+
+				<c:forEach var="item" items="${totalMListUp}" varStatus="status">
+					<tr>
+						<td
+						<c:if test="${item.month != totalMListComp.get(status.index).month}">
+							 style="background-color: #ffcccc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.month}月" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.day != totalMListComp.get(status.index).day}">
+							 style="background-color: #ffcccc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.day}日" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.depature != totalMListComp.get(status.index).depature}">
+							 style="background-color: #ffcccc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.depature}" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.destination != totalMListComp.get(status.index).destination}">
+							 style="background-color: #ffcccc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.destination}" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.transportation != totalMListComp.get(status.index).transportation}">
+							 style="background-color: #ffcccc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.transportation}" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.place != totalMListComp.get(status.index).place}">
+							 style="background-color: #ffcccc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.place}" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.division != totalMListComp.get(status.index).division}">
+							 style="background-color: #ffcccc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.division}" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.money != totalMListComp.get(status.index).money}">
+							 style="background-color: #ffcccc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.money}" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.purpose != totalMListComp.get(status.index).purpose}">
+							 style="background-color: #ffcccc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.purpose}" />
+							</c:if></td>
+					</tr>
+				</c:forEach>
+
+			</tbody>
 		</table>
 
 		<div class="cp_arrows">
@@ -152,130 +154,132 @@
 			<div class="cp_arrow cp_arrowsecond"></div>
 		</div>
 
-		<table border="3" class="table table-striped">
-			<tr>
-				<th colspan="2" rowspan="3">
-					<div class="text-center">月日</div>
-				</th>
-
-				<th colspan="2">
-					<div class="text-center">区間</div>
-				</th>
-
-				<th rowspan="3">
-					<div class="text-center">交通機関</div>
-				</th>
-
-				<th rowspan="3">
-					<div class="text-center">訪問先</div>
-				</th>
-
-				<th colspan="2"	rowspan="3">
-					<div class="text-center">金額</div>
-				</th>
-
-				<th rowspan="3">
-					<div class="text-center">用件</div>
-				</th>
-			</tr>
-			<tr>
-				<th rowspan="2">
-					<div class="text-center">発地</div>
-				</th>
-
-				<th rowspan="2">
-					<div class="text-center">着地</div>
-				</th>
-			</tr>
-			<tr>
-				<!-- table-stripedのための空列 -->
-			</tr>
-
-			<c:forEach var="item" items="${totalMListComp}" varStatus="status">
+		<table border="1" class="table table-striped" style="border: solid 3px;">
+			<tbody style="border: black 2px">
 				<tr>
-					<td
-					<c:if test="${item.month != totalMListUp.get(status.index).month}">
-						 style="background-color: #ccffcc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.month}月" />
-						</c:if></td>
+					<th colspan="2" rowspan="3">
+						<div class="text-center">月日</div>
+					</th>
 
-					<td
-					<c:if test="${item.day != totalMListUp.get(status.index).day}">
-						 style="background-color: #ccffcc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.day}日" />
-						</c:if></td>
+					<th colspan="2">
+						<div class="text-center">区間</div>
+					</th>
 
-					<td
-					<c:if test="${item.depature != totalMListUp.get(status.index).depature}">
-						 style="background-color: #ccffcc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.depature}" />
-						</c:if></td>
+					<th rowspan="3">
+						<div class="text-center">交通機関</div>
+					</th>
 
-					<td
-					<c:if test="${item.destination != totalMListUp.get(status.index).destination}">
-						 style="background-color: #ccffcc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.destination}" />
-						</c:if></td>
+					<th rowspan="3">
+						<div class="text-center">訪問先</div>
+					</th>
 
-					<td
-					<c:if test="${item.transportation != totalMListUp.get(status.index).transportation}">
-						 style="background-color: #ccffcc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.transportation}" />
-						</c:if></td>
+					<th colspan="2"	rowspan="3">
+						<div class="text-center">金額</div>
+					</th>
 
-					<td
-					<c:if test="${item.place != totalMListUp.get(status.index).place}">
-						 style="background-color: #ccffcc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.place}" />
-						</c:if></td>
-
-					<td
-					<c:if test="${item.division != totalMListUp.get(status.index).division}">
-						 style="background-color: #ccffcc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.division}" />
-						</c:if></td>
-
-					<td
-					<c:if test="${item.money != totalMListUp.get(status.index).money}">
-						 style="background-color: #ccffcc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.money}" />
-						</c:if></td>
-
-					<td
-					<c:if test="${item.purpose != totalMListUp.get(status.index).purpose}">
-						 style="background-color: #ccffcc;"
-					</c:if>
-					>
-						<c:if test="${not empty list}">
-							<c:out value="${item.purpose}" />
-						</c:if></td>
+					<th rowspan="3">
+						<div class="text-center">用件</div>
+					</th>
 				</tr>
-			</c:forEach>
+				<tr>
+					<th rowspan="2">
+						<div class="text-center">発地</div>
+					</th>
 
+					<th rowspan="2">
+						<div class="text-center">着地</div>
+					</th>
+				</tr>
+				<tr>
+					<!-- table-stripedのための空列 -->
+				</tr>
+
+				<c:forEach var="item" items="${totalMListComp}" varStatus="status">
+					<tr>
+						<td
+						<c:if test="${item.month != totalMListUp.get(status.index).month}">
+							 style="background-color: #ccffcc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.month}月" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.day != totalMListUp.get(status.index).day}">
+							 style="background-color: #ccffcc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.day}日" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.depature != totalMListUp.get(status.index).depature}">
+							 style="background-color: #ccffcc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.depature}" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.destination != totalMListUp.get(status.index).destination}">
+							 style="background-color: #ccffcc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.destination}" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.transportation != totalMListUp.get(status.index).transportation}">
+							 style="background-color: #ccffcc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.transportation}" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.place != totalMListUp.get(status.index).place}">
+							 style="background-color: #ccffcc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.place}" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.division != totalMListUp.get(status.index).division}">
+							 style="background-color: #ccffcc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.division}" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.money != totalMListUp.get(status.index).money}">
+							 style="background-color: #ccffcc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.money}" />
+							</c:if></td>
+
+						<td
+						<c:if test="${item.purpose != totalMListUp.get(status.index).purpose}">
+							 style="background-color: #ccffcc;"
+						</c:if>
+						>
+							<c:if test="${not empty list}">
+								<c:out value="${item.purpose}" />
+							</c:if></td>
+					</tr>
+				</c:forEach>
+
+			</tbody>
 		</table>
 
 	<input type="button" class="btn btn-warning" onclick="location.href='./home.jsp'" value="戻る">

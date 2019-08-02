@@ -20,57 +20,58 @@
 
 		<p>下記の情報を登録しました。</p>
 
-		<table border="3" class="table table-striped">
-			<tr>
-				<th colspan="2" rowspan="3">
-					<div class="text-center">月日</div>
-				</th>
+		<table border="1" class="table table-striped"  style="border: solid 3px;">
+			<tbody style="border: black 2px">
+				<tr>
+					<th colspan="2" rowspan="3">
+						<div class="text-center">月日</div>
+					</th>
 
-				<th rowspan="3">
-					<div class="text-center">区分</div>
-				</th>
+					<th rowspan="3">
+						<div class="text-center">区分</div>
+					</th>
 
-				<th rowspan="3">
-					<div class="text-center">交通機関</div>
-				</th>
+					<th rowspan="3">
+						<div class="text-center">交通機関</div>
+					</th>
 
-				<th rowspan="3">
-					<div class="text-center">訪問先</div>
-				</th>
+					<th rowspan="3">
+						<div class="text-center">訪問先</div>
+					</th>
 
-				<th colspan="2" rowspan="3">
-					<div class="text-center">金額</div>
-				</th>
+					<th colspan="2" rowspan="3">
+						<div class="text-center">金額</div>
+					</th>
 
-				<th rowspan="3">
-					<div class="text-center">用件</div>
-				</th>
-			</tr>
-			<tr>
-				<th rowspan="2">
-					<div class="text-center">発地</div>
-				</th>
+					<th rowspan="3">
+						<div class="text-center">用件</div>
+					</th>
+				</tr>
+				<tr>
+					<th rowspan="2">
+						<div class="text-center">発地</div>
+					</th>
 
-				<th rowspan="2">
-					<div class="text-center">着地</div>
-				</th>
-			</tr>
-			<tr>
-				<!-- table-stripedのための空列 -->
-			</tr>
+					<th rowspan="2">
+						<div class="text-center">着地</div>
+					</th>
+				</tr>
+				<tr>
+					<!-- table-stripedのための空列 -->
+				</tr>
 
-			<tr>
-				<td><c:out value="${month}月" /></td>
-				<td><c:out value="${date}日" /></td>
-				<td><c:out value="${depature}" /></td>
-				<td><c:out value="${destination}" /></td>
-				<td><c:out value="${transportation}" /></td>
-				<td><c:out value="${place}" /></td>
-				<td><c:out value="${division}" /></td>
-				<td><c:out value="${money}" /></td>
-				<td><c:out value="${purpose}" /></td>
-			</tr>
-
+				<tr>
+					<td><c:out value="${month}月" /></td>
+					<td><c:out value="${date}日" /></td>
+					<td><c:out value="${depature}" /></td>
+					<td><c:out value="${destination}" /></td>
+					<td><c:out value="${transportation}" /></td>
+					<td><c:out value="${place}" /></td>
+					<td><c:out value="${division}" /></td>
+					<td><c:out value="${money}" /></td>
+					<td><c:out value="${purpose}" /></td>
+				</tr>
+			</tbody>
 		</table>
 
 	<input type="button" class="btn btn-warning" onclick="location.href='./home.jsp'" value="戻る">
