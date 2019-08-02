@@ -45,25 +45,48 @@
 
 		<form id="form" name="form" action="" method="post">
 			<p class="mt-3">
-				<b><c:out value="${name}さん" /></b>の出張清算一覧データ（
-				<c:out value="${year}年${month}月分" />
-				）
+				<b><c:out value="${name}さん" /></b>の出張清算一覧データ
+				（<c:out value="${year}年${month}月分" />）
 			</p>
 
 			<table border="3" class="table table-striped">
 				<tr>
-					<th colspan="2" rowspan="3"><div class="text-center">月日</div></th>
-					<th colspan="2"><div class="text-center">区間</div></th>
+					<th colspan="2" rowspan="3">
+						<div class="text-center">月日</div>
+					</th>
 
-					<th rowspan="3"><div class="text-center">交通機関</div></th>
-					<th rowspan="3"><div class="text-center">訪問先</div></th>
-					<th rowspan="3"><div class="text-center">金額</div></th>
-					<th rowspan="3"><div class="text-center">用件</div></th>
-					<th rowspan="3"><div class="text-center">削除</div></th>
+					<th colspan="2">
+						<div class="text-center">区間</div>
+					</th>
+
+					<th rowspan="3">
+						<div class="text-center">交通機関</div>
+					</th>
+
+					<th rowspan="3">
+						<div class="text-center">訪問先</div>
+					</th>
+
+					<th colspan="2" rowspan="3">
+						<div class="text-center">金額</div>
+					</th>
+
+					<th rowspan="3">
+						<div class="text-center">用件</div>
+					</th>
+
+					<th rowspan="3">
+						<div class="text-center">削除</div>
+					</th>
 				</tr>
 				<tr>
-					<th rowspan="2"><div class="text-center">発</div></th>
-					<th rowspan="2"><div class="text-center">着</div></th>
+					<th rowspan="2">
+						<div class="text-center">発地</div>
+					</th>
+
+					<th rowspan="2">
+						<div class="text-center">着地</div>
+					</th>
 				</tr>
 				<tr>
 					<!-- table-stripedのための空列 -->
@@ -97,7 +120,9 @@
 
 						<td><c:if test="${not empty list}">
 								<c:out value="${item.division}" />
-								:
+							</c:if></td>
+
+						<td><c:if test="${not empty list}">
 								<c:out value="${item.money}" />
 							</c:if></td>
 
@@ -132,28 +157,29 @@
 
 			<c:choose>
 				<c:when test="${auth eq 1}">
-					<input type="button" id="excelout" class="btn btn-warning mr-2"
-						value="Excelに出力">
+					<input type="button" id="excelout"
+						class="btn btn-warning mr-2" value="Excelに出力">
 				</c:when>
 				<c:otherwise>
 					<c:if test="${not empty list}">
-						<input type="button" id="config" class="btn btn-success mr-2"
+						<input type="button" id="config"
+							class="btn btn-success mr-2"
 							onclick="location.href='./modify.jsp'" value="修正">
 					</c:if>
-					<input type="button" id="register" class="btn btn-primary mr-2"
-						value="登録">
+					<input type="button" id="register"
+						class="btn btn-primary mr-2" value="登録">
 					<c:if test="${not empty list}">
-						<input type="button" id="excelout" class="btn btn-warning mr-2"
-							value="Excelに出力">
+						<input type="button" id="excelout"
+							class="btn btn-warning mr-2" value="Excelに出力">
 						<input type="button" id="modal"
-							class="btn btn-danger open-options mr-2" onclick="checkInput()"
-							value="削除">
+							class="btn btn-danger open-options mr-2"
+							onclick="checkInput()" value="削除">
 					</c:if>
 				</c:otherwise>
 			</c:choose>
 			<input type="button" id="logout" class="btn btn-light mr-2"
-				onclick="location.href='./menu.jsp'" value="メニュー"> <input
-				type="button" id="logout" class="btn btn-secondary"
+				onclick="location.href='./menu.jsp'" value="メニュー">
+			<input type="button" id="logout" class="btn btn-secondary"
 				onclick="location.href='./logout.jsp'" value="ログアウト">
 
 		</form>
