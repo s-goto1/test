@@ -70,7 +70,7 @@ public class ExcelOutServlet extends HttpServlet {
 
 			total += totalm.getMoney();
 		}
-
+///aaaaaaaaaaaa
 		request.setAttribute("excel", 	INPUT_DIR +"\\" + fileNameAfter);
 
 		request.setAttribute("size", size);

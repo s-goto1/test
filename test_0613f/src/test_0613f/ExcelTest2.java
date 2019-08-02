@@ -101,7 +101,7 @@ public class ExcelTest2 {
 			// 変更するエクセルファイルを指定
 			out = new FileOutputStream(INPUT_DIR + fileNameAfter);
 
-			// 書き込み
+			// 書き込みaaaa
 			wb.write(out);
 		} catch (Exception e) {
 			e.printStackTrace();
