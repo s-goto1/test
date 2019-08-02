@@ -18,7 +18,7 @@
 <body>
 	<div class="container col-md-9 col-md-offset-2 mt-4">
 
-		<p><c:out value="${year}年${month}月分" />の出張精算データをExcelに出力しました。</p>
+		<p><c:out value="${year}年${month}月分" />の出張精算データ${excel}を出力しました。</p>
 
 		<br>
 

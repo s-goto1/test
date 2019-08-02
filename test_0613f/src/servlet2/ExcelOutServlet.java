@@ -60,15 +60,19 @@ public class ExcelOutServlet extends HttpServlet {
 		int i = 0;
 		int total = 0;
 		int size = 20 - list.size();
+		String fileNameAfter = "テストだよ.xls";
 
 		for (TotalM totalm : list) {
 
-			ext.excelOut(totalm, i++, INPUT_DIR, name);
+
+
+			ext.excelOut(totalm, i++, INPUT_DIR, name,  fileNameAfter);
 
 			total += totalm.getMoney();
-
 		}
-//aaaa
+
+		request.setAttribute("excel", 	INPUT_DIR +"\\" + fileNameAfter);
+
 		request.setAttribute("size", size);
 		request.setAttribute("total", total);
 

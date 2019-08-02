@@ -17,17 +17,19 @@ public class ExcelTest2 {
 	//エクセルファイルを置いているフォルダーaaa
 	//static final String INPUT_DIR = "C:\\Users\\jsd01\\Desktop\\";
 
-	public void excelOut(TotalM totalM, int test, String path,String name) throws FileNotFoundException {
+	public void excelOut(TotalM totalM, int test, String path, String name ,String file) throws FileNotFoundException {
 
 		// 変更するエクセルファイルを指定
 		//エクセルファイルを置いているフォルダー
-		String INPUT_DIR = path+"/";
+		String INPUT_DIR = path + "/";
 
 		String fileName = "d1470e67a491f5e34e3520fa0bee5ce9.xls";
+		String fileNameAfter =file;
 
 		if (test != 0) {
-			fileName = "テストだよ.xls";
+			fileName = fileNameAfter ;
 		}
+
 
 		FileInputStream in = new FileInputStream(INPUT_DIR + fileName);
 		Workbook wb = null;
@@ -50,7 +52,7 @@ public class ExcelTest2 {
 		Row row = sheet.getRow(test + 13);
 
 		//6行目の3こ目のセルを取得
-		for (int j = 1; j < 11; j++) {
+		for (int j = 1; j < 13; j++) {
 
 			Cell cell = row.getCell(j);
 
@@ -71,9 +73,10 @@ public class ExcelTest2 {
 			case 7:
 				cell.setCellValue(totalM.getTransportation());
 				break;
-			case 9:
+			case 8:
 				cell.setCellValue(totalM.getPlace());
 				break;
+
 			case 10:
 				cell.setCellValue(totalM.getDivision() + totalM.getMoney());
 				break;
@@ -84,19 +87,19 @@ public class ExcelTest2 {
 				System.out.println("error");
 			}
 
-			if (test == 0) {
-				Row rowForName = sheet.getRow(test + 6);
 
-				Cell cellForName = rowForName.getCell(4);
-				cellForName.setCellValue(name);
-			}
+		}
+		if (test == 0 ) {
+			Row rowForName = sheet.getRow(test + 6);
 
+			Cell cellForName = rowForName.getCell(4);
+			cellForName.setCellValue(name);
 		}
 		FileOutputStream out = null;
 
 		try {
 			// 変更するエクセルファイルを指定
-			out = new FileOutputStream(INPUT_DIR + "テストだよ.xls");
+			out = new FileOutputStream(INPUT_DIR + fileNameAfter);
 
 			// 書き込み
 			wb.write(out);
