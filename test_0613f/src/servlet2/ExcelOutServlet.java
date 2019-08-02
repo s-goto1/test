@@ -1,4 +1,4 @@
- package servlet2;
+package servlet2;
 
 import java.io.IOException;
 import java.util.List;
@@ -48,16 +48,14 @@ public class ExcelOutServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
-
-
 		HttpSession session = request.getSession();
 		List<TotalM> list = (List<TotalM>) session.getAttribute("list");
+		String name = (String) session.getAttribute("name");
 
 		ExcelTest2 ext = new ExcelTest2();
 
-
-		 GetPath gp = new GetPath();
-		 String INPUT_DIR = gp.getDesktopPath();
+		GetPath gp = new GetPath();
+		String INPUT_DIR = gp.getDesktopPath();
 
 		int i = 0;
 		int total = 0;
@@ -65,7 +63,7 @@ public class ExcelOutServlet extends HttpServlet {
 
 		for (TotalM totalm : list) {
 
-			ext.excelOut(totalm,i++,INPUT_DIR );
+			ext.excelOut(totalm, i++, INPUT_DIR, name);
 
 			total += totalm.getMoney();
 

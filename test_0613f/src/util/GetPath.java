@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class GetPath {
-	public static String getDesktopPath() {
+	public  String getDesktopPath() {
 		String ret = "";
 
 		try {

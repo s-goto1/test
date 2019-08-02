@@ -17,7 +17,7 @@ public class ExcelTest2 {
 	//エクセルファイルを置いているフォルダー
 	//static final String INPUT_DIR = "C:\\Users\\jsd01\\Desktop\\";
 
-	public void excelOut(TotalM totalM, int test, String path) throws FileNotFoundException {
+	public void excelOut(TotalM totalM, int test, String path,String name) throws FileNotFoundException {
 
 		// 変更するエクセルファイルを指定
 		//エクセルファイルを置いているフォルダー
@@ -68,14 +68,28 @@ public class ExcelTest2 {
 			case 5:
 				cell.setCellValue(totalM.getDestination());
 				break;
+			case 7:
+				cell.setCellValue(totalM.getTransportation());
+				break;
+			case 9:
+				cell.setCellValue(totalM.getPlace());
+				break;
 			case 10:
-				cell.setCellValue(totalM.getMoney());
+				cell.setCellValue(totalM.getDivision() + totalM.getMoney());
+				break;
+			case 12:
+				cell.setCellValue(totalM.getPurpose());
 				break;
 			default:
 				System.out.println("error");
 			}
 
-			//}
+			if (test == 0) {
+				Row rowForName = sheet.getRow(test + 6);
+
+				Cell cellForName = rowForName.getCell(4);
+				cellForName.setCellValue(name);
+			}
 
 		}
 		FileOutputStream out = null;
