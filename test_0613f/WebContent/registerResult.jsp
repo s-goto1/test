@@ -28,7 +28,7 @@
 					</th>
 
 					<th rowspan="3">
-						<div class="text-center">区分</div>
+						<div class="text-center">区間</div>
 					</th>
 
 					<th rowspan="3">
