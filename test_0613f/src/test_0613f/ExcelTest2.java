@@ -14,7 +14,7 @@ import entity.TotalM;
 
 public class ExcelTest2 {
 
-	//エクセルファイルを置いているフォルダー
+	//エクセルファイルを置いているフォルダーaaa
 	//static final String INPUT_DIR = "C:\\Users\\jsd01\\Desktop\\";
 
 	public void excelOut(TotalM totalM, int test, String path,String name) throws FileNotFoundException {

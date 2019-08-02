@@ -68,7 +68,7 @@ public class ExcelOutServlet extends HttpServlet {
 			total += totalm.getMoney();
 
 		}
-
+//aaaa
 		request.setAttribute("size", size);
 		request.setAttribute("total", total);
 
