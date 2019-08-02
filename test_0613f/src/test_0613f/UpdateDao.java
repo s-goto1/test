@@ -6,14 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class UpdateDao {
-	public void update(Integer month, Integer day, String depature,
-			String transportation, String destination, String division,
-			int money, String place, String purpose, int totalM_id) {
+	public void update(Integer month, Integer day, String transportation,
+			String depature, String destination, String division,
+			Integer money, String place, String purpose, Integer totalM_id) {
 
 		Connection con = null;
 		PreparedStatement presmt = null;
 
-		String sql = "UPDATE totalm SET month= ?,day= ?,transportation= ?,depature= ?,destination= ?,division= ?,money= ?, place= ?,purpose= ? WHERE totalm_id =? ";
+		String sql = "UPDATE totalm SET month = ?,day = ?,transportation = ?, "
+				+ "depature = ?,destination = ?,division = ?,money = ?, "
+				+ "place = ?,purpose = ? WHERE totalm_id = ? ";
 
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -34,7 +36,6 @@ public class UpdateDao {
 			presmt.setString(8, place);
 			presmt.setString(9, purpose);
 			presmt.setInt(10, totalM_id);
-
 
 			presmt.executeUpdate();
 
