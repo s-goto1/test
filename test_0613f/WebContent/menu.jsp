@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="CircularLinksMenu.css"/>
+<link rel="stylesheet" type="text/css" href="css/CircularLinksMenu.css"/>
 </head>
 <body>
-<script type="text/javascript" src="CircularLinksMenu.js"></script>
+<script type="text/javascript" src="js/CircularLinksMenu.js"></script>
 </body>
 </html>

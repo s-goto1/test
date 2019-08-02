@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="test.css"/>
-<script type="text/javascript" src="jstest.js"></script>
+<link rel="stylesheet" type="text/css" href="css/test.css"/>
+<script type="text/javascript" src="js/jstest.js"></script>
 </head>
 <body>
 	<fieldset>
