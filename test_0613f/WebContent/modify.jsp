@@ -26,10 +26,10 @@
 
 					<th colspan="2" rowspan="3"><div class="text-center">月日</div></th>
 					<th colspan="2"><div class="text-center">区間</div></th>
-					<th rowspan="3"><div class="text-center">区分</div></th>
+
 					<th rowspan="3"><div class="text-center">交通機関</div></th>
 					<th rowspan="3"><div class="text-center">訪問先</div></th>
-					<th rowspan="3"><div class="text-center">金額</div></th>
+					<th colspan="2" rowspan="3" ><div class="text-center">金額</div></th>
 					<th rowspan="3"><div class="text-center">用件</div></th>
 					<th rowspan="3"><div class="text-center">片道/往復</div></th>
 				</tr>
@@ -60,8 +60,7 @@
 						<td><input type="text" name="destination"
 							value="${item.destination}" size="10" required></td>
 
-						<td><input type="text" name="division" id="division${status.count}"
-							value="${item.division}" size="5" readonly></td>
+
 
 						<td><select name="transportation" id="transportation">
 							<c:choose>
@@ -92,6 +91,9 @@
 
 						<td><input type="text" name="place" id="place"
 							value="${item.place}" size="15" required></td>
+
+	                   <td><input type="text" name="division" id="division${status.count}"
+							value="${item.division}" size="5" readonly></td>
 
 						<td><input type="number" name="money" id="money${status.count}"
 							value="${item.money}" min="100" max="9990" step="10" required></td>
