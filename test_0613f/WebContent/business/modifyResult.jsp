@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="cp_arrows.css">
+<link rel="stylesheet" type="text/css" href="../css/cp_arrows.css">
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript"

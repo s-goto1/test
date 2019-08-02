@@ -8,23 +8,23 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="iziModal.css">
+<link rel="stylesheet" type="text/css" href="../css/iziModal.css">
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script type="text/javascript"
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="subtest.js"></script>
-<script type="text/javascript" src="iziModal.min.js"></script>
+<script type="text/javascript" src="../js/subtest.js"></script>
+<script type="text/javascript" src="../js/iziModal.min.js"></script>
 </head>
 <body>
 	<div class="container col-md-10 col-md-offset-2 mt-4">
 
 		<form id="date" name="date" action="Date" method="post">
 
-			<%@ include file="year.jsp"%>
-			<%@ include file="month.jsp"%>
+			<%@ include file="../year.jsp"%>
+			<%@ include file="../month.jsp"%>
 
 			<input type="submit" id="Test" class="btn btn-info ml-2"
 				value="該当年月表示">
@@ -179,10 +179,10 @@
 					</c:if>
 				</c:otherwise>
 			</c:choose>
-			<input type="button" id="logout" class="btn btn-light mr-2"
-				onclick="location.href='./menu.jsp'" value="メニュー">
+			<input type="button" id="menu" class="btn btn-light mr-2"
+				onclick="location.href='../menu.jsp'" value="メニュー">
 			<input type="button" id="logout" class="btn btn-secondary"
-				onclick="location.href='./logout.jsp'" value="ログアウト">
+				onclick="location.href='../logout.jsp'" value="ログアウト">
 
 		</form>
 

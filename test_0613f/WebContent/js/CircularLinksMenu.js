@@ -39,15 +39,15 @@ function addLinks() {
     link = document.createElement('a'),
     hover = document.createElement('span');
     if(i === 0) {
-      link.href = './home.jsp';
+      link.href = './business/home.jsp';
     } else if(i === 1) {
-      link.href = './vacation.jsp';
+      link.href = './vacation/home.jsp';
     } else if(i === 2) {
-      link.href = '#';
+      link.href = './Search';
     } else if(i === 3) {
-      link.href = '#';
+      link.href = './Search';
     } else if(i === 4) {
-      link.href = '#';
+      link.href = './Search';
     } else if(i === 5) {
       link.href = './logout.jsp';
     }

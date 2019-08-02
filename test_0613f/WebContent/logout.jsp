@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="refresh" content="5;./index.jsp"  charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="cssPreloader.css"/>
+<link rel="stylesheet" type="text/css" href="css/cssPreloader.css"/>
 </head>
 <body>
 ログアウトしました。<br>
