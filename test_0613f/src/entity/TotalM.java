@@ -17,8 +17,9 @@ public class TotalM {
 	private String transportation;
 
 	public TotalM(String id, Integer totalM_id, Integer money,
-			Integer year,Integer month, Integer day,String transportation, String depature,
-			String destination, String division, String place, String purpose) {
+			Integer year,Integer month, Integer day, String transportation,
+			String depature, String destination, String division,
+			String place, String purpose) {
 		this.id = id;
 		this.totalM_id = totalM_id;
 		this.year = year;

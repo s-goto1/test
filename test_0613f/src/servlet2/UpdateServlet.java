@@ -61,7 +61,7 @@ public class UpdateServlet extends HttpServlet {
 		String depature[] = request.getParameterValues("depature");				// 出発駅
 		String destination[] = request.getParameterValues("destination");		// 到着駅
 		String division[] = request.getParameterValues("division");				// 区分
-		String transportation[] = request.getParameterValues("transportation");	// 交通期間
+		String transportation[] = request.getParameterValues("transportation");	// 交通機関
 		String place[] = request.getParameterValues("place");					// 訪問先
 		String money[] = request.getParameterValues("money");					// 金額
 		String purpose[] = request.getParameterValues("purpose");				// 用件

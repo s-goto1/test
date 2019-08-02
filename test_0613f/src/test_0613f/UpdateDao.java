@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class UpdateDao {
-	public void update(Integer month, Integer day, String depature,
-			String transportation, String destination, String division,
+	public void update(Integer month, Integer day, String transportation,
+			String depature, String destination, String division,
 			int money, String place, String purpose, int totalM_id) {
 
 		Connection con = null;
