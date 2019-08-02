@@ -42,42 +42,50 @@
 								<c:out value="${item.month}" />
 							</div>
 						</c:if></td>
+
 					<td width="25"><c:if test="${not empty list}">
 							<div class="text-right">
 								<c:out value="${item.day}" />
 							</div>
 						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<div class="text-center">
 								<c:out value="${item.depature}" />
 							</div>
 						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<div class="text-center">
 								<c:out value="${item.destination}" />
 							</div>
 						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<div class="text-center">
 								<c:out value="${item.transportation}" />
 							</div>
 						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<div class="text-center">
 								<c:out value="${item.place}" />
 							</div>
 						</c:if></td>
+
 					<td><c:if test="${not empty list}">
 							<div class="text-right">
 								<c:out value="${item.money}" />
 							</div>
 						</c:if></td>
+
 					<td></td>
+
 					<td><c:if test="${not empty list}">
 							<div class="text-center">
 								<c:out value="${item.purpose}" />
 							</div>
-						</c:if>></td>
+						</c:if></td>
 				</tr>
 			</c:forEach>
 
