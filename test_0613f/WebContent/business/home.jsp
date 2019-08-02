@@ -31,18 +31,6 @@
 
 		</form>
 
-		<c:if test="${auth eq 1}">
-			<br>
-
-			<form id="search" name="search" action="Search" method="post">
-
-				<input type="text" id="name" name="name" value="" required>
-
-				<input type="submit" id="" class="btn btn-info ml-2" value="名前検索">
-
-			</form>
-		</c:if>
-
 		<form id="form" name="form" action="" method="post">
 			<p class="mt-3">
 				<b><c:out value="${name}さん" /></b>の出張清算一覧データ

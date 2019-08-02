@@ -2,7 +2,6 @@ package servlet2;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,13 +40,11 @@ public class VacationServlet extends HttpServlet {
 		// 権限が管理者？
 		if(auth == 1) {
 			// 検索画面へ遷移
-			RequestDispatcher dispatch = request.getRequestDispatcher("/vacation/search.jsp");
-			dispatch.forward(request, response);
+			response.sendRedirect("./vacation/search.jsp");
 		// 権限が担当者？
 		} else {
 			// 休暇申請画面へ遷移
-			RequestDispatcher dispatch = request.getRequestDispatcher("/vacation/home.jsp");
-			dispatch.forward(request, response);
+			response.sendRedirect("./vacation/home.jsp");
 		}
 	}
 
