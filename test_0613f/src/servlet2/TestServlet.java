@@ -85,7 +85,7 @@ public class TestServlet extends HttpServlet {
 				Map<String, List<TotalM>> map = idList.stream()
 						.collect(Collectors.toMap(
 								s -> s,
-								s -> tmd.findAllByMonth(s, y, m)));
+								s -> tmd.findAllByMonth(s, y, m,1)));
 
 				// セッションに情報をセット
 				session.setAttribute("map", map);
@@ -106,7 +106,7 @@ public class TestServlet extends HttpServlet {
 		// 権限が担当者？
 		} else {
 			// 変更後のリスト取得
-			List<TotalM> list = tmd.findAllByMonth(id, y, m);
+			List<TotalM> list = tmd.findAllByMonth(id, y, m,1);
 
 			// リストのレコード数取得
 			int size = list.size();

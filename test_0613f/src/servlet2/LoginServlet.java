@@ -82,7 +82,7 @@ public class LoginServlet extends HttpServlet {
 
 			TotalMDao tmd = new TotalMDao();
 
-			List<TotalM> list = tmd.findAllByMonth(id, year, month);
+			List<TotalM> list = tmd.findAllByMonth(id, year, month,1);
 
 			int size = list.size();
 
@@ -99,10 +99,12 @@ public class LoginServlet extends HttpServlet {
 				}
 			}
 
+			int number = (size + 5 - 1) / 5;
 			session.setAttribute("year", year);
 			session.setAttribute("month", month);
 			session.setAttribute("list", list);
 			session.setAttribute("size", size);
+			session.setAttribute("number", number);
 			session.setAttribute("divisionList", divisionList);
 			session.setAttribute("nolist", "登録されているデータがありません。");
 

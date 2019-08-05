@@ -13,7 +13,7 @@ import entity.TotalM;
 public class TotalMDao {
 
 
-	public List<TotalM> findAllByMonth(String id, Integer year, Integer month) {
+	public List<TotalM> findAllByMonth(String id, Integer year, Integer month,int offset) {
 
 		List<TotalM> list = new ArrayList<TotalM>();
 
@@ -31,7 +31,7 @@ public class TotalMDao {
 				"axizuser",
 				"axiz");) {
 			PreparedStatement presmt = null;
-			String sql = "SELECT * FROM totalm WHERE id = ? AND year = ? AND month = ? ORDER BY day, totalm_id";
+			String sql =  "SELECT * FROM totalm WHERE id = ? AND year = ? AND month = ? ORDER BY day, totalm_id LIMIT 5 OFFSET ?";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, id);
 			presmt.setInt(2, year);

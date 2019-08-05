@@ -181,7 +181,7 @@ public class UpdateServlet extends HttpServlet {
 		int mon = totalMListBefore.get(0).getMonth();
 
 		// 変更後のリスト取得
-		List<TotalM> totalMList = totalMDao.findAllByMonth(id, year, mon);
+		List<TotalM> totalMList = totalMDao.findAllByMonth(id, year, mon,1);
 
 		// リストのレコード数取得
 		int upSize = totalMList.size();

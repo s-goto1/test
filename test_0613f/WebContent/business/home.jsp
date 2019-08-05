@@ -144,7 +144,19 @@
 			</c:choose>
 
 			<br>
+	<section class="container">
 
+		<nav class="pagination">
+			<a href="index.html" class="prev">&lt;</a>
+			<c:forEach begin="1" end="${number}" step="1" varStatus="status">
+				<a href="PagingServTest?page=${status.index}">${status.index}</a>
+
+			</c:forEach>
+
+			<a href="index.html" class="next">&gt;</a>
+		</nav>
+
+	</section>
 			<c:choose>
 				<c:when test="${masterAuth eq 1}">
 					<input type="button" id="excelout"

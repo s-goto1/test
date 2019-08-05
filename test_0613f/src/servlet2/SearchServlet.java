@@ -86,7 +86,7 @@ public class SearchServlet extends HttpServlet {
 				Map<String, List<TotalM>> map = idList.stream()
 						.collect(Collectors.toMap(
 								s -> s,
-								s -> totalM.findAllByMonth(s, year, month)));
+								s -> totalM.findAllByMonth(s, year, month,1)));
 
 				// セッションに情報をセット
 				session.setAttribute("map", map);
