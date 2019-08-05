@@ -193,6 +193,7 @@ public class UpdateServlet extends HttpServlet {
 		for(int i = 0; i < upSize; i++) {
 			// 区分を取得
 			String divi = totalMList.get(i).getDivision();
+
 			// 区分が片道？
 			if(divi.equals("片道")) {
 				// 往復をセット

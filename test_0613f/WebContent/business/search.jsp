@@ -19,12 +19,13 @@
 	出張精算の管理用ページです。<br>
 	下記の検索フォームに閲覧したい人物名を入れてボタンを押すことでその人物のページに遷移します。<br>
 	（※該当者が見当たらなかった場合、近しい名前の人物のページに遷移します）<br>
+	また、未入力のままボタンを押すと社員全員分のデータを表示します。<br>
 
 	<br>
 
 		<form id="search" name="search" action="Search" method="post">
 
-			<input type="text" id="name" name="name" value="" required>
+			<input type="text" id="name" name="name" value="">
 
 			<input type="submit" id="" class="btn btn-info ml-2" value="名前検索">
 

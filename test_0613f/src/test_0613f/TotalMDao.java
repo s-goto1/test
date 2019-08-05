@@ -66,20 +66,8 @@ public class TotalMDao {
 		return list;
 	}
 
-
-
-
-
-
-
-
-
-
-//月ごとに全員のリスト表示（仮）
-
-
-
-	public List<TotalM> findAllUserListByMonth(String id, Integer year, Integer month) {
+	//月ごとに全員のリスト表示（仮）
+	public List<TotalM> findAllUserListByMonth(Integer year, Integer month) {
 
 		List<TotalM> list = new ArrayList<TotalM>();
 
@@ -97,11 +85,10 @@ public class TotalMDao {
 				"axizuser",
 				"axiz");) {
 			PreparedStatement presmt = null;
-			String sql = "SELECT * FROM totalm year = ? AND month = ? ORDER BY id, day, totalm_id";
+			String sql = "SELECT * FROM totalm WHERE year = ? AND month = ? ORDER BY id, day, totalm_id";
 			presmt = conn.prepareStatement(sql);
-
-			presmt.setInt(2, year);
-			presmt.setInt(3, month);
+			presmt.setInt(1, year);
+			presmt.setInt(2, month);
 			ResultSet rset = presmt.executeQuery();
 
 			// データベースから取得した値がある間、
@@ -131,10 +118,6 @@ public class TotalMDao {
 		// DTOクラスのインスタンスのListを返す
 		return list;
 	}
-
-
-
-
 
 	//名前で絞って全部表示するメソッド（仮）
 	public List<TotalM> findAllForAdmin(String name, Integer year, Integer month) {

@@ -1,10 +1,11 @@
 package servlet2;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.ToIntFunction;
+import java.util.stream.Collectors;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +18,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.lucene.search.spell.LevenshteinDistance;
 
 import entity.TotalM;
-import test_0613f.LoginUser;
 import test_0613f.SearchDao;
 import test_0613f.TotalMDao;
 
@@ -64,58 +64,72 @@ public class SearchServlet extends HttpServlet {
 
 		// DAOの宣言
 		SearchDao search = new SearchDao();
-		LoginUser login = new LoginUser();
 		TotalMDao totalM = new TotalMDao();
 
-		// 自分以外の全ユーザの名前を取得
-		List<String> userList = search.findNameAll(id);
+		// 入力フォームが空欄？
+		if(name == null || name.equals("")) {
+			// 全員分のリスト取得
+			//List<TotalM> list = totalM.findAllUserListByMonth(year, month);
 
-		// レーベンシュタイン距離による評価関数
-		LevenshteinDistance dis =  new LevenshteinDistance();
-		ToIntFunction<String> dist = s -> {
-			return (int) (dis.getDistance(name, s) * 100);
-			};
+			// リストにあるレコードの人数を取得
+			//int size = search.findIdDistinct(year, month).size();
 
-		// 該当の名前か近しい名前を取得
-		String closest = userList.stream()
-				.max(Comparator.comparingInt(dist))
-				.orElse(name);
-		System.out.println("もしかして " + closest);
+			// 今月の出張清算データがある人物のIDを取得
+			List<String> idList = search.findIdDistinct(year, month);
 
-		// ヒットしたユーザの情報を取得
-		List<TotalM> list = totalM.findAllForAdmin(closest, year, month);
+			// 今月の出張清算データがある人物の名前を取得
+			List<String> nameList = search.findNameDistinct(year, month);
 
-		// リストのサイズを取得
-		int size = list.size();
+			// データが1件でもある？
+			if(idList.size() > 0 && nameList.size() > 0) {
+				// 今月分の全社員の出張精算データを取得
+				Map<String, List<TotalM>> map = idList.stream()
+						.collect(Collectors.toMap(
+								s -> s,
+								s -> totalM.findAllByMonth(s, year, month)));
 
-		// String型のListの宣言
-		List<String> divisionList = new ArrayList<>();
-
-		// リストのレコード分繰り返す
-		for(int i = 0; i < size; i++) {
-			// 区間の取得
-			String division = list.get(i).getDivision();
-			// 区間が「片道」？
-			if(division.equals("片道")) {
-				// 往復をセット
-				division = "往復";
-				divisionList.add(division);
-			// 区間が「往復」？
+				// セッションに情報をセット
+				session.setAttribute("map", map);
+				session.setAttribute("nameList", nameList);
+			// データが1件もない？
 			} else {
-				// 片道をセット
-				division = "片道";
-				divisionList.add(division);
+				// セッションに情報をセット
+				session.setAttribute("nomap", "登録されているデータがありません。");
 			}
+
+			// homeAdmin.jspに遷移
+			RequestDispatcher dispatch = request.getRequestDispatcher("/business/homeAdmin.jsp");
+			dispatch.forward(request, response);
+		// 入力フォームに入力あり？
+		} else {
+			// 自分以外の全ユーザの名前を取得
+			List<String> userList = search.findNameAll(id);
+
+			// レーベンシュタイン距離による評価関数
+			LevenshteinDistance dis =  new LevenshteinDistance();
+			ToIntFunction<String> dist = s -> {
+				return (int) (dis.getDistance(name, s) * 100);
+				};
+
+			// 該当の名前か近しい名前を取得
+			String closest = userList.stream()
+					.max(Comparator.comparingInt(dist))
+					.orElse(name);
+
+			// ヒットしたユーザの情報を取得
+			List<TotalM> list = totalM.findAllForAdmin(closest, year, month);
+
+			// リストのサイズを取得
+			//int size = list.size();
+
+			// ヒットしたユーザの情報をセッションにセット
+			session.setAttribute("id", list.get(0).getId());
+			session.setAttribute("name", closest);
+			session.setAttribute("list", list);
+
+			// home.jspに遷移
+			RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
+			dispatch.forward(request, response);
 		}
-		// ヒットしたユーザの情報をセット
-		session.setAttribute("id", list.get(0).getId());
-		session.setAttribute("name", closest);
-		session.setAttribute("list", list);
-		session.setAttribute("divisionList", divisionList);
-
-		// home.jspに遷移
-		RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
-		dispatch.forward(request, response);
 	}
-
 }

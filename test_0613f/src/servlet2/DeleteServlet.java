@@ -109,12 +109,13 @@ public class DeleteServlet extends HttpServlet {
 			for(int i = 0; i < size; i++) {
 				// 区分を取得
 				String division = list.get(i).getDivision();
-				// 区分が「片道」？
+
+				// 区分が片道？
 				if(division.equals("片道")) {
 					// 往復をセット
 					division = "往復";
 					divisionList.add(division);
-				// 区分が「往復」？
+				// 区分が往復？
 				} else {
 					// 片道をセット
 					division = "片道";

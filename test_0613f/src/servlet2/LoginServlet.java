@@ -102,6 +102,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("year", year);
 			session.setAttribute("month", month);
 			session.setAttribute("list", list);
+			session.setAttribute("size", size);
 			session.setAttribute("divisionList", divisionList);
 			session.setAttribute("nolist", "登録されているデータがありません。");
 
