@@ -97,7 +97,7 @@ public class TotalMDao {
 				"axizuser",
 				"axiz");) {
 			PreparedStatement presmt = null;
-			String sql = "SELECT * FROM totalm year = ? AND month = ? ORDER BY id,day, totalm_id";
+			String sql = "SELECT * FROM totalm year = ? AND month = ? ORDER BY id, day, totalm_id";
 			presmt = conn.prepareStatement(sql);
 
 			presmt.setInt(2, year);
@@ -155,7 +155,9 @@ public class TotalMDao {
 				"axizuser",
 				"axiz");) {
 			PreparedStatement presmt = null;
-			String sql = "SELECT * FROM totalm WHERE name = ? AND year = ? AND month = ? ORDER BY day, totalm_id";
+			String sql = "SELECT * FROM totalm AS m JOIN userinfo AS u ON m.id = u.id "
+					+ "WHERE u.name = ? AND m.year = ? AND m.month = ? "
+					+ "ORDER BY m.day, m.totalm_id";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, name);
 			presmt.setInt(2, year);

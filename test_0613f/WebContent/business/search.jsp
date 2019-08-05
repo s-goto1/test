@@ -18,12 +18,13 @@
 	<div class="container col-md-9 col-md-offset-2 mt-4">
 	出張精算の管理用ページです。<br>
 	下記の検索フォームに閲覧したい人物名を入れてボタンを押すことでその人物のページに遷移します。<br>
+	（※該当者が見当たらなかった場合、近しい名前の人物のページに遷移します）<br>
 
 	<br>
 
 		<form id="search" name="search" action="Search" method="post">
 
-			<input type="text" id="name" name="name" value="">
+			<input type="text" id="name" name="name" value="" required>
 
 			<input type="submit" id="" class="btn btn-info ml-2" value="名前検索">
 

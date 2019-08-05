@@ -146,9 +146,11 @@
 			<br>
 
 			<c:choose>
-				<c:when test="${auth eq 1}">
+				<c:when test="${masterAuth eq 1}">
 					<input type="button" id="excelout"
 						class="btn btn-warning mr-2" value="Excelに出力">
+					<input type="button" id="admin"
+						class="btn btn-primary mr-2" value="管理画面">
 				</c:when>
 				<c:otherwise>
 					<c:if test="${not empty list}">

@@ -55,8 +55,8 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("pass");
 
 		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH) + 1;
+		Integer year = cal.get(Calendar.YEAR);
+		Integer month = cal.get(Calendar.MONTH) + 1;
 
 		//String month = String.valueOf(m);
 
@@ -73,6 +73,12 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("id", ui.getId());
 			session.setAttribute("name", ui.getName());
 			session.setAttribute("auth", ui.getAurh());
+
+			if(ui.getAurh() == 1) {
+				session.setAttribute("masterId", ui.getId());
+				session.setAttribute("masterName", ui.getName());
+				session.setAttribute("masterAuth", ui.getAurh());
+			}
 
 			TotalMDao tmd = new TotalMDao();
 

@@ -20,12 +20,17 @@
 		$("#form").attr("action", "./modify.jsp").submit();
 	};
 
+	var admin_onclick = function(event) {
+		$("#form").attr("action", "./search.jsp").submit();
+	};
+
 	// ドキュメント読み込み完了時に呼び出されます。
 	var document_onready = function(event) {
 		$("#register").on("click", register_onclick);
 		$("#delete").on("click", delete_onclick);
 		$("#modify").on("click", modify_onclick);
 		$("#excelout").on("click", excelout_onclick);
+		$("#admin").on("click", admin_onclick);
 	};
 
 	$(document).ready(document_onready);
