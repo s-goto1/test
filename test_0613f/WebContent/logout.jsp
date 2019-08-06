@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@  page session="true" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="refresh" content="5;./index.jsp"  charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/cssPreloader.css"/>
+
 </head>
+
 <body>
 ログアウトしました。<br>
 5秒後に画面遷移します。<br>
@@ -123,5 +126,6 @@
         <span class="circle circle-bottom"></span>
     </div>
 </div>
+<% session.invalidate();%>
 </body>
 </html>
