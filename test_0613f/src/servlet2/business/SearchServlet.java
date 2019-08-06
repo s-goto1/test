@@ -1,4 +1,4 @@
-package servlet2;
+package servlet2.business;
 
 import java.io.IOException;
 import java.util.Comparator;
@@ -19,8 +19,8 @@ import org.apache.lucene.search.spell.LevenshteinDistance;
 
 import entity.TotalM;
 import test_0613f.LoginUser;
-import test_0613f.SearchDao;
-import test_0613f.TotalMDao;
+import test_0613f.business.SearchDao;
+import test_0613f.business.TotalMDao;
 
 /**
  * Servlet implementation class SearchServlet

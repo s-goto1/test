@@ -1,4 +1,4 @@
-package servlet2;
+package servlet2.business;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import entity.TotalM;
-import test_0613f.ExcelTest2;
-import test_0613f.TotalMDao;
+import test_0613f.business.ExcelTest2;
+import test_0613f.business.TotalMDao;
 import util.GetPath;
 
 /**

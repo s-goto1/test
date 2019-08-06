@@ -1,4 +1,4 @@
-package servlet2;
+package servlet2.business;
 
 import java.io.IOException;
 

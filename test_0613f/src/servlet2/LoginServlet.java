@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import entity.TotalM;
 import entity.UserInfo;
 import test_0613f.LoginUser;
-import test_0613f.TotalMDao;
+import test_0613f.business.TotalMDao;
 
 /**
  * Servlet implementation class LoginServlet

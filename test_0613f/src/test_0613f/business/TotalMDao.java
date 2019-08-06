@@ -1,4 +1,4 @@
-package test_0613f;
+package test_0613f.business;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

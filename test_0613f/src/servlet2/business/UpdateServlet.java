@@ -1,4 +1,4 @@
-package servlet2;
+package servlet2.business;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import entity.TotalM;
-import test_0613f.TotalMDao;
-import test_0613f.UpdateDao;
+import test_0613f.business.TotalMDao;
+import test_0613f.business.UpdateDao;
 
 /**
  * Servlet implementation class UpdateServlet
