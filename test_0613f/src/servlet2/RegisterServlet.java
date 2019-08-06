@@ -74,7 +74,7 @@ public class RegisterServlet extends HttpServlet {
 
 		TotalMDao tmd = new TotalMDao();
 
-		List<TotalM> list = tmd.findAllByMonth(id, year, m, 0);
+		List<TotalM> list = tmd.findAllByMonthForId(id, year, m, 0);
 
 		int size = list.size();
 

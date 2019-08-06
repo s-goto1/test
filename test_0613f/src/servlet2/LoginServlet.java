@@ -82,7 +82,7 @@ public class LoginServlet extends HttpServlet {
 
 			TotalMDao tmd = new TotalMDao();
 
-			List<TotalM> list = tmd.findAllByMonth(id, year, month, 0);
+			List<TotalM> list = tmd.findAllByMonthForId(id, year, month, 0);
 
 			//レコード数しゅとく
 			int count = tmd.countRow(id,year, month);

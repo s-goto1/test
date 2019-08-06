@@ -51,85 +51,163 @@ public class SearchServlet extends HttpServlet {
 		// 文字化け回避
 		request.setCharacterEncoding("UTF-8");
 
-		//セッション取得の準備
+		// セッション取得の準備
 		HttpSession session = request.getSession();
 
 		// セッションから情報を取得
-		String id = (String) session.getAttribute("masterId");
+		String masterId = (String) session.getAttribute("masterId");
+		String masterName = (String) session.getAttribute("masterName");
 		Integer year = (Integer) session.getAttribute("year");
 		Integer month = (Integer) session.getAttribute("month");
 
-		// 入力情報の取得
-		final String name = request.getParameter("name");
+		// 「ID検索」が押された？
+		if(request.getParameter("idSearch") != null) {
+			// 入力情報の取得
+			final String id = request.getParameter("id");
 
-		// DAOの宣言
-		SearchDao search = new SearchDao();
-		TotalMDao totalM = new TotalMDao();
+			// DAOの宣言
+			SearchDao search = new SearchDao();
+			TotalMDao totalM = new TotalMDao();
 
-		// 入力フォームが空欄？
-		if(name == null || name.equals("")) {
-			// 全員分のリスト取得
-			//List<TotalM> list = totalM.findAllUserListByMonth(year, month);
+			// 入力フォームが空欄？
+			if(id == null || id.equals("")) {
+				// 全員分のリスト取得
+				//List<TotalM> list = totalM.findAllUserListByMonth(year, month);
 
-			// リストにあるレコードの人数を取得
-			//int size = search.findIdDistinct(year, month).size();
+				// リストにあるレコードの人数を取得
+				//int size = search.findIdDistinct(year, month).size();
 
-			// 今月の出張清算データがある人物のIDを取得
-			List<String> idList = search.findIdDistinct(year, month);
+				// 今月の出張清算データがある人物のIDを取得
+				List<String> idList = search.findIdDistinct(year, month);
 
-			// 今月の出張清算データがある人物の名前を取得
-			List<String> nameList = search.findNameDistinct(year, month);
+				// 今月の出張清算データがある人物の名前を取得
+				List<String> nameList = search.findNameDistinct(year, month);
 
-			// データが1件でもある？
-			if(idList.size() > 0 && nameList.size() > 0) {
-				// 今月分の全社員の出張精算データを取得
-				Map<String, List<TotalM>> map = idList.stream()
-						.collect(Collectors.toMap(
-								s -> s,
-								s -> totalM.findAllByMonth(s, year, month,1)));
+				// データが1件でもある？
+				if(idList.size() > 0 && nameList.size() > 0) {
+					// 今月分の全社員の出張精算データを取得
+					Map<String, List<TotalM>> map = idList.stream()
+							.collect(Collectors.toMap(
+									s -> s,
+									s -> totalM.findAllByMonthForIdFromAdmin(s, year, month)));
 
-				// セッションに情報をセット
-				session.setAttribute("map", map);
-				session.setAttribute("nameList", nameList);
-			// データが1件もない？
+					// セッションに情報をセット
+					session.setAttribute("map", map);
+					session.setAttribute("nameList", nameList);
+				// データが1件もない？
+				} else {
+					// セッションに情報をセット
+					session.setAttribute("nomap", "登録されているデータがありません。");
+				}
+
+				// homeAdmin.jspに遷移
+				RequestDispatcher dispatch = request.getRequestDispatcher("/business/homeAdmin.jsp");
+				dispatch.forward(request, response);
+			// 入力フォームに入力あり？
 			} else {
-				// セッションに情報をセット
-				session.setAttribute("nomap", "登録されているデータがありません。");
+				// 自分以外の全ユーザのIDを取得
+				List<String> userList = search.findIdAll(masterName);
+
+				// レーベンシュタイン距離による評価関数
+				LevenshteinDistance dis =  new LevenshteinDistance();
+				ToIntFunction<String> dist = s -> {
+					return (int) (dis.getDistance(id, s) * 100);
+					};
+
+				// 該当のIDか近しいIDを取得
+				String closest = userList.stream()
+						.max(Comparator.comparingInt(dist))
+						.orElse(id);
+
+				// ヒットしたユーザの情報を取得
+				List<TotalM> list = totalM.findAllByMonthForId(closest, year, month, 0);
+
+				// リストのサイズを取得
+				//int size = list.size();
+
+				// ヒットしたユーザの情報をセッションにセット
+				session.setAttribute("id", list.get(0).getId());
+				session.setAttribute("name", closest);
+				session.setAttribute("list", list);
+
+				// home.jspに遷移
+				RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
+				dispatch.forward(request, response);
 			}
+		// 「名前検索」が押された？
+		} else if(request.getParameter("nameSearch") != null) {
+			// 入力情報の取得
+			final String name = request.getParameter("name");
 
-			// homeAdmin.jspに遷移
-			RequestDispatcher dispatch = request.getRequestDispatcher("/business/homeAdmin.jsp");
-			dispatch.forward(request, response);
-		// 入力フォームに入力あり？
-		} else {
-			// 自分以外の全ユーザの名前を取得
-			List<String> userList = search.findNameAll(id);
+			// DAOの宣言
+			SearchDao search = new SearchDao();
+			TotalMDao totalM = new TotalMDao();
 
-			// レーベンシュタイン距離による評価関数
-			LevenshteinDistance dis =  new LevenshteinDistance();
-			ToIntFunction<String> dist = s -> {
-				return (int) (dis.getDistance(name, s) * 100);
-				};
+			// 入力フォームが空欄？
+			if(name == null || name.equals("")) {
+				// 全員分のリスト取得
+				//List<TotalM> list = totalM.findAllUserListByMonth(year, month);
 
-			// 該当の名前か近しい名前を取得
-			String closest = userList.stream()
-					.max(Comparator.comparingInt(dist))
-					.orElse(name);
+				// リストにあるレコードの人数を取得
+				//int size = search.findIdDistinct(year, month).size();
 
-			// ヒットしたユーザの情報を取得
-			List<TotalM> list = totalM.findAllForAdmin(closest, year, month);
+				// 今月の出張清算データがある人物のIDを取得
+				List<String> idList = search.findIdDistinct(year, month);
 
-			// リストのサイズを取得
-			//int size = list.size();
+				// 今月の出張清算データがある人物の名前を取得
+				List<String> nameList = search.findNameDistinct(year, month);
 
-			// ヒットしたユーザの情報をセッションにセット
-			session.setAttribute("id", list.get(0).getId());
-			session.setAttribute("name", closest);
-			session.setAttribute("list", list);
+				// データが1件でもある？
+				if(idList.size() > 0 && nameList.size() > 0) {
+					// 今月分の全社員の出張精算データを取得
+					Map<String, List<TotalM>> map = idList.stream()
+							.collect(Collectors.toMap(
+									s -> s,
+									s -> totalM.findAllByMonthForIdFromAdmin(s, year, month)));
 
-			// home.jspに遷移
-			RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
-			dispatch.forward(request, response);
+					// セッションに情報をセット
+					session.setAttribute("map", map);
+					session.setAttribute("nameList", nameList);
+				// データが1件もない？
+				} else {
+					// セッションに情報をセット
+					session.setAttribute("nomap", "登録されているデータがありません。");
+				}
+
+				// homeAdmin.jspに遷移
+				RequestDispatcher dispatch = request.getRequestDispatcher("/business/homeAdmin.jsp");
+				dispatch.forward(request, response);
+			// 入力フォームに入力あり？
+			} else {
+				// 自分以外の全ユーザの名前を取得
+				List<String> userList = search.findNameAll(masterId);
+
+				// レーベンシュタイン距離による評価関数
+				LevenshteinDistance dis =  new LevenshteinDistance();
+				ToIntFunction<String> dist = s -> {
+					return (int) (dis.getDistance(name, s) * 100);
+					};
+
+				// 該当の名前か近しい名前を取得
+				String closest = userList.stream()
+						.max(Comparator.comparingInt(dist))
+						.orElse(name);
+
+				// ヒットしたユーザの情報を取得
+				List<TotalM> list = totalM.findAllByMonthForName(closest, year, month, 0);
+
+				// リストのサイズを取得
+				//int size = list.size();
+
+				// ヒットしたユーザの情報をセッションにセット
+				session.setAttribute("id", list.get(0).getId());
+				session.setAttribute("name", closest);
+				session.setAttribute("list", list);
+
+				// home.jspに遷移
+				RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
+				dispatch.forward(request, response);
+			}
 		}
 	}
 }

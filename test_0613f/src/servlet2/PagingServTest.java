@@ -58,7 +58,7 @@ public class PagingServTest extends HttpServlet {
 
 		TotalMDao tmd = new TotalMDao();
 
-		List<TotalM> list = tmd.findAllByMonth(id, year, month, offset);
+		List<TotalM> list = tmd.findAllByMonthForId(id, year, month, offset);
 		int count = tmd.countRow(id, year, month);
 
 		List<String> divisionList = new ArrayList<>();

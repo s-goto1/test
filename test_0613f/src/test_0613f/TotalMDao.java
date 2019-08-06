@@ -12,7 +12,7 @@ import entity.TotalM;
 
 public class TotalMDao {
 
-	public List<TotalM> findAllByMonth(String id, Integer year, Integer month, int offset) {
+	public List<TotalM> findAllByMonthForId(String id, Integer year, Integer month, int offset) {
 
 		List<TotalM> list = new ArrayList<TotalM>();
 
@@ -26,13 +26,71 @@ public class TotalMDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			PreparedStatement presmt = null;
-			String sql = "SELECT * FROM totalm WHERE id = ? AND year = ? AND month = ? ORDER BY day, totalm_id LIMIT 5 OFFSET ?";
+			String sql = "SELECT * FROM totalm WHERE id = ? AND year = ? AND month = ? "
+					+ "ORDER BY day, totalm_id LIMIT 5 OFFSET ?";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, id);
+			presmt.setInt(2, year);
+			presmt.setInt(3, month);
+			presmt.setInt(4, offset);
+			ResultSet rset = presmt.executeQuery();
+
+			// データベースから取得した値がある間、
+			while (rset.next()) {
+
+				TotalM tom = new TotalM();
+
+				tom.setId(rset.getString("id"));
+				tom.setTotalM_id(rset.getInt("totalM_id"));
+				tom.setYear(rset.getInt("year"));
+				tom.setMonth(rset.getInt("month"));
+				tom.setDay(rset.getInt("day"));
+				tom.setTransportation(rset.getString("transportation"));
+				tom.setDepature(rset.getString("depature"));
+				tom.setDestination(rset.getString("destination"));
+				tom.setDivision(rset.getString("division"));
+				tom.setMoney(rset.getInt("money"));
+				tom.setPlace(rset.getString("place"));
+				tom.setPurpose(rset.getString("purpose"));
+				list.add(tom);
+				// while文で次のレコードの処理へ?
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// DTOクラスのインスタンスのListを返す
+		return list;
+	}
+
+	//名前で絞って全部表示するメソッド（仮）
+	public List<TotalM> findAllByMonthForName(String name, Integer year, Integer month, int offset) {
+
+		List<TotalM> list = new ArrayList<TotalM>();
+
+		// JDBCドライバ読み込み
+		try {
+			// PostgreSQLドライバの読み込み
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		// データベースへの接続
+		try (Connection conn = DriverManager.getConnection(
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
+			PreparedStatement presmt = null;
+			String sql = "SELECT * FROM totalm AS m JOIN userinfo AS u ON m.id = u.id "
+					+ "WHERE u.name = ? AND m.year = ? AND m.month = ? "
+					+ "ORDER BY m.day, m.totalm_id LIMIT 5 OFFSET ?";
+			presmt = conn.prepareStatement(sql);
+			presmt.setString(1, name);
 			presmt.setInt(2, year);
 			presmt.setInt(3, month);
 			presmt.setInt(4, offset);
@@ -80,11 +138,12 @@ public class TotalMDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			PreparedStatement presmt = null;
-			String sql = "SELECT COUNT (*) FROM totalm WHERE id = ? AND year = ? AND month = ? ";
+			String sql = "SELECT COUNT (*) FROM totalm WHERE id = ? AND year = ? "
+					+ "AND month = ? ";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, id);
 			presmt.setInt(2, year);
@@ -118,11 +177,12 @@ public class TotalMDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			PreparedStatement presmt = null;
-			String sql = "SELECT * FROM totalm WHERE year = ? AND month = ? ORDER BY id, day, totalm_id";
+			String sql = "SELECT * FROM totalm WHERE year = ? AND month = ? "
+					+ "ORDER BY id, day, totalm_id";
 			presmt = conn.prepareStatement(sql);
 			presmt.setInt(1, year);
 			presmt.setInt(2, month);
@@ -156,8 +216,7 @@ public class TotalMDao {
 		return list;
 	}
 
-	//名前で絞って全部表示するメソッド（仮）
-	public List<TotalM> findAllForAdmin(String name, Integer year, Integer month) {
+	public List<TotalM> findAllByMonthForIdFromAdmin(String id, Integer year, Integer month) {
 
 		List<TotalM> list = new ArrayList<TotalM>();
 
@@ -171,9 +230,63 @@ public class TotalMDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
+			PreparedStatement presmt = null;
+			String sql = "SELECT * FROM totalm WHERE id = ? AND year = ? AND month = ? "
+					+ "ORDER BY day, totalm_id";
+			presmt = conn.prepareStatement(sql);
+			presmt.setString(1, id);
+			presmt.setInt(2, year);
+			presmt.setInt(3, month);
+			ResultSet rset = presmt.executeQuery();
+
+			// データベースから取得した値がある間、
+			while (rset.next()) {
+
+				TotalM tom = new TotalM();
+
+				tom.setId(rset.getString("id"));
+				tom.setTotalM_id(rset.getInt("totalM_id"));
+				tom.setYear(rset.getInt("year"));
+				tom.setMonth(rset.getInt("month"));
+				tom.setDay(rset.getInt("day"));
+				tom.setTransportation(rset.getString("transportation"));
+				tom.setDepature(rset.getString("depature"));
+				tom.setDestination(rset.getString("destination"));
+				tom.setDivision(rset.getString("division"));
+				tom.setMoney(rset.getInt("money"));
+				tom.setPlace(rset.getString("place"));
+				tom.setPurpose(rset.getString("purpose"));
+				list.add(tom);
+				// while文で次のレコードの処理へ?
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// DTOクラスのインスタンスのListを返す
+		return list;
+	}
+
+	public List<TotalM> findAllByMonthForNameFromAdmin(String name, Integer year, Integer month) {
+
+		List<TotalM> list = new ArrayList<TotalM>();
+
+		// JDBCドライバ読み込み
+		try {
+			// PostgreSQLドライバの読み込み
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		// データベースへの接続
+		try (Connection conn = DriverManager.getConnection(
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM totalm AS m JOIN userinfo AS u ON m.id = u.id "
 					+ "WHERE u.name = ? AND m.year = ? AND m.month = ? "
@@ -211,5 +324,4 @@ public class TotalMDao {
 		// DTOクラスのインスタンスのListを返す
 		return list;
 	}
-
 }
