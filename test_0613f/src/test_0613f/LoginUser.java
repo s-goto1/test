@@ -22,9 +22,9 @@ public class LoginUser {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:axiz_db",
-				"axizuser",
-				"axiz");) {
+				"jdbc:postgresql:postgres",
+				"postgres",
+				"Asdf123");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM userinfo WHERE id = ?";
 			presmt = conn.prepareStatement(sql);

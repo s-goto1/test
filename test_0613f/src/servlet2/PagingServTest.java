@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import entity.TotalM;
-import test_0613f.TestDao;
+import test_0613f.TotalMDao;
 
 /**
  * Servlet implementation class PagingServTest
@@ -41,15 +41,16 @@ public class PagingServTest extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String page = request.getParameter("page");
-		Integer offset = Integer.valueOf(page) * 5;
+		Integer offset = Integer.valueOf(page) * 5-4;
 
 		String id = "567";
 		Integer year = 2019;
 		Integer month = 8;
 
-		TestDao td = new TestDao();
+		TotalMDao tmd = new TotalMDao();
 
-		List<TotalM> list = td.findAllByMonth(id, year, month, offset);
+		List<TotalM> list = tmd.findAllByMonth(id, year, month, offset);
+		int count = tmd.countRow(id,year, month);
 
 		List<String> divisionList = new ArrayList<>();
 
@@ -68,7 +69,7 @@ public class PagingServTest extends HttpServlet {
 			}
 		}
 
-		int number = (size + 5 - 1) / 5;
+		int number = (count + 5 - 1) / 5;
 		session.setAttribute("year", year);
 		session.setAttribute("month", month);
 		session.setAttribute("list", list);

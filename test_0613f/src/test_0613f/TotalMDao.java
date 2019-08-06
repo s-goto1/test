@@ -12,8 +12,7 @@ import entity.TotalM;
 
 public class TotalMDao {
 
-
-	public List<TotalM> findAllByMonth(String id, Integer year, Integer month,int offset) {
+	public List<TotalM> findAllByMonth(String id, Integer year, Integer month, int offset) {
 
 		List<TotalM> list = new ArrayList<TotalM>();
 
@@ -27,15 +26,16 @@ public class TotalMDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:axiz_db",
-				"axizuser",
-				"axiz");) {
+				"jdbc:postgresql:postgres",
+				"postgres",
+				"Asdf123");) {
 			PreparedStatement presmt = null;
-			String sql =  "SELECT * FROM totalm WHERE id = ? AND year = ? AND month = ? ORDER BY day, totalm_id LIMIT 5 OFFSET ?";
+			String sql = "SELECT * FROM totalm WHERE id = ? AND year = ? AND month = ? ORDER BY day, totalm_id LIMIT 5 OFFSET ?";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, id);
 			presmt.setInt(2, year);
 			presmt.setInt(3, month);
+			presmt.setInt(4, offset);
 			ResultSet rset = presmt.executeQuery();
 
 			// データベースから取得した値がある間、
@@ -66,6 +66,43 @@ public class TotalMDao {
 		return list;
 	}
 
+	//レコード数取得（ページング用）
+	public int countRow(String id, Integer year, Integer month) {
+
+		int count = 0;
+		// JDBCドライバ読み込み
+		try {
+			// PostgreSQLドライバの読み込み
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		// データベースへの接続
+		try (Connection conn = DriverManager.getConnection(
+				"jdbc:postgresql:postgres",
+				"postgres",
+				"Asdf123");) {
+			PreparedStatement presmt = null;
+			String sql = "SELECT COUNT (*) FROM totalm WHERE id = ? AND year = ? AND month = ? ";
+			presmt = conn.prepareStatement(sql);
+			presmt.setString(1, id);
+			presmt.setInt(2, year);
+			presmt.setInt(3, month);
+
+			ResultSet rset = presmt.executeQuery();
+
+			// データベースから取得した値がある間、
+			while (rset.next()) {
+				count = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// DTOクラスのインスタンスのListを返す
+		return count;
+	}
+
 	//月ごとに全員のリスト表示（仮）
 	public List<TotalM> findAllUserListByMonth(Integer year, Integer month) {
 
@@ -81,9 +118,9 @@ public class TotalMDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:axiz_db",
-				"axizuser",
-				"axiz");) {
+				"jdbc:postgresql:postgres",
+				"postgres",
+				"Asdf123");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM totalm WHERE year = ? AND month = ? ORDER BY id, day, totalm_id";
 			presmt = conn.prepareStatement(sql);
@@ -134,9 +171,9 @@ public class TotalMDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:axiz_db",
-				"axizuser",
-				"axiz");) {
+				"jdbc:postgresql:postgres",
+				"postgres",
+				"Asdf123");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM totalm AS m JOIN userinfo AS u ON m.id = u.id "
 					+ "WHERE u.name = ? AND m.year = ? AND m.month = ? "
