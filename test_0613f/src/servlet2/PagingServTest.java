@@ -43,7 +43,7 @@ public class PagingServTest extends HttpServlet {
 		String page = request.getParameter("page");
 		int currentPage = Integer.valueOf(page);
 
-		Integer offset = Integer.valueOf(page) * 5 - 4;
+		Integer offset = Integer.valueOf(page) * 5 - 5;
 
 		// セッションから情報を取得
 		String id = (String) session.getAttribute("id");
