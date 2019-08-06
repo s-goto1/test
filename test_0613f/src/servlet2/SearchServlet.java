@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.lucene.search.spell.LevenshteinDistance;
 
 import entity.TotalM;
+import test_0613f.LoginUser;
 import test_0613f.SearchDao;
 import test_0613f.TotalMDao;
 
@@ -68,6 +69,7 @@ public class SearchServlet extends HttpServlet {
 			// DAOの宣言
 			SearchDao search = new SearchDao();
 			TotalMDao totalM = new TotalMDao();
+			LoginUser user = new LoginUser();
 
 			// 入力フォームが空欄？
 			if(id == null || id.equals("")) {
@@ -122,12 +124,23 @@ public class SearchServlet extends HttpServlet {
 				// ヒットしたユーザの情報を取得
 				List<TotalM> list = totalM.findAllByMonthForId(closest, year, month, 0);
 
+				// ヒットしたユーザの情報を元にそのユーザの名前を取得
+				String name = user.findUser(closest).getName();
+
+				// ページングなしでのレコード数取得
+				int count = totalM.countRow(closest, year, month);
+
+				// ページング設定
+				int number = (count + 5 - 1) / 5;
+
 				// リストのサイズを取得
 				//int size = list.size();
 
 				// ヒットしたユーザの情報をセッションにセット
-				session.setAttribute("id", list.get(0).getId());
-				session.setAttribute("name", closest);
+				session.setAttribute("id", closest);
+				session.setAttribute("name", name);
+				session.setAttribute("currentpage", 1);
+				session.setAttribute("number", number);
 				session.setAttribute("list", list);
 
 				// home.jspに遷移
@@ -196,12 +209,23 @@ public class SearchServlet extends HttpServlet {
 				// ヒットしたユーザの情報を取得
 				List<TotalM> list = totalM.findAllByMonthForName(closest, year, month, 0);
 
+				// ヒットしたユーザの情報を元にそのユーザのIDを取得
+				String id = list.get(0).getId();
+
+				// ページングなしでのレコード数取得
+				int count = totalM.countRow(id, year, month);
+
+				// ページング設定
+				int number = (count + 5 - 1) / 5;
+
 				// リストのサイズを取得
 				//int size = list.size();
 
 				// ヒットしたユーザの情報をセッションにセット
-				session.setAttribute("id", list.get(0).getId());
+				session.setAttribute("id", id);
 				session.setAttribute("name", closest);
+				session.setAttribute("currentpage", 1);
+				session.setAttribute("number", number);
 				session.setAttribute("list", list);
 
 				// home.jspに遷移

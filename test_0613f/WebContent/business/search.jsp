@@ -28,6 +28,8 @@
 			<input type="text" id="id" name="id" value="">
 			<input type="submit" id="idSearch" name="idSearch" class="btn btn-info ml-2 mb-3" value="ID検索">
 
+			<br>
+
 			<input type="text" id="name" name="name" value="">
 			<input type="submit" id="nameSearch" name="nameSearch" class="btn btn-info ml-2 mb-3" value="名前検索">
 
