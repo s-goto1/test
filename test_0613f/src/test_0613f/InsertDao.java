@@ -22,15 +22,15 @@ public class InsertDao {
 		try {
 			Class.forName("org.postgresql.Driver");
 			con = DriverManager.getConnection(
-					"jdbc:postgresql:axiz_db",
-					"axizuser",
-					"axiz");
+					"jdbc:postgresql:postgres",
+					"postgres",
+					"Asdf123");
 
 			presmt = con.prepareStatement(sql);
 
 			presmt.setString(1, id);
-			presmt.setInt(2, month);
-			presmt.setInt(3, year);
+			presmt.setInt(2, year);
+			presmt.setInt(3, month);
 			presmt.setInt(4, day);
 			presmt.setString(5, transportation);
 			presmt.setString(6, depature);
