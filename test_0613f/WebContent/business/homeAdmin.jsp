@@ -159,8 +159,8 @@
 				</p>
 			</c:if>
 
-			<input type="button" id="excelout"
-				class="btn btn-warning mr-2" value="Excelに出力">
+			<!--<input type="button" id="excelout"
+				class="btn btn-warning mr-2" value="Excelに出力">-->
 			<input type="button" id="admin"
 				class="btn btn-primary mr-2" value="管理画面">
 			<input type="button" id="menu" class="btn btn-light mr-2"
