@@ -156,7 +156,7 @@
 						<c:otherwise>
 							<li class="page-item">
 								<a class="page-link"
-									href="PagingServTest?page=${status.index - 1}">
+									href="PagingServTest?page=${currentpage - 1}">
 									Prev
 								</a>
 							</li>
@@ -197,7 +197,7 @@
 						<c:otherwise>
 							<li class="page-item">
 								<a class="page-link"
-									href="PagingServTest?page=${status.index + 1}">
+									href="PagingServTest?page=${currentpage + 1}">
 									Next
 								</a>
 							</li>
