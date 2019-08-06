@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import entity.TotalM;
 import test_0613f.ExcelTest2;
+import test_0613f.TotalMDao;
 import util.GetPath;
 
 /**
@@ -42,17 +43,21 @@ public class ExcelOutServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
 
 		HttpSession session = request.getSession();
-		List<TotalM> list = (List<TotalM>) session.getAttribute("list");
+		String id = (String) session.getAttribute("id");
 		String name = (String) session.getAttribute("name");
+		Integer year = (Integer) session.getAttribute("year");
+		Integer month = (Integer) session.getAttribute("month");
 
 		ExcelTest2 ext = new ExcelTest2();
+		TotalMDao totalM = new TotalMDao();
+
+		List<TotalM> list = totalM.findAllByMonthForIdFromAdmin(id, year, month);
 
 		GetPath gp = new GetPath();
 		String INPUT_DIR = gp.getDesktopPath();
@@ -63,10 +68,7 @@ public class ExcelOutServlet extends HttpServlet {
 		String fileNameAfter = "テストだよ.xls";
 
 		for (TotalM totalm : list) {
-
-
-
-			ext.excelOut(totalm, i++, INPUT_DIR, name,  fileNameAfter);
+			ext.excelOut(totalm, i++, INPUT_DIR, name, fileNameAfter);
 
 			total += totalm.getMoney();
 		}
