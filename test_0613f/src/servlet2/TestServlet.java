@@ -139,6 +139,7 @@ public class TestServlet extends HttpServlet {
 			}
 
 			// セッションに情報をセット
+			session.setAttribute("currentpage", 1);
 			session.setAttribute("year", y);
 			session.setAttribute("month", m);
 			session.setAttribute("number", number);

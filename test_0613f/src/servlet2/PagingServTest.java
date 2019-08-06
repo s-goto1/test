@@ -45,9 +45,16 @@ public class PagingServTest extends HttpServlet {
 
 		Integer offset = Integer.valueOf(page) * 5 - 4;
 
-		String id = "567";
-		Integer year = 2019;
-		Integer month = 8;
+		// セッションから情報を取得
+		String id = (String) session.getAttribute("id");
+		Integer auth = 2;
+
+		// 入力値を取得
+		Integer month = (Integer) session.getAttribute("month");
+		Integer year = (Integer) session.getAttribute("year");
+
+//		Integer y = Integer.valueOf(year);
+//		Integer m = Integer.valueOf(month);
 
 		TotalMDao tmd = new TotalMDao();
 
