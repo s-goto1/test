@@ -100,6 +100,7 @@ public class RegisterServlet extends HttpServlet {
 		request.setAttribute("money", money);
 		request.setAttribute("place", place);
 		request.setAttribute("purpose", purpose);
+		session.setAttribute("currentpage", 1);
 		session.setAttribute("list", list);
 		session.setAttribute("divisionList", divisionList);
 
