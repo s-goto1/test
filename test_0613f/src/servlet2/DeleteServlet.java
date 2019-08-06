@@ -97,7 +97,7 @@ public class DeleteServlet extends HttpServlet {
 			Integer m = mList.get(0).getMonth();
 
 			// 削除後のリスト取得
-			List<TotalM> list = tmd.findAllByMonth(id, year, m,1);
+			List<TotalM> list = tmd.findAllByMonth(id, year, m, 0);
 
 			// リストのレコード数取得
 			int size = list.size();

@@ -32,7 +32,7 @@
 		<button type="button" class="btn btn-success mt-3" data-toggle="collapse"
 			data-target=".multi-collapse" aria-expanded="false">全開閉</button>
 
-		<form id="form" name="form" action="" method="post">
+		<form id="form" name="form" class="mb-4" action="" method="post">
 			<p class="mt-3">
 				<b>全社員</b>の出張清算一覧データ
 				（<c:out value="${year}年${month}月分" />）
@@ -150,8 +150,6 @@
 							</div>
 						</div>
 					</div>
-
-					<br>
 				</c:forEach>
 			</c:if>
 

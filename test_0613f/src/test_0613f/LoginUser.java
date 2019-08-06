@@ -22,9 +22,9 @@ public class LoginUser {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM userinfo WHERE id = ?";
 			presmt = conn.prepareStatement(sql);
@@ -37,7 +37,7 @@ public class LoginUser {
 				ui.setId(rset.getString("id"));
 				ui.setPass(rset.getString("pass"));
 				ui.setName(rset.getString("name"));
-				ui.setAurh(rset.getInt("auth"));
+				ui.setAuth(rset.getInt("auth"));
 
 				// while文で次のレコードの処理へ?
 

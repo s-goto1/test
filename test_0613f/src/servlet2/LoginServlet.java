@@ -72,17 +72,17 @@ public class LoginServlet extends HttpServlet {
 
 			session.setAttribute("id", ui.getId());
 			session.setAttribute("name", ui.getName());
-			session.setAttribute("auth", ui.getAurh());
+			session.setAttribute("auth", ui.getAuth());
 
-			if(ui.getAurh() == 1) {
+			if(ui.getAuth() == 1) {
 				session.setAttribute("masterId", ui.getId());
 				session.setAttribute("masterName", ui.getName());
-				session.setAttribute("masterAuth", ui.getAurh());
+				session.setAttribute("masterAuth", ui.getAuth());
 			}
 
 			TotalMDao tmd = new TotalMDao();
 
-			List<TotalM> list = tmd.findAllByMonth(id, year, month,1);
+			List<TotalM> list = tmd.findAllByMonth(id, year, month, 0);
 
 			//レコード数しゅとく
 			int count = tmd.countRow(id,year, month);

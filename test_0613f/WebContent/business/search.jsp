@@ -17,21 +17,21 @@
 <body>
 	<div class="container col-md-9 col-md-offset-2 mt-4">
 	出張精算の管理用ページです。<br>
-	下記の検索フォームに閲覧したい人物名を入れてボタンを押すことでその人物のページに遷移します。<br>
-	（※該当者が見当たらなかった場合、近しい名前の人物のページに遷移します）<br>
+	下記の検索フォームに閲覧したいユーザのIDまたは名前を入れてボタンを押すことで、その人物のページに遷移します。<br>
+	（※該当者が見当たらなかった場合、近しいIDまたは名前の人物のページに遷移します）<br>
 	また、未入力のままボタンを押すと社員全員分のデータを表示します。<br>
 
 	<br>
 
 		<form id="search" name="search" action="Search" method="post">
 
-			<input type="text" id="name" name="name" value="">
+			<input type="text" id="id" name="id" value="">
+			<input type="submit" id="idSearch" name="idSearch" class="btn btn-info ml-2 mb-3" value="ID検索">
 
-			<input type="submit" id="" class="btn btn-info ml-2" value="名前検索">
+			<input type="text" id="name" name="name" value="">
+			<input type="submit" id="nameSearch" name="nameSearch" class="btn btn-info ml-2 mb-3" value="名前検索">
 
 		</form>
-
-		<br>
 
 		<button id="menu" class="btn btn-light mr-2"
 			onclick="location.href='../menu.jsp'">メニュー</button>

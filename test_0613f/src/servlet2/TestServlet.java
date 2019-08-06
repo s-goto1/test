@@ -57,7 +57,7 @@ public class TestServlet extends HttpServlet {
 
 		// セッションから情報を取得
 		String id = (String) session.getAttribute("id");
-		Integer auth = (Integer) session.getAttribute("masterAuth");
+		Integer auth = (Integer) session.getAttribute("auth");
 
 		// 入力値を取得
 		String month = request.getParameter("month");
@@ -85,7 +85,7 @@ public class TestServlet extends HttpServlet {
 				Map<String, List<TotalM>> map = idList.stream()
 						.collect(Collectors.toMap(
 								s -> s,
-								s -> tmd.findAllByMonth(s, y, m,1)));
+								s -> tmd.findAllByMonth(s, y, m, 0)));
 
 				// セッションに情報をセット
 				session.setAttribute("map", map);
@@ -106,10 +106,16 @@ public class TestServlet extends HttpServlet {
 		// 権限が担当者？
 		} else {
 			// 変更後のリスト取得
-			List<TotalM> list = tmd.findAllByMonth(id, y, m,1);
+			List<TotalM> list = tmd.findAllByMonth(id, y, m, 0);
 
 			// リストのレコード数取得
 			int size = list.size();
+
+			// ページングなしでのレコード数取得
+			int count = tmd.countRow(id, y, m);
+
+			// ページング設定
+			int number = (count + 5 - 1) / 5;
 
 			// String型のListオブジェクトを生成
 			List<String> divisionList = new ArrayList<>();
@@ -135,6 +141,7 @@ public class TestServlet extends HttpServlet {
 			// セッションに情報をセット
 			session.setAttribute("year", y);
 			session.setAttribute("month", m);
+			session.setAttribute("number", number);
 			session.setAttribute("list", list);
 			session.setAttribute("divisionList", divisionList);
 

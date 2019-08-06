@@ -31,7 +31,7 @@
 
 		</form>
 
-		<form id="form" name="form" action="" method="post">
+		<form id="form" name="form" class="mb-4" action="" method="post">
 			<p class="mt-3">
 				<b><c:out value="${name}さん" /></b>の出張清算一覧データ
 				（<c:out value="${year}年${month}月分" />）
@@ -143,26 +143,69 @@
 				</c:otherwise>
 			</c:choose>
 
-			<br>
-	<section class="container">
+			<nav class="mb-4" aria-label="Page navigation">
+				<ul class="pagination justify-content-center">
+					<c:choose>
+						<c:when test="${currentpage == 1}">
+							<li class="page-item disabled">
+								<a class="page-link" href="#">
+									Prev
+								</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item">
+								<a class="page-link"
+									href="PagingServTest?page=${status.index - 1}">
+									Prev
+								</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
 
-		<nav class="pagination">
-			<a href="PagingServTest?page=${status.index}-1" class="prev">&lt;</a>
-			<c:forEach begin="1" end="${number}" step="1" varStatus="status">
-			   <c:choose>
-			   <c:when test="${currentpage == status.index}">
-				<span>${status.index}</span>
-				</c:when>
-				  <c:otherwise>
-				<a href="PagingServTest?page=${status.index}">${status.index}</a>
-				  </c:otherwise>
-                </c:choose>
-			</c:forEach>
+					<c:forEach begin="1" end="${number}" step="1" varStatus="status">
+						<c:choose>
+							<c:when test="${currentpage == status.index}">
+								<li class="page-item active">
+									<span class="page-link">
+										${status.index}
+										<span class="sr-only">
+											(current)
+										</span>
+									</span>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item">
+									<a class="page-link"
+										href="PagingServTest?page=${status.index}">
+										${status.index}
+									</a>
+								</li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
 
-			<a href="index.html" class="next">&gt;</a>
-		</nav>
+					<c:choose>
+						<c:when test="${currentpage == number}">
+							<li class="page-item disabled">
+								<a class="page-link" href="#">
+									Next
+								</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item">
+								<a class="page-link"
+									href="PagingServTest?page=${status.index + 1}">
+									Next
+								</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+				</ul>
+			</nav>
 
-	</section>
 			<c:choose>
 				<c:when test="${masterAuth eq 1}">
 					<input type="button" id="excelout"

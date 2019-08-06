@@ -5,7 +5,7 @@ public class UserInfo {
 	private String id;
 	private String pass;
 	private String name;
-	private Integer aurh;
+	private Integer auth;
 
 	public String getPass() {
 		return pass;
@@ -31,12 +31,12 @@ public class UserInfo {
 		this.name = name;
 	}
 
-	public Integer getAurh() {
-		return aurh;
+	public Integer getAuth() {
+		return auth;
 	}
 
-	public void setAurh(Integer aurh) {
-		this.aurh = aurh;
+	public void setAuth(Integer auth) {
+		this.auth = auth;
 	}
 
 }

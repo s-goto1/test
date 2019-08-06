@@ -35,7 +35,7 @@ public class BusinessSurvlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// セッションから情報を取得
-		Integer auth = (Integer) session.getAttribute("masterAuth");
+		Integer auth = (Integer) session.getAttribute("auth");
 
 		// 権限が管理者？
 		if(auth == 1) {
