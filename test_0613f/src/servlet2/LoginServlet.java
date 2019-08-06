@@ -104,6 +104,7 @@ public class LoginServlet extends HttpServlet {
 			}
 
 			int number = (count + 5 - 1) / 5;
+			session.setAttribute("currentpage", 1);
 			session.setAttribute("year", year);
 			session.setAttribute("month", month);
 			session.setAttribute("list", list);

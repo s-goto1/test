@@ -147,10 +147,16 @@
 	<section class="container">
 
 		<nav class="pagination">
-			<a href="index.html" class="prev">&lt;</a>
+			<a href="PagingServTest?page=${status.index}-1" class="prev">&lt;</a>
 			<c:forEach begin="1" end="${number}" step="1" varStatus="status">
+			   <c:choose>
+			   <c:when test="${currentpage == status.index}">
+				<span>${status.index}</span>
+				</c:when>
+				  <c:otherwise>
 				<a href="PagingServTest?page=${status.index}">${status.index}</a>
-
+				  </c:otherwise>
+                </c:choose>
 			</c:forEach>
 
 			<a href="index.html" class="next">&gt;</a>

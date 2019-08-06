@@ -41,7 +41,9 @@ public class PagingServTest extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String page = request.getParameter("page");
-		Integer offset = Integer.valueOf(page) * 5-4;
+		int currentPage = Integer.valueOf(page);
+
+		Integer offset = Integer.valueOf(page) * 5 - 4;
 
 		String id = "567";
 		Integer year = 2019;
@@ -50,13 +52,11 @@ public class PagingServTest extends HttpServlet {
 		TotalMDao tmd = new TotalMDao();
 
 		List<TotalM> list = tmd.findAllByMonth(id, year, month, offset);
-		int count = tmd.countRow(id,year, month);
+		int count = tmd.countRow(id, year, month);
 
 		List<String> divisionList = new ArrayList<>();
 
 		int size = list.size();
-
-
 
 		for (int i = 0; i < size; i++) {
 			String division = list.get(i).getDivision();
@@ -70,13 +70,13 @@ public class PagingServTest extends HttpServlet {
 		}
 
 		int number = (count + 5 - 1) / 5;
+		session.setAttribute("currentpage", currentPage);
 		session.setAttribute("year", year);
 		session.setAttribute("month", month);
 		session.setAttribute("list", list);
 		session.setAttribute("divisionList", divisionList);
 		session.setAttribute("nolist", "登録されているデータがありません。");
-		session.setAttribute("number",number);
-
+		session.setAttribute("number", number);
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
 		dispatch.forward(request, response);
