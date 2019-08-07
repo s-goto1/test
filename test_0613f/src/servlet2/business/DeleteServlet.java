@@ -70,7 +70,7 @@ public class DeleteServlet extends HttpServlet {
 			//			session.setAttribute("list", list);
 
 			// home.jspへ遷移
-			RequestDispatcher dispatch = request.getRequestDispatcher("/home.jsp");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
 			dispatch.forward(request, response);
 
 		} else {
