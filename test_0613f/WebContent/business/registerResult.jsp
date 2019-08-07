@@ -74,7 +74,7 @@
 			</tbody>
 		</table>
 
-	<input type="button" class="btn btn-warning" onclick="location.href='./home.jsp'" value="戻る">
+	<input type="button" class="btn btn-warning" onclick="location.href='PagingServTest?page=1'" value="戻る">
 
 	</div>
 </body>

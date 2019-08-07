@@ -160,7 +160,7 @@
 			</tbody>
 		</table>
 
-	<input type="button" class="btn btn-warning mt-4" onclick="location.href='./home.jsp'" value="戻る">
+	<input type="button" class="btn btn-warning mt-4" onclick="location.href='PagingServTest?page=${currentpage}'" value="戻る">
 
 	</div>
 </body>
