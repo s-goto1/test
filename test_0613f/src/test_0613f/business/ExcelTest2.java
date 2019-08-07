@@ -78,7 +78,8 @@ public class ExcelTest2 {
 				break;
 
 			case 10:
-				cell.setCellValue(totalM.getDivision() + totalM.getMoney());
+				//totalM.getDivision() +  ここにdivision入れるて金額と一緒に表示するか考え中
+				cell.setCellValue(totalM.getMoney());
 				break;
 			case 12:
 				cell.setCellValue(totalM.getPurpose());
