@@ -16,19 +16,20 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container col-md-9 col-md-offset-2 mt-4">
-	出張精算の管理用ページです。<br>
-	下記の検索フォームに閲覧したいユーザのIDまたは名前を入れてボタンを押すことで、その人物のページに遷移します。<br>
-	（※該当者が見当たらなかった場合、近しいIDまたは名前の人物のページに遷移します）<br>
-	また、未入力のままボタンを押すと社員全員分のデータを表示します。<br>
+	<div class="container col-md-9 col-md-offset-2 mt-4 mb-4">
 
-	<br>
+		出張精算の管理用ページです。<br>
+		下記の検索フォームに閲覧したいユーザのIDまたは名前を入れてボタンを押すことで、その人物のページに遷移します。<br>
+		（※該当者が見当たらなかった場合、近しいIDまたは名前の人物のページに遷移します）<br>
+		また、未入力のままボタンを押すと社員全員分のデータを表示します。<br>
 
-	<c:if test="${not empty error}">
-		<p style="color: red;">
-			<c:out value="${error}" />
-		</p>
-	</c:if>
+		<br>
+
+		<c:if test="${not empty error}">
+			<p style="color: red;">
+				<c:out value="${error}" />
+			</p>
+		</c:if>
 
 		<form id="search" name="search" class="mb-4" action="Search" method="post">
 

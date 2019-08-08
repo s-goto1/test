@@ -16,7 +16,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container col-md-9 col-md-offset-2 mt-4">
+	<div class="container col-md-9 col-md-offset-2 mt-4 mb-4">
 
 		<p><c:out value="${year}年${month}月分" />の出張精算データを${excel}に出力しました。</p>
 
@@ -123,19 +123,19 @@
 					</c:forEach>
 
 					<c:if test="${i eq point}">
-					<c:forEach var="j" begin="1" end="${size}" step="1">
-						<tr>
-							<td>　<!-- ${j} --></td>
-							<td>　<!-- ${j} --></td>
-							<td>　</td>
-							<td>　</td>
-							<td>　</td>
-							<td>　</td>
-							<td>　</td>
-							<td>　</td>
-							<td>　</td>
-						</tr>
-					</c:forEach>
+						<c:forEach var="j" begin="1" end="${size}" step="1">
+							<tr>
+								<td>　<!-- ${j} --></td>
+								<td>　<!-- ${j} --></td>
+								<td>　</td>
+								<td>　</td>
+								<td>　</td>
+								<td>　</td>
+								<td>　</td>
+								<td>　</td>
+								<td>　</td>
+							</tr>
+						</c:forEach>
 					</c:if>
 
 					<tr>
@@ -164,7 +164,7 @@
 			</table>
 		</c:forEach>
 
-	<input type="button" class="btn btn-warning mb-4" onclick="location.href='PagingServTest?page=${currentpage}'" value="戻る">
+	<input type="button" class="btn btn-warning" onclick="location.href='PagingServTest?page=${currentpage}'" value="戻る">
 
 	</div>
 </body>

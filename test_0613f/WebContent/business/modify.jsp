@@ -17,8 +17,7 @@
 <script type="text/javascript" src="../js/subtest.js"></script>
 </head>
 <body>
-
-	<div class="container col-md-11 col-md-offset-1 mt-4">
+	<div class="container col-md-11 col-md-offset-1 mt-4 mb-4">
 
 		<form id="form1" name="form1" action="Update" method="post">
 			<p class="mt-3">
@@ -146,6 +145,5 @@
 		</form>
 
 	</div>
-
 </body>
 </html>

@@ -86,7 +86,7 @@ public class PagingServTest extends HttpServlet {
 				idListLimit = idList.subList(offset, size);
 			}
 
-			// 今月分の全社員の出張精算データを取得
+			// 今月分の規定数の社員の出張精算データを取得
 			Map<String, List<TotalM>> map = idListLimit.stream()
 					.collect(Collectors.toMap(
 							s -> s,

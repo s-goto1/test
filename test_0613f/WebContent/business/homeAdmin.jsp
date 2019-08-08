@@ -17,7 +17,7 @@
 <script type="text/javascript" src="../js/subtest.js"></script>
 </head>
 <body>
-	<div class="container col-md-10 col-md-offset-2 mt-4">
+	<div class="container col-md-10 col-md-offset-2 mt-4 mb-4">
 
 		<form id="date" name="date" action="Date" method="post">
 

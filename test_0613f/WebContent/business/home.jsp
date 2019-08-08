@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../js/iziModal.min.js"></script>
 </head>
 <body>
-	<div class="container col-md-10 col-md-offset-2 mt-4">
+	<div class="container col-md-10 col-md-offset-2 mt-4 mb-4">
 
 		<form id="date" name="date" action="Date" method="post">
 
@@ -33,9 +33,8 @@
 
 		<form id="form" name="form" class="mb-4" action="" method="post">
 			<p class="mt-3">
-				<b><c:out value="${name}さん" /></b>の出張清算一覧データ （
-				<c:out value="${year}年${month}月分" />
-				）
+				<b><c:out value="${name}さん" /></b>の出張清算一覧データ
+				（<c:out value="${year}年${month}月分" />）
 			</p>
 
 			<table border="1" class="table table-striped"

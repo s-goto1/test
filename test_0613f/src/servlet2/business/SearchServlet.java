@@ -109,7 +109,7 @@ public class SearchServlet extends HttpServlet {
 					// 1度に表示するユーザ数を制限
 					List<String> idListLimit = idList.subList(0, index);
 
-					// 今月分の全社員の出張精算データを取得
+					// 今月分の規定数の社員の出張精算データを取得
 					Map<String, List<TotalM>> map = idListLimit.stream()
 							.collect(Collectors.toMap(
 									s -> s,
@@ -233,7 +233,7 @@ public class SearchServlet extends HttpServlet {
 					// 1度に表示するユーザ数を制限
 					List<String> nameListLimit = nameList.subList(0, index);
 
-					// 今月分の全社員の出張精算データを取得
+					// 今月分の規定数の社員の出張精算データを取得
 					Map<String, List<TotalM>> map = nameListLimit.stream()
 							.collect(Collectors.toMap(
 									s -> s,

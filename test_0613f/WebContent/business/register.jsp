@@ -17,8 +17,7 @@
 <script type="text/javascript" src="../js/subtest.js"></script>
 </head>
 <body>
-
-	<div class="container col-md-10 col-md-offset-2 mt-4">
+	<div class="container col-md-10 col-md-offset-2 mt-4 mb-4">
 
 		<form action="Register" id="form" name="form" method="post">
 
@@ -96,6 +95,7 @@
 					</tr>
 				</tbody>
 			</table>
+
 		    <input type="hidden" name="id" value="${id}" size="">
 
 			<input type="submit" id="regist" name="確認用" class="btn btn-primary mr-2" value="登録確定">

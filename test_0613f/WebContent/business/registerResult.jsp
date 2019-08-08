@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="../js/subtest.js"></script>
 </head>
 <body>
-	<div class="container col-md-10 col-md-offset-2 mt-4">
+	<div class="container col-md-10 col-md-offset-2 mt-4 mb-4">
 
 		<p>下記の情報を登録しました。</p>
 
@@ -61,25 +61,49 @@
 				<tr>
 					<!-- table-stripedのための空列 -->
 				</tr>
-
 				<tr>
-					<td><c:out value="${month}月" /></td>
-					<td><c:out value="${day}日" /></td>
-					<td><c:out value="${depature}" /></td>
-					<td><c:out value="${destination}" /></td>
-					<td><c:out value="${transportation}" /></td>
-					<td><c:out value="${place}" /></td>
-					<td><c:out value="${division}" /></td>
-					<td><c:out value="${money}" /></td>
-					<td><c:out value="${purpose}" /></td>
+					<td>
+						<c:out value="${month}月" />
+					</td>
+
+					<td>
+						<c:out value="${day}日" />
+					</td>
+
+					<td>
+						<c:out value="${depature}" />
+					</td>
+
+					<td>
+						<c:out value="${destination}" />
+					</td>
+
+					<td>
+						<c:out value="${transportation}" />
+					</td>
+
+					<td>
+						<c:out value="${place}" />
+					</td>
+
+					<td>
+						<c:out value="${division}" />
+					</td>
+
+					<td>
+						<c:out value="${money}" />
+					</td>
+
+					<td>
+						<c:out value="${purpose}" />
+					</td>
 				</tr>
 			</tbody>
 		</table>
 
-		<input type="button"  class="btn btn-primary mr-2"onclick="location.href='./register.jsp'"
-			value="続けて登録">
-
-			<input type="button" class="btn btn-warning"
+		<input type="button"  class="btn btn-primary mr-2"
+			onclick="location.href='./register.jsp'" value="続けて登録">
+		<input type="button" class="btn btn-warning"
 			onclick="location.href='PagingServTest?page=1'" value="戻る">
 
 	</div>

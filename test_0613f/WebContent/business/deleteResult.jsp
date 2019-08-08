@@ -16,7 +16,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container col-md-10 col-md-offset-2 mt-4">
+	<div class="container col-md-10 col-md-offset-2 mt-4 mb-4">
 
 		<p>下記の情報を削除しました。</p>
 
