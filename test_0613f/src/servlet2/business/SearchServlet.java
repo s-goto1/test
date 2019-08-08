@@ -100,7 +100,7 @@ public class SearchServlet extends HttpServlet {
 					if(size >= 5) {
 						// toIndexの値を5に固定
 						index = 5;
-					// 5人以下しかいない？
+					// 5人未満しかいない？
 					} else {
 						// toIndexの値を人数でセット
 						index = size;
@@ -224,7 +224,7 @@ public class SearchServlet extends HttpServlet {
 					if(size >= 5) {
 						// toIndexの値を5に固定
 						index = 5;
-					// 5人以下しかいない？
+					// 5人以下未満しかいない？
 					} else {
 						// toIndexの値を人数でセット
 						index = size;
