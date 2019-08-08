@@ -271,6 +271,7 @@ public class SearchServlet extends HttpServlet {
 						.max(Comparator.comparingInt(dist))
 						.orElse(name);
 
+				// レーベンシュタイン距離が離れすぎている？
 				if(dis.getDistance(name, closest) < 40) {
 					// リクエストに情報をセット
 					request.setAttribute("error", "近しい名前が存在しません。文字数が少ない場合にはもう少し長く、"
