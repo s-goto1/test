@@ -32,6 +32,7 @@ public class ExcelTest2 {
 
 		if (test != 0 || sheetNum > 0) {
 			fileName = fileNameAfter;
+
 		}
 
 		FileInputStream in = new FileInputStream(INPUT_DIR + fileName);
@@ -143,6 +144,11 @@ public class ExcelTest2 {
 		}
 
 		FileOutputStream out = null;
+		wb.setForceFormulaRecalculation(true);
+		//ブック再計算
+		sheet.setForceFormulaRecalculation(true);
+		//シート再計算
+		//毎回やらないでいい、あとで直す
 
 		try {
 			// 変更するエクセルファイルを指定
