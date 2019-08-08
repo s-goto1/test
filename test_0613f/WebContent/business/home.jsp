@@ -233,8 +233,8 @@
 				</c:otherwise>
 			</c:choose>
 			<input type="button" id="menu" class="btn btn-light mr-2"
-				onclick="location.href='../menu.jsp'" value="メニュー"> <input
-				type="button" id="logout" class="btn btn-secondary"
+				onclick="location.href='../menu.jsp'" value="メニュー">
+			<input type="button" id="logout" class="btn btn-secondary"
 				onclick="location.href='../logout.jsp'" value="ログアウト">
 
 		</form>
