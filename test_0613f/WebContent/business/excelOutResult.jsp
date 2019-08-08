@@ -150,7 +150,7 @@
 
 						<td>
 							<div style="text-align: left; float: left;">①</div>
-							<div style="text-align: right;">${total}</div>
+							<div style="text-align: right;">${total.get(i)}</div>
 						</td>
 
 						<td>

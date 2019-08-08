@@ -1,6 +1,7 @@
 package servlet2.business;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -74,6 +75,8 @@ public class ExcelOutServlet extends HttpServlet {
 			point = size / 21;
 		}
 
+		List<Integer> totalList = new ArrayList<>();
+
 		String fileNameAfter = "テストだよ.xls";
 
 		for (TotalM totalm : list) {
@@ -85,9 +88,16 @@ public class ExcelOutServlet extends HttpServlet {
 
 			if(rowReset) {
 				i = 0;
+
 				sheetNum += 1;
+
+				totalList.add(total);
+
+				total = 0;
 			}
 		}
+
+		totalList.add(total);
 
 		if(size > 21) {
 			point = size / 21;
@@ -99,7 +109,7 @@ public class ExcelOutServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		request.setAttribute("point", point);
 		request.setAttribute("size", size);
-		request.setAttribute("total", total);
+		request.setAttribute("total", totalList);
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("/business/excelOutResult.jsp");
 		dispatch.forward(request, response);
