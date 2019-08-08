@@ -4,15 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="refresh" content="5;./index.jsp"  charset="UTF-8">
+<meta http-equiv="refresh" content="5;./index.jsp" charset="UTF-8">
 <title>ログアウト</title>
 <link rel="stylesheet" type="text/css" href="css/cssPreloader.css"/>
 </head>
 <body>
 	<div style="text-align: center;">
-	ログアウトしました。<br>
-	5秒後に画面遷移します。<br>
-	少々お待ち下さい．．．<br>
+		ログアウトしました。<br>
+		5秒後に画面遷移します。<br>
+		少々お待ち下さい．．．<br>
 	</div>
 
 	<div class="wrapper">
