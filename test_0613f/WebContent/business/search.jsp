@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,13 @@
 
 	<br>
 
-		<form id="search" name="search" action="Search" method="post">
+	<c:if test="${not empty error}">
+		<p style="color: red;">
+			<c:out value="${error}" />
+		</p>
+	</c:if>
+
+		<form id="search" name="search" class="mb-4" action="Search" method="post">
 
 			<input type="text" id="id" name="id" value="">
 			<input type="submit" id="idSearch" name="idSearch" class="btn btn-info ml-2 mb-3" value="ID検索">

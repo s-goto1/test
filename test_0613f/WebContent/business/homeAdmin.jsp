@@ -32,7 +32,7 @@
 		<button type="button" class="btn btn-success mt-3" data-toggle="collapse"
 			data-target=".multi-collapse" aria-expanded="false">全開閉</button>
 
-		<form id="form" name="form" class="mb-4" action="" method="post">
+		<form id="form" name="form" action="" method="post">
 			<p class="mt-3">
 				<b>全社員</b>の出張清算一覧データ
 				（<c:out value="${year}年${month}月分" />）
@@ -40,7 +40,7 @@
 
 			<c:if test="${not empty map}">
 				<c:forEach var="i" items="${map}" varStatus="status">
-					<div class="accordion" id="accordion" role="tablist">
+					<div class="accordion mb-4" id="accordion" role="tablist">
 						<div class="card">
 							<div class="card-header" id="header-${status.count}" role="tab">
 								<button class="btn btn-link btn-block text-left" type="button"
@@ -158,6 +158,72 @@
 					<c:out value=" ${nomap}" />
 				</p>
 			</c:if>
+
+			<c:if test="${not empty map}">
+				<nav class="mb-4" aria-label="Page navigation">
+					<ul class="pagination justify-content-center">
+						<c:choose>
+							<c:when test="${currentpage == 1}">
+								<li class="page-item disabled">
+									<a class="page-link" href="#">
+										Prev
+									</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item">
+									<a class="page-link"
+										href="PagingServTest?page=${currentpage - 1}">
+										Prev
+									</a>
+								</li>
+							</c:otherwise>
+						</c:choose>
+
+						<c:forEach begin="1" end="${number}" step="1" varStatus="status">
+							<c:choose>
+								<c:when test="${currentpage == status.index}">
+									<li class="page-item active">
+										<span class="page-link">
+											${status.index}
+											<span class="sr-only">
+												(current)
+											</span>
+										</span>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item">
+										<a class="page-link"
+											href="PagingServTest?page=${status.index}">
+											${status.index}
+										</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<c:choose>
+							<c:when test="${currentpage == number}">
+								<li class="page-item disabled">
+									<a class="page-link" href="#">
+										Next
+									</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item">
+									<a class="page-link"
+										href="PagingServTest?page=${currentpage + 1}">
+										Next
+									</a>
+								</li>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+				</nav>
+			</c:if>
+
 
 			<!--<input type="button" id="excelout"
 				class="btn btn-warning mr-2" value="Excelに出力">-->

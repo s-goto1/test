@@ -87,14 +87,40 @@ public class SearchServlet extends HttpServlet {
 
 				// データが1件でもある？
 				if(idList.size() > 0 && nameList.size() > 0) {
+					// 変数宣言
+					int index = 0;
+
+					// リストのサイズを取得
+					int size = idList.size();
+
+					// ページ数を取得
+					int number = (size + 5 - 1) / 5;
+
+					// 5人以上いる？
+					if(size >= 5) {
+						// toIndexの値を5に固定
+						index = 5;
+					// 5人以下しかいない？
+					} else {
+						// toIndexの値を人数でセット
+						index = size;
+					}
+
+					// 1度に表示するユーザ数を制限
+					List<String> idListLimit = idList.subList(0, index);
+
 					// 今月分の全社員の出張精算データを取得
-					Map<String, List<TotalM>> map = idList.stream()
+					Map<String, List<TotalM>> map = idListLimit.stream()
 							.collect(Collectors.toMap(
 									s -> s,
 									s -> totalM.findAllByMonthForIdFromAdmin(s, year, month)));
 
 					// セッションに情報をセット
+					session.setAttribute("currentpage", 1);
+					session.setAttribute("size", size);
+					session.setAttribute("number", number);
 					session.setAttribute("map", map);
+					session.setAttribute("idList", idList);
 					session.setAttribute("nameList", nameList);
 				// データが1件もない？
 				} else {
@@ -121,31 +147,44 @@ public class SearchServlet extends HttpServlet {
 						.max(Comparator.comparingInt(dist))
 						.orElse(id);
 
-				// ヒットしたユーザの情報を取得
-				List<TotalM> list = totalM.findAllByMonthForId(closest, year, month, 0);
+				// レーベンシュタイン距離が離れすぎている？
+				if(dis.getDistance(id, closest) < 40) {
+					// リクエストに情報をセット
+					request.setAttribute("error", "近しいIDが存在しません。文字数が少ない場合にはもう少し長く、"
+							+ "文字数が多い場合にはもう少し短くして再度検索してみて下さい。"
+							+ "あるいは、もう少し具体的な内容の文字列で検索してみて下さい。");
 
-				// ヒットしたユーザの情報を元にそのユーザの名前を取得
-				String name = user.findUser(closest).getName();
+					// search.jspに遷移
+					RequestDispatcher dispatch = request.getRequestDispatcher("/business/search.jsp");
+					dispatch.forward(request, response);
+				// レーベンシュタイン距離は適切な長さ？
+				} else {
+					// ヒットしたユーザの情報を取得
+					List<TotalM> list = totalM.findAllByMonthForId(closest, year, month, 0);
 
-				// ページングなしでのレコード数取得
-				int count = totalM.countRow(closest, year, month);
+					// ヒットしたユーザの情報を元にそのユーザの名前を取得
+					String name = user.findUser(closest).getName();
 
-				// ページング設定
-				int number = (count + 5 - 1) / 5;
+					// ページングなしでのレコード数取得
+					int count = totalM.countRow(closest, year, month);
 
-				// リストのサイズを取得
-				//int size = list.size();
+					// ページング設定
+					int number = (count + 5 - 1) / 5;
 
-				// ヒットしたユーザの情報をセッションにセット
-				session.setAttribute("id", closest);
-				session.setAttribute("name", name);
-				session.setAttribute("currentpage", 1);
-				session.setAttribute("number", number);
-				session.setAttribute("list", list);
+					// リストのサイズを取得
+					//int size = list.size();
 
-				// home.jspに遷移
-				RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
-				dispatch.forward(request, response);
+					// ヒットしたユーザの情報をセッションにセット
+					session.setAttribute("id", closest);
+					session.setAttribute("name", name);
+					session.setAttribute("currentpage", 1);
+					session.setAttribute("number", number);
+					session.setAttribute("list", list);
+
+					// home.jspに遷移
+					RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
+					dispatch.forward(request, response);
+				}
 			}
 		// 「名前検索」が押された？
 		} else if(request.getParameter("nameSearch") != null) {
@@ -172,14 +211,40 @@ public class SearchServlet extends HttpServlet {
 
 				// データが1件でもある？
 				if(idList.size() > 0 && nameList.size() > 0) {
+					// 変数宣言
+					int index = 0;
+
+					// リストのサイズを取得
+					int size = nameList.size();
+
+					// ページ数を取得
+					int number = (size + 5 - 1) / 5;
+
+					// 5人以上いる？
+					if(size >= 5) {
+						// toIndexの値を5に固定
+						index = 5;
+					// 5人以下しかいない？
+					} else {
+						// toIndexの値を人数でセット
+						index = size;
+					}
+
+					// 1度に表示するユーザ数を制限
+					List<String> nameListLimit = nameList.subList(0, index);
+
 					// 今月分の全社員の出張精算データを取得
-					Map<String, List<TotalM>> map = idList.stream()
+					Map<String, List<TotalM>> map = nameListLimit.stream()
 							.collect(Collectors.toMap(
 									s -> s,
-									s -> totalM.findAllByMonthForIdFromAdmin(s, year, month)));
+									s -> totalM.findAllByMonthForNameFromAdmin(s, year, month)));
 
 					// セッションに情報をセット
+					session.setAttribute("currentpage", 1);
+					session.setAttribute("size", size);
+					session.setAttribute("number", number);
 					session.setAttribute("map", map);
+					session.setAttribute("idList", idList);
 					session.setAttribute("nameList", nameList);
 				// データが1件もない？
 				} else {
@@ -206,31 +271,43 @@ public class SearchServlet extends HttpServlet {
 						.max(Comparator.comparingInt(dist))
 						.orElse(name);
 
-				// ヒットしたユーザの情報を取得
-				List<TotalM> list = totalM.findAllByMonthForName(closest, year, month, 0);
+				if(dis.getDistance(name, closest) < 40) {
+					// リクエストに情報をセット
+					request.setAttribute("error", "近しい名前が存在しません。文字数が少ない場合にはもう少し長く、"
+							+ "文字数が多い場合にはもう少し短くして再度検索してみて下さい。"
+							+ "あるいは、もう少し具体的な内容の文字列で検索してみて下さい。");
 
-				// ヒットしたユーザの情報を元にそのユーザのIDを取得
-				String id = list.get(0).getId();
+					// search.jspに遷移
+					RequestDispatcher dispatch = request.getRequestDispatcher("/business/search.jsp");
+					dispatch.forward(request, response);
+				// レーベンシュタイン距離は適切な長さ？
+				} else {
+					// ヒットしたユーザの情報を取得
+					List<TotalM> list = totalM.findAllByMonthForName(closest, year, month, 0);
 
-				// ページングなしでのレコード数取得
-				int count = totalM.countRow(id, year, month);
+					// ヒットしたユーザの情報を元にそのユーザのIDを取得
+					String id = list.get(0).getId();
 
-				// ページング設定
-				int number = (count + 5 - 1) / 5;
+					// ページングなしでのレコード数取得
+					int count = totalM.countRow(id, year, month);
 
-				// リストのサイズを取得
-				//int size = list.size();
+					// ページング設定
+					int number = (count + 5 - 1) / 5;
 
-				// ヒットしたユーザの情報をセッションにセット
-				session.setAttribute("id", id);
-				session.setAttribute("name", closest);
-				session.setAttribute("currentpage", 1);
-				session.setAttribute("number", number);
-				session.setAttribute("list", list);
+					// リストのサイズを取得
+					//int size = list.size();
 
-				// home.jspに遷移
-				RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
-				dispatch.forward(request, response);
+					// ヒットしたユーザの情報をセッションにセット
+					session.setAttribute("id", id);
+					session.setAttribute("name", closest);
+					session.setAttribute("currentpage", 1);
+					session.setAttribute("number", number);
+					session.setAttribute("list", list);
+
+					// home.jspに遷移
+					RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
+					dispatch.forward(request, response);
+				}
 			}
 		}
 	}
