@@ -96,6 +96,8 @@ public class BusinessSurvlet extends HttpServlet {
 			int number = (count + 5 - 1) / 5;
 
 			// セッションに情報をセット
+			session.setAttribute("year", year);
+			session.setAttribute("month", month);
 			session.setAttribute("currentpage", 1);
 			session.setAttribute("size", size);
 			session.setAttribute("number", number);
