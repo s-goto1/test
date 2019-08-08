@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import entity.TotalM;
 import test_0613f.business.ExcelTest2;
+import test_0613f.business.TotalMDao;
 import util.GetPath;
 
 /**
@@ -48,43 +49,55 @@ public class ExcelOutServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		HttpSession session = request.getSession();
-//		※String id = (String) session.getAttribute("id");
+		String id = (String) session.getAttribute("id");
 		String name = (String) session.getAttribute("name");
-//		※Integer year = (Integer) session.getAttribute("year");
-//		※Integer month = (Integer) session.getAttribute("month");
-
+		Integer year = (Integer) session.getAttribute("year");
+		Integer month = (Integer) session.getAttribute("month");
 
 		ExcelTest2 ext = new ExcelTest2();
-//		※TotalMDao totalM = new TotalMDao();
-
-		List<TotalM> list =  (List<TotalM>) session.getAttribute("list");
-				//※findAllByMonthForIdFromAdmin(id, year, month);
-		/**
-		 * ※現状テーブルデータ全取得から全出力はなし
-		 * ・20件以上登録されているとexcelがおかしくなる
-		 * ・結果画面がセッションから表示のため同じもの(findAllByMonthForId)を出力しないと結果が乖離する可能性がある
-		 *
-		 */
-
-
-
+		TotalMDao totalM = new TotalMDao();
 
 		GetPath gp = new GetPath();
 		String INPUT_DIR = gp.getDesktopPath();
 
+		//int offset = 0;
 		int i = 0;
+		int point = 0;
 		int total = 0;
-		int size = 20 - list.size();
+		int sheetNum = 0;
+
+		List<TotalM> list =  totalM.findAllByMonthForIdFromAdmin(id, year, month);
+
+		int size = list.size();
+
+		if(size > 21) {
+			point = size / 21;
+		}
+
 		String fileNameAfter = "テストだよ.xls";
 
 		for (TotalM totalm : list) {
-			ext.excelOut(totalm, i++, INPUT_DIR, name, fileNameAfter);
+			boolean rowReset = ext.excelOut(totalm, i++, INPUT_DIR, name, fileNameAfter, point, sheetNum);
 
 			total += totalm.getMoney();
-		}
-///aaaaaaaaaaaa
-		request.setAttribute("excel", 	INPUT_DIR +"\\" + fileNameAfter);
 
+			point = 0;
+
+			if(rowReset) {
+				i = 0;
+				sheetNum += 1;
+			}
+		}
+
+		if(size > 21) {
+			point = size / 21;
+		}
+
+		size = 21 * (point + 1) - list.size();
+
+		request.setAttribute("excel", INPUT_DIR +"\\" + fileNameAfter);
+		request.setAttribute("list", list);
+		request.setAttribute("point", point);
 		request.setAttribute("size", size);
 		request.setAttribute("total", total);
 
