@@ -56,7 +56,7 @@ public class SearchServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// セッションから情報を取得
-		String masterId = (String) session.getAttribute("masterId");
+		//String masterId = (String) session.getAttribute("masterId");
 		String masterName = (String) session.getAttribute("masterName");
 		Integer year = (Integer) session.getAttribute("year");
 		Integer month = (Integer) session.getAttribute("month");
@@ -258,7 +258,7 @@ public class SearchServlet extends HttpServlet {
 			// 入力フォームに入力あり？
 			} else {
 				// 自分以外の全ユーザの名前を取得
-				List<String> userList = search.findNameAll(masterId);
+				List<String> userList = search.findNameAll();
 
 				// レーベンシュタイン距離による評価関数
 				LevenshteinDistance dis =  new LevenshteinDistance();
@@ -272,7 +272,7 @@ public class SearchServlet extends HttpServlet {
 						.orElse(name);
 
 				// レーベンシュタイン距離が離れすぎている？
-				if(dis.getDistance(name, closest) < 40) {
+				if(dis.getDistance(name, closest) > 40) {
 					// リクエストに情報をセット
 					request.setAttribute("error", "近しい名前が存在しません。文字数が少ない場合にはもう少し長く、"
 							+ "文字数が多い場合にはもう少し短くして再度検索してみて下さい。"
