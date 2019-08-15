@@ -26,9 +26,9 @@ public class SearchDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			// PreparedStatementの宣言
 			PreparedStatement presmt = null;
 
@@ -121,9 +121,9 @@ public class SearchDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			// PreparedStatementの宣言
 			PreparedStatement presmt = null;
 
@@ -170,9 +170,9 @@ public class SearchDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			// PreparedStatementの宣言
 			PreparedStatement presmt = null;
 
@@ -222,9 +222,9 @@ public class SearchDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			// PreparedStatementの宣言
 			PreparedStatement presmt = null;
 

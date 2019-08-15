@@ -29,18 +29,17 @@
 			</p>
 		</c:if>
 
-
-
 		<form id="search" name="search" class="mb-4" action="Search"
 			method="post">
 
+			<input type="text" id="id" name="id" value="">
+			<input type="submit" id="idSearch" name="idSearch"
+				class="btn btn-info ml-2 mb-3" value="ID検索">
 
+			<br>
 
-			<input type="text" id="id" name="id" value=""> <input
-				type="submit" id="idSearch" name="idSearch"
-				class="btn btn-info ml-2 mb-3" value="ID検索"> <br> <input
-				type="text" id="name" name="name" autocomplete="on" list="keywords"
-				value="">
+			<input type="text" id="name" name="name" autocomplete="on"
+				list="keywords" value="">
 			<datalist id="keywords">
 				<c:forEach var="item" items="${allName}">
 					<option value="${item}">

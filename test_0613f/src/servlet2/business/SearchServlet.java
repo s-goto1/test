@@ -148,7 +148,7 @@ public class SearchServlet extends HttpServlet {
 						.orElse(id);
 
 				// レーベンシュタイン距離が離れすぎている？
-				if(dis.getDistance(id, closest) < 40) {
+				if(dis.getDistance(id, closest) * 100 < 40) {
 					// リクエストに情報をセット
 					request.setAttribute("error", "近しいIDが存在しません。文字数が少ない場合にはもう少し長く、"
 							+ "文字数が多い場合にはもう少し短くして再度検索してみて下さい。"
@@ -272,7 +272,7 @@ public class SearchServlet extends HttpServlet {
 						.orElse(name);
 
 				// レーベンシュタイン距離が離れすぎている？
-				if(dis.getDistance(name, closest) > 40) {
+				if(dis.getDistance(name, closest) * 100 < 40) {
 					// リクエストに情報をセット
 					request.setAttribute("error", "近しい名前が存在しません。文字数が少ない場合にはもう少し長く、"
 							+ "文字数が多い場合にはもう少し短くして再度検索してみて下さい。"
