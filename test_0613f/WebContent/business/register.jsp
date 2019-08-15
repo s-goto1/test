@@ -99,7 +99,7 @@
 		    <input type="hidden" name="id" value="${id}" size="">
 
 			<input type="submit" id="regist" name="確認用" class="btn btn-primary mr-2" value="登録確定">
-			<input type="button" id="back" name="" class="btn btn-warning mr-4" onclick="location.href='./home.jsp'" value="戻る">
+			<input type="button" id="back" name="" class="btn btn-warning mr-4" onclick="location.href='PagingServTest?page=${currentpage}'" value="戻る">
 			<input type="button" id="today" name="today" class="btn btn-secondary mr-2" value="今日の日付">
 			<input type="button" id="train" name="" class="btn btn-info" onclick="clickBtn1()" value="往復">
 

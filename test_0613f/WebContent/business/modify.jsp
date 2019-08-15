@@ -138,7 +138,7 @@
 				</tbody>
 			</table>
 			<input type="submit" name="uptest" class="btn btn-success mr-2" value="修正確定">
-			<input type="button" class="btn btn-warning" onclick="location.href='./home.jsp'" value="戻る">
+			<input type="button" class="btn btn-warning" onclick="location.href='PagingServTest?page=${currentpage}'" value="戻る">
 		</form>
 
 	</div>
