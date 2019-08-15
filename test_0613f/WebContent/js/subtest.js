@@ -113,7 +113,7 @@ function clickTrainBtn(button) {
 	}
 }
 
-function checkInput(){
+function checkInput1(){
 	// 配列を設定
 	const arr1 = [];
 
@@ -136,18 +136,77 @@ function checkInput(){
 	id.value = arr1;
 }
 
+function checkInput2(){
+	// 配列を設定
+	const arr2 = [];
+
+	// チェックボックスを取得
+	const vacation_id = document.form.vacation_id;
+
+	// 入力フォームを取得
+	var id = document.getElementById('modal_vacation_id');
+
+	//チェックボックスの数分ループを回す
+	for (let i = 0; i < vacation_id.length; i++){
+		// チェックボックスが付いてる？
+		if(vacation_id[i].checked){ //(vacation_id[i].checked === true)と同じ
+			// チェックボックスのvalue値を配列にセット
+			arr2.push(vacation_id[i].value);
+		}
+	}
+
+	// 入力フォームに値をセット
+	id.value = arr2;
+}
+
 jQuery(function($) {
 	$(document).on('click', '#today', function() {
 		// 今日の日時を取得
-		var today = new Date();
+		var date = new Date();
 
 		// 入力フォームを取得
 		var month = document.getElementById('month');
-		var date = document.getElementById('date');
+		var day = document.getElementById('day');
 
 		// 今日の月日を表示
-		month.value = today.getMonth() + 1;
-		date.value = today.getDate();
+		month.value = date.getMonth() + 1;
+		day.value = date.getDate();
+	});
+});
+
+jQuery(function($) {
+	$(document).on('click', '#tomorrow', function() {
+		// 今日の日時を取得
+		var date = new Date();
+
+		// 明日の日時をセット
+		date.setDate(date.getDate() + 1);
+
+		// 入力フォームを取得
+		var month = document.getElementById('fromMonth');
+		var date = document.getElementById('fromDay');
+
+		// 明日の月日を表示
+		month.value = date.getMonth() + 1;
+		day.value = date.getDate();
+	});
+});
+
+jQuery(function($) {
+	$(document).on('click', '#yesterday', function() {
+		// 今日の日時を取得
+		var date = new Date();
+
+		// 昨日の日時をセット
+		date.setDate(date.getDate() - 1);
+
+		// 入力フォームを取得
+		var month = document.getElementById('toMonth');
+		var date = document.getElementById('toDay');
+
+		// 昨日の月日を表示
+		month.value = date.getMonth() + 1;
+		day.value = date.getDate();
 	});
 });
 

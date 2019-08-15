@@ -1,6 +1,8 @@
 package servlet2.vacation;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import entity.Vacation;
+import test_0613f.vacation.VacationDao;
 
 /**
  * Servlet implementation class VacationServlet
@@ -35,14 +40,44 @@ public class VacationServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// セッションから情報を取得
-		Integer auth = (Integer) session.getAttribute("masterAuth");
+		String id = (String) session.getAttribute("id");
+		Integer auth = (Integer) session.getAttribute("auth");
+
+		// 現在年月を取得
+		Calendar cal = Calendar.getInstance();
+		Integer year = cal.get(Calendar.YEAR);
+		Integer fromMonth = cal.get(Calendar.MONTH) + 1;
 
 		// 権限が管理者？
 		if(auth == 1) {
+			// セッションに情報をセット
+			session.setAttribute("year", year);
+			session.setAttribute("fromMonth", fromMonth);
+
 			// 検索画面へ遷移
 			response.sendRedirect("./vacation/search.jsp");
 		// 権限が担当者？
 		} else {
+			// DAOの宣言
+			VacationDao dao = new VacationDao();
+
+			// 該当年月の休暇申請データ取得
+			List<Vacation> list = dao.findAllByMonthForId(id, year, fromMonth, 0);
+
+			// ページングなしでのレコード数取得
+			int count = dao.countRow(id, year, fromMonth);
+
+			// ページング設定
+			int number = (count + 5 - 1) / 5;
+
+			// セッションに情報をセット
+			session.setAttribute("year", year);
+			session.setAttribute("fromMonth", fromMonth);
+			session.setAttribute("currentpage", 1);
+			session.setAttribute("number", number);
+			session.setAttribute("list", list);
+			session.setAttribute("nolist", "登録されているデータがありません。");
+
 			// 休暇申請画面へ遷移
 			response.sendRedirect("./vacation/home.jsp");
 		}

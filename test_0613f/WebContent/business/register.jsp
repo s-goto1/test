@@ -84,7 +84,7 @@
 						<td><input type="text" name="place" id="place"
 							value="" size="15" required></td>
 
-		                <td><input type="text" name="division" id="division"
+						<td><input type="text" name="division" id="division"
 							value="片道" size="5" readonly></td>
 
 						<td><input type="number" name="money" id="money"

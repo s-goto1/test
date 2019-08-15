@@ -227,7 +227,7 @@
 						<input type="button" id="excelout" class="btn btn-warning mr-2"
 							value="Excelに出力">
 						<input type="button" id="modal"
-							class="btn btn-danger open-options mr-2" onclick="checkInput()"
+							class="btn btn-danger open-options mr-2" onclick="checkInput1()"
 							value="削除">
 					</c:if>
 				</c:otherwise>

@@ -22,13 +22,12 @@
 		<form id="form1" name="form1" action="Update" method="post">
 			<p class="mt-3">
 				<b><c:out value="${name}さん" /></b>の出張清算一覧データ
-				（2019年<c:out value="${month}月分" />）
+				（<c:out value="${year}年${month}月分" />）
 			</p>
 
 			<table border="1" class="table table-striped" style="border: solid 3px;">
 				<tbody style="border: black 2px">
 					<tr>
-
 						<th colspan="2" rowspan="3">
 							<div class="text-center">月日</div>
 						</th>
@@ -87,8 +86,6 @@
 							<td><input type="text" name="destination"
 								value="${item.destination}" size="10" required></td>
 
-
-
 							<td><select name="transportation" id="transportation">
 								<c:choose>
 									<c:when test="${item.transportation eq '地下鉄'}">
@@ -119,7 +116,7 @@
 							<td><input type="text" name="place" id="place"
 								value="${item.place}" size="15" required></td>
 
-		                   <td><input type="text" name="division" id="division${status.count}"
+							<td><input type="text" name="division" id="division${status.count}"
 								value="${item.division}" size="5" readonly></td>
 
 							<td><input type="number" name="money" id="money${status.count}"
