@@ -73,6 +73,7 @@ public class TestServlet extends HttpServlet {
 
 		// 権限が管理者？
 		if(auth == 1) {
+			session.setAttribute("map", "");
 			// 今月の出張清算データがある人物のIDを取得
 			List<String> idList = search.findIdDistinct(y, m);
 
