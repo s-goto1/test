@@ -29,13 +29,15 @@
 
 		</form>
 
-		<button type="button" class="btn btn-success mt-3" data-toggle="collapse"
-			data-target=".multi-collapse" aria-expanded="false">全開閉</button>
+		<button type="button" class="btn btn-success mt-3"
+			data-toggle="collapse" data-target=".multi-collapse"
+			aria-expanded="false">全開閉</button>
 
-		<form id="form" name="form" action="" method="post">
+		<form id="form" name="form" action="Search" method="post">
 			<p class="mt-3">
-				<b>全社員</b>の出張清算一覧データ
-				（<c:out value="${year}年${month}月分" />）
+				<b>全社員</b>の出張清算一覧データ （
+				<c:out value="${year}年${month}月分" />
+				）
 			</p>
 
 			<c:if test="${not empty map}">
@@ -45,15 +47,22 @@
 							<div class="card-header" id="header-${status.count}" role="tab">
 								<button class="btn btn-link btn-block text-left" type="button"
 									data-toggle="collapse" data-target="#card-${status.count}"
-										aria-expanded="false"
-									aria-controls="card-${status.count}">
+									aria-expanded="false" aria-controls="card-${status.count}">
 									<b><c:out value="${nameList.get(status.index)}さん" /></b>
 								</button>
 							</div>
-							<div id="card-${status.count}" class="collapse show multi-collapse" role="tabpanel"
+
+							<input type='hidden' name='nameSearch' id='nameSearch'
+								value="aaa">
+							<button type='submit' name='name' id='name'
+								value='${nameList.get(status.index)}'>${nameList.get(status.index)}だけ表示</button>
+
+							<div id="card-${status.count}"
+								class="collapse show multi-collapse" role="tabpanel"
 								aria-labelledby="header-${status.count}">
 								<div class="card-body">
-									<table border="1" class="table table-striped" style="border: solid 3px;">
+									<table border="1" class="table table-striped"
+										style="border: solid 3px;">
 										<tbody style="border: black 2px">
 											<tr>
 												<th colspan="2" rowspan="3">
@@ -93,7 +102,8 @@
 												<!-- table-stripedのための空列 -->
 											</tr>
 
-											<c:forEach var="item" items="${i.value}" begin="0" end="${i.value.size()}">
+											<c:forEach var="item" items="${i.value}" begin="0"
+												end="${i.value.size()}">
 												<tr>
 													<td><c:if test="${not empty map}">
 															<c:out value="${item.month}月" />
@@ -153,60 +163,38 @@
 					<ul class="pagination justify-content-center">
 						<c:choose>
 							<c:when test="${currentpage == 1}">
-								<li class="page-item disabled">
-									<a class="page-link" href="#">
-										Prev
-									</a>
-								</li>
+								<li class="page-item disabled"><a class="page-link"
+									href="#"> Prev </a></li>
 							</c:when>
 							<c:otherwise>
-								<li class="page-item">
-									<a class="page-link"
-										href="PagingServTest?page=${currentpage - 1}">
-										Prev
-									</a>
-								</li>
+								<li class="page-item"><a class="page-link"
+									href="PagingServTest?page=${currentpage - 1}"> Prev </a></li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:forEach begin="1" end="${number}" step="1" varStatus="status">
 							<c:choose>
 								<c:when test="${currentpage == status.index}">
-									<li class="page-item active">
-										<span class="page-link">
-											${status.index}
-											<span class="sr-only">
-												(current)
-											</span>
-										</span>
-									</li>
+									<li class="page-item active"><span class="page-link">
+											${status.index} <span class="sr-only"> (current) </span>
+									</span></li>
 								</c:when>
 								<c:otherwise>
-									<li class="page-item">
-										<a class="page-link"
-											href="PagingServTest?page=${status.index}">
-											${status.index}
-										</a>
-									</li>
+									<li class="page-item"><a class="page-link"
+										href="PagingServTest?page=${status.index}">
+											${status.index} </a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 
 						<c:choose>
 							<c:when test="${currentpage == number}">
-								<li class="page-item disabled">
-									<a class="page-link" href="#">
-										Next
-									</a>
-								</li>
+								<li class="page-item disabled"><a class="page-link"
+									href="#"> Next </a></li>
 							</c:when>
 							<c:otherwise>
-								<li class="page-item">
-									<a class="page-link"
-										href="PagingServTest?page=${currentpage + 1}">
-										Next
-									</a>
-								</li>
+								<li class="page-item"><a class="page-link"
+									href="PagingServTest?page=${currentpage + 1}"> Next </a></li>
 							</c:otherwise>
 						</c:choose>
 					</ul>
@@ -216,12 +204,12 @@
 
 			<!--<input type="button" id="excelout"
 				class="btn btn-warning mr-2" value="Excelに出力">-->
-			<input type="button" id="admin"
-				class="btn btn-primary mr-2" value="管理画面">
-			<input type="button" id="menu" class="btn btn-light mr-2"
-				onclick="location.href='../menu.jsp'" value="メニュー">
-			<input type="button" id="logout" class="btn btn-secondary"
-				onclick="location.href='../logout.jsp'" value="ログアウト">
+			<input type="button" id="admin" class="btn btn-primary mr-2"
+				value="管理画面"> <input type="button" id="menu"
+				class="btn btn-light mr-2" onclick="location.href='../menu.jsp'"
+				value="メニュー"> <input type="button" id="logout"
+				class="btn btn-secondary" onclick="location.href='../logout.jsp'"
+				value="ログアウト">
 
 		</form>
 
