@@ -11,7 +11,7 @@ import java.util.List;
 import entity.Vacation;
 
 public class VacationDao {
-	public List<Vacation> findAllByMonthForId(String id, Integer year, Integer fromMonth, int offset) {
+	public List<Vacation> findAllByMonthForId(String id, Integer year, int offset) {
 
 		List<Vacation> list = new ArrayList<>();
 
@@ -29,13 +29,12 @@ public class VacationDao {
 				"axizuser",
 				"axiz");) {
 			PreparedStatement presmt = null;
-			String sql = "SELECT * FROM vacation WHERE id = ? AND year = ? AND from_month = ? "
-					+ "ORDER BY from_day, vacation_id LIMIT 5 OFFSET ?";
+			String sql = "SELECT * FROM vacation WHERE id = ? AND year = ? "
+					+ "ORDER BY from_month, vacation_id LIMIT 5 OFFSET ?";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, id);
 			presmt.setInt(2, year);
-			presmt.setInt(3, fromMonth);
-			presmt.setInt(4, offset);
+			presmt.setInt(3, offset);
 			ResultSet rset = presmt.executeQuery();
 
 			// データベースから取得した値がある間、
@@ -63,7 +62,7 @@ public class VacationDao {
 	}
 
 	//名前で絞って全部表示するメソッド（仮）
-	public List<Vacation> findAllByMonthForName(String name, Integer year, Integer fromMonth, int offset) {
+	public List<Vacation> findAllByMonthForName(String name, Integer year, int offset) {
 
 		List<Vacation> list = new ArrayList<>();
 
@@ -82,13 +81,12 @@ public class VacationDao {
 				"axiz");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM vacation AS v JOIN userinfo AS u ON v.id = u.id "
-					+ "WHERE u.name = ? AND v.year = ? AND v.from_month = ? "
-					+ "ORDER BY v.from_day, v.vacation_id LIMIT 5 OFFSET ?";
+					+ "WHERE u.name = ? AND v.year = ? ORDER BY v.from_month, "
+					+ "v.vacation_id LIMIT 5 OFFSET ?";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, name);
 			presmt.setInt(2, year);
-			presmt.setInt(3, fromMonth);
-			presmt.setInt(4, offset);
+			presmt.setInt(3, offset);
 			ResultSet rset = presmt.executeQuery();
 
 			// データベースから取得した値がある間、
@@ -116,7 +114,7 @@ public class VacationDao {
 	}
 
 	//レコード数取得（ページング用）
-	public int countRow(String id, Integer year, Integer fromMonth) {
+	public int countRow(String id, Integer year) {
 
 		int count = 0;
 		// JDBCドライバ読み込み
@@ -133,12 +131,10 @@ public class VacationDao {
 				"axizuser",
 				"axiz");) {
 			PreparedStatement presmt = null;
-			String sql = "SELECT COUNT (*) FROM vacation WHERE id = ? AND year = ? "
-					+ "AND from_month = ? ";
+			String sql = "SELECT COUNT (*) FROM vacation WHERE id = ? AND year = ?";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, id);
 			presmt.setInt(2, year);
-			presmt.setInt(3, fromMonth);
 
 			ResultSet rset = presmt.executeQuery();
 
@@ -153,7 +149,7 @@ public class VacationDao {
 		return count;
 	}
 
-	public List<Vacation> findAllByMonthForIdFromAdmin(String id, Integer year, Integer fromMonth) {
+	public List<Vacation> findAllByMonthForIdFromAdmin(String id, Integer year) {
 
 		List<Vacation> list = new ArrayList<>();
 
@@ -171,12 +167,11 @@ public class VacationDao {
 				"axizuser",
 				"axiz");) {
 			PreparedStatement presmt = null;
-			String sql = "SELECT * FROM vacation WHERE id = ? AND year = ? AND from_month = ? "
-					+ "ORDER BY from_day, vacation_id";
+			String sql = "SELECT * FROM vacation WHERE id = ? AND year = ? "
+					+ "ORDER BY from_month, vacation_id";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, id);
 			presmt.setInt(2, year);
-			presmt.setInt(3, fromMonth);
 			ResultSet rset = presmt.executeQuery();
 
 			// データベースから取得した値がある間、
@@ -203,7 +198,7 @@ public class VacationDao {
 		return list;
 	}
 
-	public List<Vacation> findAllByMonthForNameFromAdmin(String name, Integer year, Integer fromMonth) {
+	public List<Vacation> findAllByMonthForNameFromAdmin(String name, Integer year) {
 
 		List<Vacation> list = new ArrayList<>();
 
@@ -222,12 +217,11 @@ public class VacationDao {
 				"axiz");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM vacation AS v JOIN userinfo AS u ON v.id = u.id "
-					+ "WHERE u.name = ? AND v.year = ? AND v.from_month = ? "
-					+ "ORDER BY v.from_day, v.vacation_id";
+					+ "WHERE u.name = ? AND v.year = ? ORDER BY v.from_month, "
+					+ "v.vacation_id";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, name);
 			presmt.setInt(2, year);
-			presmt.setInt(3, fromMonth);
 			ResultSet rset = presmt.executeQuery();
 
 			// データベースから取得した値がある間、

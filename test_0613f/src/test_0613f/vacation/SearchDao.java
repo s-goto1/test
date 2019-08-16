@@ -107,7 +107,7 @@ public class SearchDao {
 //		return list;
 //	}
 
-	public List<String> findIdDistinct(Integer year, Integer fromMonth) {
+	public List<String> findIdDistinct(Integer year) {
 		// String型のListの宣言
 		List<String> list = new ArrayList<>();
 
@@ -129,14 +129,13 @@ public class SearchDao {
 
 			// SQL文
 			String sql = "SELECT DISTINCT id FROM vacation "
-					+ "WHERE year = ? AND from_month = ?";
+					+ "WHERE year = ?";
 
 			// SQL文をセット
 			presmt = conn.prepareStatement(sql);
 
 			// プレースホルダに埋め込み
 			presmt.setInt(1, year);
-			presmt.setInt(2, fromMonth);
 
 			// SQL文実行
 			ResultSet rset = presmt.executeQuery();
@@ -156,7 +155,7 @@ public class SearchDao {
 		return list;
 	}
 
-	public List<String> findNameDistinct(Integer year, Integer fromMonth) {
+	public List<String> findNameDistinct(Integer year) {
 		// String型のListの宣言
 		List<String> list = new ArrayList<>();
 
@@ -179,14 +178,13 @@ public class SearchDao {
 			// SQL文
 			String sql = "SELECT DISTINCT u.name FROM userinfo AS u "
 					+ "JOIN vacation AS v ON u.id = v.id "
-					+ "WHERE v.year = ? AND v.from_month = ?";
+					+ "WHERE v.year = ?";
 
 			// SQL文をセット
 			presmt = conn.prepareStatement(sql);
 
 			// プレースホルダに埋め込み
 			presmt.setInt(1, year);
-			presmt.setInt(2, fromMonth);
 
 			// SQL文実行
 			ResultSet rset = presmt.executeQuery();

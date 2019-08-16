@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import entity.Vacation;
-import test_0613f.business.SearchDao;
+import test_0613f.vacation.SearchDao;
 import test_0613f.vacation.VacationDao;
 
 /**
@@ -68,11 +68,11 @@ public class DateServlet extends HttpServlet {
 
 		// 権限が管理者？
 		if(auth == 1) {
-			// 今月の休暇申請データがある人物のIDを取得
-			List<String> idList = search.findIdDistinct(y, m);
+			// 今年の休暇申請データがある人物のIDを取得
+			List<String> idList = search.findIdDistinct(y);
 
-			// 今月の休暇申請データがある人物の名前を取得
-			List<String> nameList = search.findNameDistinct(y, m);
+			// 今年の休暇申請データがある人物の名前を取得
+			List<String> nameList = search.findNameDistinct(y);
 
 			// データが1件でもある？
 			if(idList.size() > 0 && nameList.size() > 0) {
@@ -80,7 +80,7 @@ public class DateServlet extends HttpServlet {
 				Map<String, List<Vacation>> map = idList.stream()
 						.collect(Collectors.toMap(
 								s -> s,
-								s -> vacation.findAllByMonthForId(s, y, m, 0)));
+								s -> vacation.findAllByMonthForId(s, y, 0)));
 
 				// セッションに情報をセット
 				session.setAttribute("map", map);
@@ -101,10 +101,10 @@ public class DateServlet extends HttpServlet {
 		// 権限が担当者？
 		} else {
 			// 変更後のリスト取得
-			List<Vacation> list = vacation.findAllByMonthForId(id, y, m, 0);
+			List<Vacation> list = vacation.findAllByMonthForId(id, y, 0);
 
 			// ページングなしでのレコード数取得
-			int count = vacation.countRow(id, y, m);
+			int count = vacation.countRow(id, y);
 
 			// ページング設定
 			int number = (count + 5 - 1) / 5;

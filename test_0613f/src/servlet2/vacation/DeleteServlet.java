@@ -43,7 +43,6 @@ public class DeleteServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 文字化け回避
@@ -58,7 +57,6 @@ public class DeleteServlet extends HttpServlet {
 		// セッションから情報を取得
 		String id = (String) session.getAttribute("id");
 		Integer year = (Integer) session.getAttribute("year");
-		List<Vacation> vacationList = (List<Vacation>) session.getAttribute("list");
 
 		// チェックボックスにチェックがない？
 		if (vacation_id.length == 1 && vacation_id[0].equals("")) {
@@ -85,11 +83,8 @@ public class DeleteServlet extends HttpServlet {
 				delete.delete(vacationId);
 			}
 
-			// 削除したデータの月を取得
-			Integer fromMonth = vacationList.get(0).getFromMonth();
-
 			// 削除後のリスト取得
-			List<Vacation> list = vacation.findAllByMonthForId(id, year, fromMonth, 0);
+			List<Vacation> list = vacation.findAllByMonthForId(id, year, 0);
 
 			// リクエストに情報をセット
 			request.setAttribute("deleteList", deleteList);

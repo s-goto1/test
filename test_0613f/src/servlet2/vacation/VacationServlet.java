@@ -62,10 +62,10 @@ public class VacationServlet extends HttpServlet {
 			VacationDao dao = new VacationDao();
 
 			// 該当年月の休暇申請データ取得
-			List<Vacation> list = dao.findAllByMonthForId(id, year, fromMonth, 0);
+			List<Vacation> list = dao.findAllByMonthForId(id, year, 0);
 
 			// ページングなしでのレコード数取得
-			int count = dao.countRow(id, year, fromMonth);
+			int count = dao.countRow(id, year);
 
 			// ページング設定
 			int number = (count + 5 - 1) / 5;

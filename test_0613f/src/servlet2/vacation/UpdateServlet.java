@@ -175,11 +175,8 @@ public class UpdateServlet extends HttpServlet {
 					vacationListComp.get(i).getReason(), vacationListComp.get(i).getVacation_id());
 		}
 
-		// 変更前データの該当月を取得
-		Integer mon = vacationListBefore.get(0).getFromMonth();
-
 		// 変更後のリスト取得
-		List<Vacation> vacationList = vacationDao.findAllByMonthForId(id, year, mon, 0);
+		List<Vacation> vacationList = vacationDao.findAllByMonthForId(id, year, 0);
 
 		// リクエストに情報をセット
 		request.setAttribute("vacationListUp", vacationListUp);

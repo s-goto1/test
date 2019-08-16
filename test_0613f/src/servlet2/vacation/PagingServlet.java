@@ -87,7 +87,7 @@ public class PagingServlet extends HttpServlet {
 			Map<String, List<Vacation>> map = idListLimit.stream()
 					.collect(Collectors.toMap(
 							s -> s,
-							s -> dao.findAllByMonthForIdFromAdmin(s, year, fromMonth)));
+							s -> dao.findAllByMonthForIdFromAdmin(s, year)));
 
 			// セッションに情報をセット
 			session.setAttribute("currentpage", 1);
@@ -102,9 +102,9 @@ public class PagingServlet extends HttpServlet {
 			dispatch.forward(request, response);
 		// 権限が担当者？
 		} else {
-			List<Vacation> list = dao.findAllByMonthForId(id, year, fromMonth, offset);
+			List<Vacation> list = dao.findAllByMonthForId(id, year, offset);
 
-			int count = dao.countRow(id, year, fromMonth);
+			int count = dao.countRow(id, year);
 
 			int number = (count + 5 - 1) / 5;
 

@@ -19,7 +19,7 @@ import org.apache.lucene.search.spell.LevenshteinDistance;
 
 import entity.Vacation;
 import test_0613f.LoginUser;
-import test_0613f.business.SearchDao;
+import test_0613f.vacation.SearchDao;
 import test_0613f.vacation.VacationDao;
 
 /**
@@ -59,7 +59,6 @@ public class SearchServlet extends HttpServlet {
 		//String masterId = (String) session.getAttribute("masterId");
 		String masterName = (String) session.getAttribute("masterName");
 		Integer year = (Integer) session.getAttribute("year");
-		Integer fromMonth = (Integer) session.getAttribute("fromMonth");
 
 		// 「ID検索」が押された？
 		if(request.getParameter("idSearch") != null) {
@@ -73,11 +72,11 @@ public class SearchServlet extends HttpServlet {
 
 			// 入力フォームが空欄？
 			if(id == null || id.equals("")) {
-				// 今月の出張清算データがある人物のIDを取得
-				List<String> idList = search.findIdDistinct(year, fromMonth);
+				// 今年の休暇申請データがある人物のIDを取得
+				List<String> idList = search.findIdDistinct(year);
 
-				// 今月の出張清算データがある人物の名前を取得
-				List<String> nameList = search.findNameDistinct(year, fromMonth);
+				// 今年の休暇申請データがある人物の名前を取得
+				List<String> nameList = search.findNameDistinct(year);
 
 				// データが1件でもある？
 				if(idList.size() > 0 && nameList.size() > 0) {
@@ -103,11 +102,11 @@ public class SearchServlet extends HttpServlet {
 					// 1度に表示するユーザ数を制限
 					List<String> idListLimit = idList.subList(0, index);
 
-					// 今月分の規定数の社員の出張精算データを取得
+					// 今年分の規定数の社員の休暇申請データを取得
 					Map<String, List<Vacation>> map = idListLimit.stream()
 							.collect(Collectors.toMap(
 									s -> s,
-									s -> vacation.findAllByMonthForIdFromAdmin(s, year, fromMonth)));
+									s -> vacation.findAllByMonthForIdFromAdmin(s, year)));
 
 					// セッションに情報をセット
 					session.setAttribute("currentpage", 1);
@@ -154,13 +153,13 @@ public class SearchServlet extends HttpServlet {
 				// レーベンシュタイン距離は適切な長さ？
 				} else {
 					// ヒットしたユーザの情報を取得
-					List<Vacation> list = vacation.findAllByMonthForId(closest, year, fromMonth, 0);
+					List<Vacation> list = vacation.findAllByMonthForId(closest, year, 0);
 
 					// ヒットしたユーザの情報を元にそのユーザの名前を取得
 					String name = user.findUser(closest).getName();
 
 					// ページングなしでのレコード数取得
-					int count = vacation.countRow(closest, year, fromMonth);
+					int count = vacation.countRow(closest, year);
 
 					// ページング設定
 					int number = (count + 5 - 1) / 5;
@@ -191,11 +190,11 @@ public class SearchServlet extends HttpServlet {
 
 			// 入力フォームが空欄？
 			if(name == null || name.equals("")) {
-				// 今月の出張清算データがある人物のIDを取得
-				List<String> idList = search.findIdDistinct(year, fromMonth);
+				// 今年の休暇申請データがある人物のIDを取得
+				List<String> idList = search.findIdDistinct(year);
 
-				// 今月の出張清算データがある人物の名前を取得
-				List<String> nameList = search.findNameDistinct(year, fromMonth);
+				// 今月の休暇申請データがある人物の名前を取得
+				List<String> nameList = search.findNameDistinct(year);
 
 				// データが1件でもある？
 				if(idList.size() > 0 && nameList.size() > 0) {
@@ -221,11 +220,11 @@ public class SearchServlet extends HttpServlet {
 					// 1度に表示するユーザ数を制限
 					List<String> nameListLimit = nameList.subList(0, index);
 
-					// 今月分の規定数の社員の出張精算データを取得
+					// 今年分の規定数の社員の休暇申請データを取得
 					Map<String, List<Vacation>> map = nameListLimit.stream()
 							.collect(Collectors.toMap(
 									s -> s,
-									s -> vacation.findAllByMonthForNameFromAdmin(s, year, fromMonth)));
+									s -> vacation.findAllByMonthForNameFromAdmin(s, year)));
 
 					// セッションに情報をセット
 					session.setAttribute("currentpage", 1);
@@ -272,13 +271,13 @@ public class SearchServlet extends HttpServlet {
 				// レーベンシュタイン距離は適切な長さ？
 				} else {
 					// ヒットしたユーザの情報を取得
-					List<Vacation> list = vacation.findAllByMonthForName(closest, year, fromMonth, 0);
+					List<Vacation> list = vacation.findAllByMonthForName(closest, year, 0);
 
 					// ヒットしたユーザの情報を元にそのユーザのIDを取得
 					String id = list.get(0).getId();
 
 					// ページングなしでのレコード数取得
-					int count = vacation.countRow(id, year, fromMonth);
+					int count = vacation.countRow(id, year);
 
 					// ページング設定
 					int number = (count + 5 - 1) / 5;
