@@ -79,10 +79,6 @@
 												<th rowspan="3">
 													<div class="text-center">用件</div>
 												</th>
-
-												<th rowspan="3">
-													<div class="text-center">削除</div>
-												</th>
 											</tr>
 											<tr>
 												<th rowspan="2">
@@ -133,13 +129,6 @@
 
 													<td><c:if test="${not empty map}">
 															<c:out value="${item.purpose}" />
-														</c:if></td>
-
-													<td><c:if test="${not empty map}">
-															<div class="text-center">
-																<input type="checkbox" name="totalM_id"
-																	value="${item.totalM_id}">
-															</div>
 														</c:if></td>
 												</tr>
 											</c:forEach>
