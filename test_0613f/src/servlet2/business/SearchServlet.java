@@ -29,18 +29,19 @@ import test_0613f.business.TotalMDao;
 public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SearchServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public SearchServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -48,7 +49,8 @@ public class SearchServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 文字化け回避
 		request.setCharacterEncoding("UTF-8");
 
@@ -62,7 +64,7 @@ public class SearchServlet extends HttpServlet {
 		Integer month = (Integer) session.getAttribute("month");
 
 		// 「ID検索」が押された？
-		if(request.getParameter("idSearch") != null) {
+		if (request.getParameter("idSearch") != null) {
 			// 入力情報の取得
 			final String id = request.getParameter("id");
 
@@ -72,7 +74,7 @@ public class SearchServlet extends HttpServlet {
 			LoginUser user = new LoginUser();
 
 			// 入力フォームが空欄？
-			if(id == null || id.equals("")) {
+			if (id == null || id.equals("")) {
 				// 全員分のリスト取得
 				//List<TotalM> list = totalM.findAllUserListByMonth(year, month);
 
@@ -86,7 +88,7 @@ public class SearchServlet extends HttpServlet {
 				List<String> nameList = search.findNameDistinct(year, month);
 
 				// データが1件でもある？
-				if(idList.size() > 0 && nameList.size() > 0) {
+				if (idList.size() > 0 && nameList.size() > 0) {
 					// 変数宣言
 					int index = 0;
 
@@ -97,10 +99,10 @@ public class SearchServlet extends HttpServlet {
 					int number = (size + 5 - 1) / 5;
 
 					// 5人以上いる？
-					if(size >= 5) {
+					if (size >= 5) {
 						// toIndexの値を5に固定
 						index = 5;
-					// 5人未満しかいない？
+						// 5人未満しかいない？
 					} else {
 						// toIndexの値を人数でセット
 						index = size;
@@ -122,7 +124,7 @@ public class SearchServlet extends HttpServlet {
 					session.setAttribute("map", map);
 					session.setAttribute("idList", idList);
 					session.setAttribute("nameList", nameList);
-				// データが1件もない？
+					// データが1件もない？
 				} else {
 					// セッションに情報をセット
 					session.setAttribute("nomap", "登録されているデータがありません。");
@@ -131,16 +133,16 @@ public class SearchServlet extends HttpServlet {
 				// homeAdmin.jspに遷移
 				RequestDispatcher dispatch = request.getRequestDispatcher("/business/homeAdmin.jsp");
 				dispatch.forward(request, response);
-			// 入力フォームに入力あり？
+				// 入力フォームに入力あり？
 			} else {
 				// 自分以外の全ユーザのIDを取得
 				List<String> userList = search.findIdAll(masterName);
 
 				// レーベンシュタイン距離による評価関数
-				LevenshteinDistance dis =  new LevenshteinDistance();
+				LevenshteinDistance dis = new LevenshteinDistance();
 				ToIntFunction<String> dist = s -> {
 					return (int) (dis.getDistance(id, s) * 100);
-					};
+				};
 
 				// 該当のIDか近しいIDを取得
 				String closest = userList.stream()
@@ -148,7 +150,7 @@ public class SearchServlet extends HttpServlet {
 						.orElse(id);
 
 				// レーベンシュタイン距離が離れすぎている？
-				if(dis.getDistance(id, closest) * 100 < 40) {
+				if (dis.getDistance(id, closest) * 100 < 40) {
 					// リクエストに情報をセット
 					request.setAttribute("error", "近しいIDが存在しません。文字数が少ない場合にはもう少し長く、"
 							+ "文字数が多い場合にはもう少し短くして再度検索してみて下さい。"
@@ -157,37 +159,44 @@ public class SearchServlet extends HttpServlet {
 					// search.jspに遷移
 					RequestDispatcher dispatch = request.getRequestDispatcher("/business/search.jsp");
 					dispatch.forward(request, response);
-				// レーベンシュタイン距離は適切な長さ？
+					// レーベンシュタイン距離は適切な長さ？
 				} else {
 					// ヒットしたユーザの情報を取得
 					List<TotalM> list = totalM.findAllByMonthForId(closest, year, month, 0);
 
-					// ヒットしたユーザの情報を元にそのユーザの名前を取得
-					String name = user.findUser(closest).getName();
+					if (list.size() > 0 && list.size() > 0) {
 
-					// ページングなしでのレコード数取得
-					int count = totalM.countRow(closest, year, month);
+						// ヒットしたユーザの情報を元にそのユーザの名前を取得
+						String name = user.findUser(closest).getName();
 
-					// ページング設定
-					int number = (count + 5 - 1) / 5;
+						// ページングなしでのレコード数取得
+						int count = totalM.countRow(closest, year, month);
 
-					// リストのサイズを取得
-					//int size = list.size();
+						// ページング設定
+						int number = (count + 5 - 1) / 5;
 
-					// ヒットしたユーザの情報をセッションにセット
-					session.setAttribute("id", closest);
-					session.setAttribute("name", name);
-					session.setAttribute("currentpage", 1);
-					session.setAttribute("number", number);
-					session.setAttribute("list", list);
+						// リストのサイズを取得
+						//int size = list.size();
 
+						// ヒットしたユーザの情報をセッションにセット
+						session.setAttribute("id", closest);
+						session.setAttribute("name", name);
+						session.setAttribute("currentpage", 1);
+						session.setAttribute("number", number);
+						session.setAttribute("list", list);
+
+					} else {
+						// セッションに情報をセット
+						session.setAttribute("nolist", "登録されているデータがありません。");
+					}
 					// home.jspに遷移
 					RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
 					dispatch.forward(request, response);
 				}
 			}
-		// 「名前検索」が押された？
-		} else if(request.getParameter("nameSearch") != null) {
+			// 「名前検索」が押された？
+		}
+		if (request.getParameter("nameSearch") != null) {
 			// 入力情報の取得
 			final String name = request.getParameter("name");
 
@@ -196,7 +205,7 @@ public class SearchServlet extends HttpServlet {
 			TotalMDao totalM = new TotalMDao();
 
 			// 入力フォームが空欄？
-			if(name == null || name.equals("")) {
+			if (name == null || name.equals("")) {
 				// 全員分のリスト取得
 				//List<TotalM> list = totalM.findAllUserListByMonth(year, month);
 
@@ -210,7 +219,7 @@ public class SearchServlet extends HttpServlet {
 				List<String> nameList = search.findNameDistinct(year, month);
 
 				// データが1件でもある？
-				if(idList.size() > 0 && nameList.size() > 0) {
+				if (idList.size() > 0 && nameList.size() > 0) {
 					// 変数宣言
 					int index = 0;
 
@@ -221,10 +230,10 @@ public class SearchServlet extends HttpServlet {
 					int number = (size + 5 - 1) / 5;
 
 					// 5人以上いる？
-					if(size >= 5) {
+					if (size >= 5) {
 						// toIndexの値を5に固定
 						index = 5;
-					// 5人以下未満しかいない？
+						// 5人以下未満しかいない？
 					} else {
 						// toIndexの値を人数でセット
 						index = size;
@@ -246,7 +255,7 @@ public class SearchServlet extends HttpServlet {
 					session.setAttribute("map", map);
 					session.setAttribute("idList", idList);
 					session.setAttribute("nameList", nameList);
-				// データが1件もない？
+					// データが1件もない？
 				} else {
 					// セッションに情報をセット
 					session.setAttribute("nomap", "登録されているデータがありません。");
@@ -255,16 +264,16 @@ public class SearchServlet extends HttpServlet {
 				// homeAdmin.jspに遷移
 				RequestDispatcher dispatch = request.getRequestDispatcher("/business/homeAdmin.jsp");
 				dispatch.forward(request, response);
-			// 入力フォームに入力あり？
+				// 入力フォームに入力あり？
 			} else {
 				// 自分以外の全ユーザの名前を取得
 				List<String> userList = search.findNameAll();
 
 				// レーベンシュタイン距離による評価関数
-				LevenshteinDistance dis =  new LevenshteinDistance();
+				LevenshteinDistance dis = new LevenshteinDistance();
 				ToIntFunction<String> dist = s -> {
 					return (int) (dis.getDistance(name, s) * 100);
-					};
+				};
 
 				// 該当の名前か近しい名前を取得
 				String closest = userList.stream()
@@ -272,7 +281,7 @@ public class SearchServlet extends HttpServlet {
 						.orElse(name);
 
 				// レーベンシュタイン距離が離れすぎている？
-				if(dis.getDistance(name, closest) * 100 < 40) {
+				if (dis.getDistance(name, closest) * 100 < 40) {
 					// リクエストに情報をセット
 					request.setAttribute("error", "近しい名前が存在しません。文字数が少ない場合にはもう少し長く、"
 							+ "文字数が多い場合にはもう少し短くして再度検索してみて下さい。"
@@ -281,29 +290,37 @@ public class SearchServlet extends HttpServlet {
 					// search.jspに遷移
 					RequestDispatcher dispatch = request.getRequestDispatcher("/business/search.jsp");
 					dispatch.forward(request, response);
-				// レーベンシュタイン距離は適切な長さ？
+					// レーベンシュタイン距離は適切な長さ？
 				} else {
 					// ヒットしたユーザの情報を取得
 					List<TotalM> list = totalM.findAllByMonthForName(closest, year, month, 0);
 
-					// ヒットしたユーザの情報を元にそのユーザのIDを取得
-					String id = list.get(0).getId();
 
-					// ページングなしでのレコード数取得
-					int count = totalM.countRow(id, year, month);
 
-					// ページング設定
-					int number = (count + 5 - 1) / 5;
+					if (list.size() > 0 && list.size() > 0) {
+						// ヒットしたユーザの情報を元にそのユーザのIDを取得
+						String id = list.get(0).getId();
 
-					// リストのサイズを取得
-					//int size = list.size();
+						// ページングなしでのレコード数取得
+						int count = totalM.countRow(id, year, month);
 
-					// ヒットしたユーザの情報をセッションにセット
-					session.setAttribute("id", id);
-					session.setAttribute("name", closest);
-					session.setAttribute("currentpage", 1);
-					session.setAttribute("number", number);
-					session.setAttribute("list", list);
+						// ページング設定
+						int number = (count + 5 - 1) / 5;
+
+						// リストのサイズを取得
+						//int size = list.size();
+
+						// ヒットしたユーザの情報をセッションにセット
+						session.setAttribute("id", id);
+						session.setAttribute("name", closest);
+						session.setAttribute("currentpage", 1);
+						session.setAttribute("number", number);
+						session.setAttribute("list", list);
+
+					} else {
+						// セッションに情報をセット
+						session.setAttribute("nolist", "登録されているデータがありません。");
+					}
 
 					// home.jspに遷移
 					RequestDispatcher dispatch = request.getRequestDispatcher("/business/home.jsp");
