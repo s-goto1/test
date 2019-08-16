@@ -37,100 +37,106 @@
 				（<c:out value="${year}年${month}月分" />）
 			</p>
 
-			<table border="1" class="table table-striped"
-				style="border: solid 3px;">
-				<tbody style="border: black 2px">
-					<tr>
-						<th colspan="2" rowspan="3">
-							<div class="text-center">月日</div>
-						</th>
-
-						<th colspan="2">
-							<div class="text-center">区間</div>
-						</th>
-
-						<th rowspan="3">
-							<div class="text-center">交通機関</div>
-						</th>
-
-						<th rowspan="3">
-							<div class="text-center">訪問先</div>
-						</th>
-
-						<th colspan="2" rowspan="3">
-							<div class="text-center">金額</div>
-						</th>
-
-						<th rowspan="3">
-							<div class="text-center">用件</div>
-						</th>
-
-						<th rowspan="3">
-							<div class="text-center">削除</div>
-						</th>
-					</tr>
-					<tr>
-						<th rowspan="2">
-							<div class="text-center">発地</div>
-						</th>
-
-						<th rowspan="2">
-							<div class="text-center">着地</div>
-						</th>
-					</tr>
-					<tr>
-						<!-- table-stripedのための空列 -->
-					</tr>
-
-					<c:forEach var="item" items="${list}">
+			<c:if test="${not empty list}">
+				<table border="1" class="table table-striped"
+					style="border: solid 3px;">
+					<tbody style="border: black 2px">
 						<tr>
-							<td><c:if test="${not empty list}">
-									<c:out value="${item.month}月" />
-								</c:if></td>
+							<th colspan="2" rowspan="3">
+								<div class="text-center">月日</div>
+							</th>
 
-							<td><c:if test="${not empty list}">
-									<c:out value="${item.day}日" />
-								</c:if></td>
+							<th colspan="2">
+								<div class="text-center">区間</div>
+							</th>
 
-							<td><c:if test="${not empty list}">
-									<c:out value="${item.depature}" />
-								</c:if></td>
+							<th rowspan="3">
+								<div class="text-center">交通機関</div>
+							</th>
 
-							<td><c:if test="${not empty list}">
-									<c:out value="${item.destination}" />
-								</c:if></td>
+							<th rowspan="3">
+								<div class="text-center">訪問先</div>
+							</th>
 
-							<td><c:if test="${not empty list}">
-									<c:out value="${item.transportation}" />
-								</c:if></td>
+							<th colspan="2" rowspan="3">
+								<div class="text-center">金額</div>
+							</th>
 
-							<td><c:if test="${not empty list}">
-									<c:out value="${item.place}" />
-								</c:if></td>
+							<c:if test="${auth == 2}">
+								<th rowspan="3">
+									<div class="text-center">用件</div>
+								</th>
+							</c:if>
 
-							<td><c:if test="${not empty list}">
-									<c:out value="${item.division}" />
-								</c:if></td>
-
-							<td><c:if test="${not empty list}">
-									<c:out value="${item.money}" />
-								</c:if></td>
-
-							<td><c:if test="${not empty list}">
-									<c:out value="${item.purpose}" />
-								</c:if></td>
-
-							<td><c:if test="${not empty list}">
-									<div class="text-center">
-										<input type="checkbox" name="totalM_id"
-											value="${item.totalM_id}">
-									</div>
-								</c:if></td>
+							<th rowspan="3">
+								<div class="text-center">削除</div>
+							</th>
 						</tr>
-					</c:forEach>
+						<tr>
+							<th rowspan="2">
+								<div class="text-center">発地</div>
+							</th>
 
-				</tbody>
-			</table>
+							<th rowspan="2">
+								<div class="text-center">着地</div>
+							</th>
+						</tr>
+						<tr>
+							<!-- table-stripedのための空列 -->
+						</tr>
+
+						<c:forEach var="item" items="${list}">
+							<tr>
+								<td><c:if test="${not empty list}">
+										<c:out value="${item.month}月" />
+									</c:if></td>
+
+								<td><c:if test="${not empty list}">
+										<c:out value="${item.day}日" />
+									</c:if></td>
+
+								<td><c:if test="${not empty list}">
+										<c:out value="${item.depature}" />
+									</c:if></td>
+
+								<td><c:if test="${not empty list}">
+										<c:out value="${item.destination}" />
+									</c:if></td>
+
+								<td><c:if test="${not empty list}">
+										<c:out value="${item.transportation}" />
+									</c:if></td>
+
+								<td><c:if test="${not empty list}">
+										<c:out value="${item.place}" />
+									</c:if></td>
+
+								<td><c:if test="${not empty list}">
+										<c:out value="${item.division}" />
+									</c:if></td>
+
+								<td><c:if test="${not empty list}">
+										<c:out value="${item.money}" />
+									</c:if></td>
+
+								<td><c:if test="${not empty list}">
+										<c:out value="${item.purpose}" />
+									</c:if></td>
+
+								<c:if test="${auth == 2}">
+									<td><c:if test="${not empty list}">
+											<div class="text-center">
+												<input type="checkbox" name="totalM_id"
+													value="${item.totalM_id}">
+											</div>
+										</c:if></td>
+								</c:if>
+							</tr>
+						</c:forEach>
+
+					</tbody>
+				</table>
+			</c:if>
 
 			<c:choose>
 				<c:when test="${not empty list}">

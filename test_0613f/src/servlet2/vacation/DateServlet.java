@@ -43,6 +43,7 @@ public class DateServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 文字化け防止
 		request.setCharacterEncoding("UTF-8");
@@ -52,22 +53,23 @@ public class DateServlet extends HttpServlet {
 
 		// セッションから情報を取得
 		String id = (String) session.getAttribute("id");
-		Integer auth = (Integer) session.getAttribute("auth");
+		Map<String, List<Vacation>> map = (Map<String, List<Vacation>>) session.getAttribute("map");
 
 		// 入力値を取得
 		String year = request.getParameter("year");
-		String fromMonth = request.getParameter("fromMonth");
 
 		// 型変換
 		Integer y = Integer.valueOf(year);
-		Integer m = Integer.valueOf(fromMonth);
 
 		// DAOの宣言
 		VacationDao vacation = new VacationDao();
 		SearchDao search = new SearchDao();
 
-		// 権限が管理者？
-		if(auth == 1) {
+		// homeAdmin.jspから遷移した？
+		if(map != null) {
+			// 一旦mapのセッションを空に
+			session.setAttribute("map", "");
+
 			// 今年の休暇申請データがある人物のIDを取得
 			List<String> idList = search.findIdDistinct(y);
 
@@ -77,10 +79,10 @@ public class DateServlet extends HttpServlet {
 			// データが1件でもある？
 			if(idList.size() > 0 && nameList.size() > 0) {
 				// 今月分の全社員の出張精算データを取得
-				Map<String, List<Vacation>> map = idList.stream()
+				map = idList.stream()
 						.collect(Collectors.toMap(
 								s -> s,
-								s -> vacation.findAllByMonthForId(s, y, 0)));
+								s -> vacation.findAllByYearForId(s, y, 0)));
 
 				// セッションに情報をセット
 				session.setAttribute("map", map);
@@ -93,15 +95,14 @@ public class DateServlet extends HttpServlet {
 
 			// セッションに情報をセット
 			session.setAttribute("year", y);
-			session.setAttribute("fromMonth", m);
 
 			// homeAdmin.jspに遷移
 			RequestDispatcher dispatch = request.getRequestDispatcher("/vacation/homeAdmin.jsp");
 			dispatch.forward(request, response);
-		// 権限が担当者？
+		// home.jspから遷移した？
 		} else {
 			// 変更後のリスト取得
-			List<Vacation> list = vacation.findAllByMonthForId(id, y, 0);
+			List<Vacation> list = vacation.findAllByYearForId(id, y, 0);
 
 			// ページングなしでのレコード数取得
 			int count = vacation.countRow(id, y);
@@ -112,7 +113,6 @@ public class DateServlet extends HttpServlet {
 			// セッションに情報をセット
 			session.setAttribute("currentpage", 1);
 			session.setAttribute("year", y);
-			session.setAttribute("fromMonth", m);
 			session.setAttribute("number", number);
 			session.setAttribute("list", list);
 

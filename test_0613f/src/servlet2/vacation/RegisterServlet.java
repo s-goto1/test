@@ -95,7 +95,7 @@ public class RegisterServlet extends HttpServlet {
 
 		insert.insert(id, year, fm, fd, tm, td, totalDay, division, reason);
 
-		List<Vacation> list = vacation.findAllByMonthForId(id, year, 0);
+		List<Vacation> list = vacation.findAllByYearForId(id, year, 0);
 
 		request.setAttribute("fromMonth", fm);
 		request.setAttribute("fromDay", fd);

@@ -47,6 +47,7 @@ public class TestServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 文字化け防止
@@ -57,7 +58,7 @@ public class TestServlet extends HttpServlet {
 
 		// セッションから情報を取得
 		String id = (String) session.getAttribute("id");
-		Integer auth = (Integer) session.getAttribute("auth");
+		Map<String, List<TotalM>> map = (Map<String, List<TotalM>>) session.getAttribute("map");
 
 		// 入力値を取得
 		String month = request.getParameter("month");
@@ -71,9 +72,11 @@ public class TestServlet extends HttpServlet {
 		TotalMDao tmd = new TotalMDao();
 		SearchDao search = new SearchDao();
 
-		// 権限が管理者？
-		if(auth == 1) {
+		// homeAdmin.jspから遷移した？
+		if(map != null) {
+			// 一旦mapのセッションを空に
 			session.setAttribute("map", "");
+
 			// 今月の出張清算データがある人物のIDを取得
 			List<String> idList = search.findIdDistinct(y, m);
 
@@ -83,7 +86,7 @@ public class TestServlet extends HttpServlet {
 			// データが1件でもある？
 			if(idList.size() > 0 && nameList.size() > 0) {
 				// 今月分の全社員の出張精算データを取得
-				Map<String, List<TotalM>> map = idList.stream()
+				map = idList.stream()
 						.collect(Collectors.toMap(
 								s -> s,
 								s -> tmd.findAllByMonthForId(s, y, m, 0)));
@@ -104,7 +107,7 @@ public class TestServlet extends HttpServlet {
 			// homeAdmin.jspに遷移
 			RequestDispatcher dispatch = request.getRequestDispatcher("/business/homeAdmin.jsp");
 			dispatch.forward(request, response);
-		// 権限が担当者？
+		// home.jspから遷移した？
 		} else {
 			// 変更後のリスト取得
 			List<TotalM> list = tmd.findAllByMonthForId(id, y, m, 0);

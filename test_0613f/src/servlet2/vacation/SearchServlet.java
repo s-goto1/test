@@ -106,7 +106,7 @@ public class SearchServlet extends HttpServlet {
 					Map<String, List<Vacation>> map = idListLimit.stream()
 							.collect(Collectors.toMap(
 									s -> s,
-									s -> vacation.findAllByMonthForIdFromAdmin(s, year)));
+									s -> vacation.findAllByYearForIdFromAdmin(s, year)));
 
 					// セッションに情報をセット
 					session.setAttribute("currentpage", 1);
@@ -153,7 +153,7 @@ public class SearchServlet extends HttpServlet {
 				// レーベンシュタイン距離は適切な長さ？
 				} else {
 					// ヒットしたユーザの情報を取得
-					List<Vacation> list = vacation.findAllByMonthForId(closest, year, 0);
+					List<Vacation> list = vacation.findAllByYearForId(closest, year, 0);
 
 					// ヒットしたユーザの情報を元にそのユーザの名前を取得
 					String name = user.findUser(closest).getName();
@@ -224,7 +224,7 @@ public class SearchServlet extends HttpServlet {
 					Map<String, List<Vacation>> map = nameListLimit.stream()
 							.collect(Collectors.toMap(
 									s -> s,
-									s -> vacation.findAllByMonthForNameFromAdmin(s, year)));
+									s -> vacation.findAllByYearForNameFromAdmin(s, year)));
 
 					// セッションに情報をセット
 					session.setAttribute("currentpage", 1);
@@ -271,7 +271,7 @@ public class SearchServlet extends HttpServlet {
 				// レーベンシュタイン距離は適切な長さ？
 				} else {
 					// ヒットしたユーザの情報を取得
-					List<Vacation> list = vacation.findAllByMonthForName(closest, year, 0);
+					List<Vacation> list = vacation.findAllByYearForName(closest, year, 0);
 
 					// ヒットしたユーザの情報を元にそのユーザのIDを取得
 					String id = list.get(0).getId();

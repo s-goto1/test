@@ -176,7 +176,7 @@ public class UpdateServlet extends HttpServlet {
 		}
 
 		// 変更後のリスト取得
-		List<Vacation> vacationList = vacationDao.findAllByMonthForId(id, year, 0);
+		List<Vacation> vacationList = vacationDao.findAllByYearForId(id, year, 0);
 
 		// リクエストに情報をセット
 		request.setAttribute("vacationListUp", vacationListUp);

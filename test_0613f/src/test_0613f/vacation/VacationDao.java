@@ -11,7 +11,7 @@ import java.util.List;
 import entity.Vacation;
 
 public class VacationDao {
-	public List<Vacation> findAllByMonthForId(String id, Integer year, int offset) {
+	public List<Vacation> findAllByYearForId(String id, Integer year, int offset) {
 
 		List<Vacation> list = new ArrayList<>();
 
@@ -62,7 +62,7 @@ public class VacationDao {
 	}
 
 	//名前で絞って全部表示するメソッド（仮）
-	public List<Vacation> findAllByMonthForName(String name, Integer year, int offset) {
+	public List<Vacation> findAllByYearForName(String name, Integer year, int offset) {
 
 		List<Vacation> list = new ArrayList<>();
 
@@ -149,7 +149,7 @@ public class VacationDao {
 		return count;
 	}
 
-	public List<Vacation> findAllByMonthForIdFromAdmin(String id, Integer year) {
+	public List<Vacation> findAllByYearForIdFromAdmin(String id, Integer year) {
 
 		List<Vacation> list = new ArrayList<>();
 
@@ -198,7 +198,7 @@ public class VacationDao {
 		return list;
 	}
 
-	public List<Vacation> findAllByMonthForNameFromAdmin(String name, Integer year) {
+	public List<Vacation> findAllByYearForNameFromAdmin(String name, Integer year) {
 
 		List<Vacation> list = new ArrayList<>();
 

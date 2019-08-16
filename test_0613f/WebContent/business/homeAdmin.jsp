@@ -29,15 +29,17 @@
 
 		</form>
 
-		<button type="button" class="btn btn-success mt-3"
-			data-toggle="collapse" data-target=".multi-collapse"
-			aria-expanded="false">全開閉</button>
+		<c:if test="${not empty map}">
+			<button type="button" class="btn btn-success mt-3" data-toggle="collapse"
+				data-target=".multi-collapse" aria-expanded="false">
+				全開閉
+			</button>
+		</c:if>
 
 		<form id="form" name="form" action="Search" method="post">
 			<p class="mt-3">
-				<b>全社員</b>の出張清算一覧データ （
-				<c:out value="${year}年${month}月分" />
-				）
+				<b>全社員</b>の出張清算一覧データ
+				（<c:out value="${year}年${month}月分" />）
 			</p>
 
 			<c:if test="${not empty map}">
@@ -55,7 +57,9 @@
 							<input type='hidden' name='nameSearch' id='nameSearch'
 								value="aaa">
 							<button type='submit' name='name' id='name'
-								value='${nameList.get(status.index)}'>${nameList.get(status.index)}だけ表示</button>
+								value='${nameList.get(status.index)}'>
+								${nameList.get(status.index)}だけ表示
+							</button>
 
 							<div id="card-${status.count}"
 								class="collapse show multi-collapse" role="tabpanel"
@@ -201,13 +205,14 @@
 				</nav>
 			</c:if>
 
-
 			<!--<input type="button" id="excelout"
 				class="btn btn-warning mr-2" value="Excelに出力">-->
-			<input type="button" id="admin" class="btn btn-primary mr-2"
-				value="管理画面"> <input type="button" id="menu"
+			<input type="button" id="admin"
+				class="btn btn-primary mr-2" value="管理画面">
+			<input type="button" id="menu"
 				class="btn btn-light mr-2" onclick="location.href='../menu.jsp'"
-				value="メニュー"> <input type="button" id="logout"
+				value="メニュー">
+			<input type="button" id="logout"
 				class="btn btn-secondary" onclick="location.href='../logout.jsp'"
 				value="ログアウト">
 

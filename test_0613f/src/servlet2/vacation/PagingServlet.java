@@ -54,7 +54,6 @@ public class PagingServlet extends HttpServlet {
 		String id = (String) session.getAttribute("id");
 		Integer auth = (Integer) session.getAttribute("auth");
 		Integer year = (Integer) session.getAttribute("year");
-		Integer fromMonth = (Integer) session.getAttribute("fromMonth");
 
 		VacationDao dao = new VacationDao();
 
@@ -87,7 +86,7 @@ public class PagingServlet extends HttpServlet {
 			Map<String, List<Vacation>> map = idListLimit.stream()
 					.collect(Collectors.toMap(
 							s -> s,
-							s -> dao.findAllByMonthForIdFromAdmin(s, year)));
+							s -> dao.findAllByYearForIdFromAdmin(s, year)));
 
 			// セッションに情報をセット
 			session.setAttribute("currentpage", 1);
@@ -102,7 +101,7 @@ public class PagingServlet extends HttpServlet {
 			dispatch.forward(request, response);
 		// 権限が担当者？
 		} else {
-			List<Vacation> list = dao.findAllByMonthForId(id, year, offset);
+			List<Vacation> list = dao.findAllByYearForId(id, year, offset);
 
 			int count = dao.countRow(id, year);
 
@@ -110,7 +109,6 @@ public class PagingServlet extends HttpServlet {
 
 			session.setAttribute("currentpage", currentPage);
 			session.setAttribute("year", year);
-			session.setAttribute("fromMonth", fromMonth);
 			session.setAttribute("list", list);
 			session.setAttribute("nolist", "登録されているデータがありません。");
 			session.setAttribute("number", number);

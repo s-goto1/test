@@ -36,61 +36,67 @@
 				（<c:out value="${year}年分" />）
 			</p>
 
-			<table border="1" class="table table-striped"
-				style="border: solid 3px;">
-				<tbody style="border: black 2px">
-					<tr>
-						<th colspan="3">
-							<div class="text-center">期間</div>
-						</th>
-
-						<th>
-							<div class="text-center">区分</div>
-						</th>
-
-						<th>
-							<div class="text-center">事由</div>
-						</th>
-
-						<th>
-							<div class="text-center">削除</div>
-						</th>
-					</tr>
-
-					<c:forEach var="item" items="${list}">
+			<c:if test="${not empty list}">
+				<table border="1" class="table table-striped"
+					style="border: solid 3px;">
+					<tbody style="border: black 2px">
 						<tr>
-							<td style="border-right: hidden;"><c:if test="${not empty list}">
-									<c:out value="${item.fromMonth}月" />
-									<c:out value="${item.fromDay}日より" />
-								</c:if></td>
+							<th colspan="3">
+								<div class="text-center">期間</div>
+							</th>
 
-							<td style="border-right: hidden;"><c:if test="${not empty list}">
-									<c:out value="${item.toMonth}月" />
-									<c:out value="${item.toDay}日まで" />
-								</c:if></td>
+							<th>
+								<div class="text-center">区分</div>
+							</th>
 
-							<td><c:if test="${not empty list}">
-									<c:out value="(${item.totalDay}日間)" />
-								</c:if></td>
+							<th>
+								<div class="text-center">事由</div>
+							</th>
 
-							<td><c:if test="${not empty list}">
-									<c:out value="${item.division}" />
-								</c:if></td>
-
-							<td><c:if test="${not empty list}">
-									<c:out value="${item.reason}" />
-								</c:if></td>
-
-							<td><c:if test="${not empty list}">
-									<div class="text-center">
-										<input type="checkbox" name="vacation_id" value="${item.vacation_id}">
-									</div>
-								</c:if></td>
+							<c:if test="${auth == 2}">
+								<th>
+									<div class="text-center">削除</div>
+								</th>
+							</c:if>
 						</tr>
-					</c:forEach>
 
-				</tbody>
-			</table>
+						<c:forEach var="item" items="${list}">
+							<tr>
+								<td style="border-right: hidden;"><c:if test="${not empty list}">
+										<c:out value="${item.fromMonth}月" />
+										<c:out value="${item.fromDay}日より" />
+									</c:if></td>
+
+								<td style="border-right: hidden;"><c:if test="${not empty list}">
+										<c:out value="${item.toMonth}月" />
+										<c:out value="${item.toDay}日まで" />
+									</c:if></td>
+
+								<td><c:if test="${not empty list}">
+										<c:out value="(${item.totalDay}日間)" />
+									</c:if></td>
+
+								<td><c:if test="${not empty list}">
+										<c:out value="${item.division}" />
+									</c:if></td>
+
+								<td><c:if test="${not empty list}">
+										<c:out value="${item.reason}" />
+									</c:if></td>
+
+								<c:if test="${auth == 2}">
+									<td><c:if test="${not empty lis}">
+											<div class="text-center">
+												<input type="checkbox" name="vacation_id" value="${item.vacation_id}">
+											</div>
+										</c:if></td>
+								</c:if>
+							</tr>
+						</c:forEach>
+
+					</tbody>
+				</table>
+			</c:if>
 
 			<c:if test="${empty list}">
 				<p>

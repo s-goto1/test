@@ -84,7 +84,7 @@ public class DeleteServlet extends HttpServlet {
 			}
 
 			// 削除後のリスト取得
-			List<Vacation> list = vacation.findAllByMonthForId(id, year, 0);
+			List<Vacation> list = vacation.findAllByYearForId(id, year, 0);
 
 			// リクエストに情報をセット
 			request.setAttribute("deleteList", deleteList);

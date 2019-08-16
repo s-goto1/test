@@ -23,13 +23,17 @@
 
 			<%@ include file="../year.jsp"%>
 
-			<input type="submit" id="Test" class="btn btn-info ml-2"
+			<input type="submit" id="yearChange" class="btn btn-info ml-2"
 				value="該当年表示">
 
 		</form>
 
-		<button type="button" class="btn btn-success mt-3" data-toggle="collapse"
-			data-target=".multi-collapse" aria-expanded="false">全開閉</button>
+		<c:if test="${not empty map}">
+			<button type="button" class="btn btn-success mt-3" data-toggle="collapse"
+				data-target=".multi-collapse" aria-expanded="false">
+				全開閉
+			</button>
+		</c:if>
 
 		<form id="form" name="form" action="" method="post">
 			<p class="mt-3">
@@ -179,10 +183,12 @@
 				class="btn btn-warning mr-2" value="Excelに出力">-->
 			<input type="button" id="admin"
 				class="btn btn-primary mr-2" value="管理画面">
-			<input type="button" id="menu" class="btn btn-light mr-2"
-				onclick="location.href='../menu.jsp'" value="メニュー">
-			<input type="button" id="logout" class="btn btn-secondary"
-				onclick="location.href='../logout.jsp'" value="ログアウト">
+			<input type="button" id="menu"
+				class="btn btn-light mr-2" onclick="location.href='../menu.jsp'"
+				value="メニュー">
+			<input type="button" id="logout"
+				class="btn btn-secondary" onclick="location.href='../logout.jsp'"
+				value="ログアウト">
 
 		</form>
 
