@@ -178,7 +178,6 @@
 				</nav>
 			</c:if>
 
-
 			<!--<input type="button" id="excelout"
 				class="btn btn-warning mr-2" value="Excelに出力">-->
 			<input type="button" id="admin"

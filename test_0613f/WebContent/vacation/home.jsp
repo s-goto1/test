@@ -85,7 +85,7 @@
 									</c:if></td>
 
 								<c:if test="${auth == 2}">
-									<td><c:if test="${not empty lis}">
+									<td><c:if test="${not empty list}">
 											<div class="text-center">
 												<input type="checkbox" name="vacation_id" value="${item.vacation_id}">
 											</div>
