@@ -60,6 +60,8 @@ public class TestServlet extends HttpServlet {
 		String id = (String) session.getAttribute("id");
 		Map<String, List<TotalM>> map = (Map<String, List<TotalM>>) session.getAttribute("map");
 
+		boolean admin = request.getParameter("admin") != null;
+
 		// 入力値を取得
 		String month = request.getParameter("month");
 		String year = request.getParameter("year");
@@ -73,9 +75,9 @@ public class TestServlet extends HttpServlet {
 		SearchDao search = new SearchDao();
 
 		// homeAdmin.jspから遷移した？
-		if(map != null) {
+		if (admin) {
 			// 一旦mapのセッションを空に
-			session.setAttribute("map", "");
+			session.removeAttribute("map");
 
 			// 今月の出張清算データがある人物のIDを取得
 			List<String> idList = search.findIdDistinct(y, m);
@@ -84,7 +86,7 @@ public class TestServlet extends HttpServlet {
 			List<String> nameList = search.findNameDistinct(y, m);
 
 			// データが1件でもある？
-			if(idList.size() > 0 && nameList.size() > 0) {
+			if (idList.size() > 0 && nameList.size() > 0) {
 				// 今月分の全社員の出張精算データを取得
 				map = idList.stream()
 						.collect(Collectors.toMap(
@@ -94,7 +96,7 @@ public class TestServlet extends HttpServlet {
 				// セッションに情報をセット
 				session.setAttribute("map", map);
 				session.setAttribute("nameList", nameList);
-			// データが1件もない？
+				// データが1件もない？
 			} else {
 				// セッションに情報をセット
 				session.setAttribute("nomap", "登録されているデータがありません。");
@@ -107,7 +109,7 @@ public class TestServlet extends HttpServlet {
 			// homeAdmin.jspに遷移
 			RequestDispatcher dispatch = request.getRequestDispatcher("/business/homeAdmin.jsp");
 			dispatch.forward(request, response);
-		// home.jspから遷移した？
+			// home.jspから遷移した？
 		} else {
 			// 変更後のリスト取得
 			List<TotalM> list = tmd.findAllByMonthForId(id, y, m, 0);
@@ -125,16 +127,16 @@ public class TestServlet extends HttpServlet {
 			List<String> divisionList = new ArrayList<>();
 
 			// リストのレコード分繰り返す
-			for(int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) {
 				// 区分を取得
 				String division = list.get(i).getDivision();
 
 				// 区分が片道？
-				if(division.equals("片道")) {
+				if (division.equals("片道")) {
 					// 往復をセット
 					division = "往復";
 					divisionList.add(division);
-				// 区分が往復？
+					// 区分が往復？
 				} else {
 					// 片道をセット
 					division = "片道";
