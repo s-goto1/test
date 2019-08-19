@@ -122,11 +122,11 @@
 					<tr>
 						<td style="border-right: hidden;
 						<c:if test="${item.fromMonth != vacationListUp.get(status.index).fromMonth}">
-							 background-color: #ffcccc;
+							 background-color: #ccffcc;
 						</c:if>
 
 						<c:if test="${item.fromDay != vacationListUp.get(status.index).fromDay}">
-							 background-color: #ffcccc;
+							 background-color: #ccffcc;
 						</c:if>
 						">
 							<c:if test="${not empty list}">
@@ -135,11 +135,11 @@
 
 						<td style="border-right: hidden;
 						<c:if test="${item.toMonth != vacationListUp.get(status.index).toMonth}">
-							 background-color: #ffcccc;
+							 background-color: #ccffcc;
 						</c:if>
 
-						<c:if test="${item.toDay != vacationListup.get(status.index).toDay}">
-							 background-color: #ffcccc;
+						<c:if test="${item.toDay != vacationListUp.get(status.index).toDay}">
+							 background-color: #ccffcc;
 						</c:if>
 						">
 							<c:if test="${not empty list}">
@@ -148,7 +148,7 @@
 
 						<td
 						<c:if test="${item.totalDay != vacationListUp.get(status.index).totalDay}">
-							 style="background-color: #ffcccc;"
+							 style="background-color: #ccffcc;"
 						</c:if>
 						>
 							<c:if test="${not empty list}">
@@ -157,7 +157,7 @@
 
 						<td
 						<c:if test="${item.division != vacationListUp.get(status.index).division}">
-							 style="background-color: #ffcccc;"
+							 style="background-color: #ccffcc;"
 						</c:if>
 						>
 							<c:if test="${not empty list}">
@@ -166,7 +166,7 @@
 
 						<td
 						<c:if test="${item.reason != vacationListUp.get(status.index).reason}">
-							 style="background-color: #ffcccc;"
+							 style="background-color: #ccffcc;"
 						</c:if>
 						>
 							<c:if test="${not empty list}">

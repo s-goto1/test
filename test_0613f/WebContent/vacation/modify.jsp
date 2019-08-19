@@ -120,7 +120,7 @@
 								</select></td>
 
 							<td><input type="text" name="reason" id="reason"
-								value="${item.reason}" size="15" required>
+								value="${item.reason}" size="25" required>
 
 								<input type="hidden" name="vacation_id"
 								value="${item.vacation_id}" size="5" readonly></td>
