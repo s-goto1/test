@@ -102,7 +102,7 @@ public class SearchServlet extends HttpServlet {
 					if (size >= 5) {
 						// toIndexの値を5に固定
 						index = 5;
-						// 5人未満しかいない？
+					// 5人未満しかいない？
 					} else {
 						// toIndexの値を人数でセット
 						index = size;
@@ -124,7 +124,7 @@ public class SearchServlet extends HttpServlet {
 					session.setAttribute("map", map);
 					session.setAttribute("idList", idList);
 					session.setAttribute("nameList", nameList);
-					// データが1件もない？
+				// データが1件もない？
 				} else {
 					// セッションに情報をセット
 					session.setAttribute("nomap", "登録されているデータがありません。");
@@ -133,7 +133,7 @@ public class SearchServlet extends HttpServlet {
 				// homeAdmin.jspに遷移
 				RequestDispatcher dispatch = request.getRequestDispatcher("/business/homeAdmin.jsp");
 				dispatch.forward(request, response);
-				// 入力フォームに入力あり？
+			// 入力フォームに入力あり？
 			} else {
 				// 自分以外の全ユーザのIDを取得
 				List<String> userList = search.findIdAll(masterName);
@@ -159,13 +159,13 @@ public class SearchServlet extends HttpServlet {
 					// search.jspに遷移
 					RequestDispatcher dispatch = request.getRequestDispatcher("/business/search.jsp");
 					dispatch.forward(request, response);
-					// レーベンシュタイン距離は適切な長さ？
+				// レーベンシュタイン距離は適切な長さ？
 				} else {
 					// ヒットしたユーザの情報を取得
 					List<TotalM> list = totalM.findAllByMonthForId(closest, year, month, 0);
 
-					if (list.size() > 0 && list.size() > 0) {
-
+					// レコードが存在する？
+					if (list.size() > 0) {
 						// ヒットしたユーザの情報を元にそのユーザの名前を取得
 						String name = user.findUser(closest).getName();
 
@@ -184,7 +184,7 @@ public class SearchServlet extends HttpServlet {
 						session.setAttribute("currentpage", 1);
 						session.setAttribute("number", number);
 						session.setAttribute("list", list);
-
+					// レコードが存在しない？
 					} else {
 						// セッションに情報をセット
 						session.setAttribute("nolist", "登録されているデータがありません。");
@@ -194,7 +194,7 @@ public class SearchServlet extends HttpServlet {
 					dispatch.forward(request, response);
 				}
 			}
-			// 「名前検索」が押された？
+		// 「名前検索」が押された？
 		}
 		if (request.getParameter("nameSearch") != null) {
 			// 入力情報の取得
@@ -233,7 +233,7 @@ public class SearchServlet extends HttpServlet {
 					if (size >= 5) {
 						// toIndexの値を5に固定
 						index = 5;
-						// 5人以下未満しかいない？
+					// 5人以下未満しかいない？
 					} else {
 						// toIndexの値を人数でセット
 						index = size;
@@ -255,7 +255,7 @@ public class SearchServlet extends HttpServlet {
 					session.setAttribute("map", map);
 					session.setAttribute("idList", idList);
 					session.setAttribute("nameList", nameList);
-					// データが1件もない？
+				// データが1件もない？
 				} else {
 					// セッションに情報をセット
 					session.setAttribute("nomap", "登録されているデータがありません。");
@@ -264,7 +264,7 @@ public class SearchServlet extends HttpServlet {
 				// homeAdmin.jspに遷移
 				RequestDispatcher dispatch = request.getRequestDispatcher("/business/homeAdmin.jsp");
 				dispatch.forward(request, response);
-				// 入力フォームに入力あり？
+			// 入力フォームに入力あり？
 			} else {
 				// 自分以外の全ユーザの名前を取得
 				List<String> userList = search.findNameAll();
@@ -290,13 +290,12 @@ public class SearchServlet extends HttpServlet {
 					// search.jspに遷移
 					RequestDispatcher dispatch = request.getRequestDispatcher("/business/search.jsp");
 					dispatch.forward(request, response);
-					// レーベンシュタイン距離は適切な長さ？
+				// レーベンシュタイン距離は適切な長さ？
 				} else {
 					// ヒットしたユーザの情報を取得
 					List<TotalM> list = totalM.findAllByMonthForName(closest, year, month, 0);
 
-
-
+					// レコードが存在する？
 					if (list.size() > 0 && list.size() > 0) {
 						// ヒットしたユーザの情報を元にそのユーザのIDを取得
 						String id = list.get(0).getId();
@@ -316,7 +315,7 @@ public class SearchServlet extends HttpServlet {
 						session.setAttribute("currentpage", 1);
 						session.setAttribute("number", number);
 						session.setAttribute("list", list);
-
+					// レコードが存在しない？
 					} else {
 						// セッションに情報をセット
 						session.setAttribute("nolist", "登録されているデータがありません。");

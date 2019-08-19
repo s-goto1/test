@@ -155,24 +155,31 @@ public class SearchServlet extends HttpServlet {
 					// ヒットしたユーザの情報を取得
 					List<Vacation> list = vacation.findAllByYearForId(closest, year, 0);
 
-					// ヒットしたユーザの情報を元にそのユーザの名前を取得
-					String name = user.findUser(closest).getName();
-
-					// ページングなしでのレコード数取得
-					int count = vacation.countRow(closest, year);
-
-					// ページング設定
-					int number = (count + 5 - 1) / 5;
-
-					// リストのサイズを取得
-					//int size = list.size();
-
-					// ヒットしたユーザの情報をセッションにセット
-					session.setAttribute("id", closest);
-					session.setAttribute("name", name);
-					session.setAttribute("currentpage", 1);
-					session.setAttribute("number", number);
-					session.setAttribute("list", list);
+					// レコードが存在する？
+					if(list.size() > 0) {
+						// ヒットしたユーザの情報を元にそのユーザの名前を取得
+						String name = user.findUser(closest).getName();
+	
+						// ページングなしでのレコード数取得
+						int count = vacation.countRow(closest, year);
+	
+						// ページング設定
+						int number = (count + 5 - 1) / 5;
+	
+						// リストのサイズを取得
+						//int size = list.size();
+	
+						// ヒットしたユーザの情報をセッションにセット
+						session.setAttribute("id", closest);
+						session.setAttribute("name", name);
+						session.setAttribute("currentpage", 1);
+						session.setAttribute("number", number);
+						session.setAttribute("list", list);
+					// レコードが存在しない？
+					} else {
+						// セッションに情報をセット
+						session.setAttribute("nolist", "登録されているデータがありません。");
+					}
 
 					// home.jspに遷移
 					RequestDispatcher dispatch = request.getRequestDispatcher("/vacation/home.jsp");
@@ -273,24 +280,30 @@ public class SearchServlet extends HttpServlet {
 					// ヒットしたユーザの情報を取得
 					List<Vacation> list = vacation.findAllByYearForName(closest, year, 0);
 
-					// ヒットしたユーザの情報を元にそのユーザのIDを取得
-					String id = list.get(0).getId();
-
-					// ページングなしでのレコード数取得
-					int count = vacation.countRow(id, year);
-
-					// ページング設定
-					int number = (count + 5 - 1) / 5;
-
-					// リストのサイズを取得
-					//int size = list.size();
-
-					// ヒットしたユーザの情報をセッションにセット
-					session.setAttribute("id", id);
-					session.setAttribute("name", closest);
-					session.setAttribute("currentpage", 1);
-					session.setAttribute("number", number);
-					session.setAttribute("list", list);
+					// レコードが存在する？
+					if(list.size() > 0) {
+						// ヒットしたユーザの情報を元にそのユーザのIDを取得
+						String id = list.get(0).getId();
+	
+						// ページングなしでのレコード数取得
+						int count = vacation.countRow(id, year);
+	
+						// ページング設定
+						int number = (count + 5 - 1) / 5;
+	
+						// リストのサイズを取得
+						//int size = list.size();
+	
+						// ヒットしたユーザの情報をセッションにセット
+						session.setAttribute("id", id);
+						session.setAttribute("name", closest);
+						session.setAttribute("currentpage", 1);
+						session.setAttribute("number", number);
+						session.setAttribute("list", list);
+					} else {
+						// セッションに情報をセット
+						session.setAttribute("nolist", "登録されているデータがありません。");
+					}
 
 					// home.jspに遷移
 					RequestDispatcher dispatch = request.getRequestDispatcher("/vacation/home.jsp");
