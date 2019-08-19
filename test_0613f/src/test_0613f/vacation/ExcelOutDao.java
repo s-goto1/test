@@ -115,27 +115,27 @@ public class ExcelOutDao {
 				break;
 			case "生理休暇":
 				// オフセットを指定
-				anchor.setDx1(30);
+				anchor.setDx1(1430);
 				anchor.setDy1(25);
-				anchor.setDx2(-5700); // 6750
+				anchor.setDx2(-4300); // 5350
 				anchor.setDy2(-800);
 
 				// break処理
 				break;
 			case "慶弔休暇":
 				// オフセットを指定
-				anchor.setDx1(30);
+				anchor.setDx1(2830);
 				anchor.setDy1(25);
-				anchor.setDx2(-5700); // 6750
+				anchor.setDx2(-2900); // 3950
 				anchor.setDy2(-800);
 
 				// break処理
 				break;
 			case "産前産後休暇":
 				// オフセットを指定
-				anchor.setDx1(30);
+				anchor.setDx1(4200);
 				anchor.setDy1(25);
-				anchor.setDx2(-5700); // 6750
+				anchor.setDx2(-1030); // 2580
 				anchor.setDy2(-800);
 
 				// break処理
@@ -143,27 +143,27 @@ public class ExcelOutDao {
 			case "転勤休暇":
 				// オフセットを指定
 				anchor.setDx1(30);
-				anchor.setDy1(25);
+				anchor.setDy1(150);
 				anchor.setDx2(-5700); // 6750
-				anchor.setDy2(-800);
+				anchor.setDy2(-50);
 
 				// break処理
 				break;
 			case "特別休暇":
 				// オフセットを指定
-				anchor.setDx1(30);
+				anchor.setDx1(1430);
 				anchor.setDy1(25);
-				anchor.setDx2(-5700); // 6750
-				anchor.setDy2(-800);
+				anchor.setDx2(-4300); // 5350
+				anchor.setDy2(-50);
 
 				// break処理
 				break;
 			case "その他":
 				// オフセットを指定
-				anchor.setDx1(30);
+				anchor.setDx1(2830);
 				anchor.setDy1(25);
-				anchor.setDx2(-5700); // 6750
-				anchor.setDy2(-800);
+				anchor.setDx2(-2200); // 3250
+				anchor.setDy2(-50);
 
 				// break処理
 				break;
