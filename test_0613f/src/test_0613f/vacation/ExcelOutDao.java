@@ -3,13 +3,18 @@ package test_0613f.vacation;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 
+import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
+import org.apache.poi.hssf.usermodel.HSSFPatriarch;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFSimpleShape;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.usermodel.HSSFWorkbookFactory;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import entity.Vacation;
 
@@ -23,6 +28,11 @@ public class ExcelOutDao {
 		String fileName = "休暇届.xls";
 		String fileNameAfter = file;
 
+		// 変数宣言
+		HSSFWorkbook wb = null;
+		HSSFSheet sheet = null;
+		POIFSFileSystem fileSystem = null;
+
 		// Calendarオブジェクト生成
 		Calendar cal = Calendar.getInstance();
 
@@ -34,14 +44,16 @@ public class ExcelOutDao {
 
 		// ファイル書き込み準備
 		FileInputStream in = new FileInputStream(INPUT_DIR + fileName);
-
-		// 変数宣言
-		Workbook wb = null;
-		Sheet sheet = null;
+		try {
+			fileSystem = new POIFSFileSystem(in);
+		} catch (IOException e1) {
+			// TODO 自動生成された catch ブロック
+			e1.printStackTrace();
+		}
 
 		try {
 			// 既存のエクセルファイルを編集する際は、WorkbookFactoryを使用
-			wb = WorkbookFactory.create(in);
+			wb = HSSFWorkbookFactory.createWorkbook(fileSystem);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,6 +74,14 @@ public class ExcelOutDao {
 		Row row = sheet.getRow(0);
 		Cell cell = row.getCell(0);
 
+		// HSSFPAtriarchインスタンスを生成
+		HSSFPatriarch patriarch = sheet.createDrawingPatriarch();
+
+		// HSSFClientAnchorインスタンスを生成
+		HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0, 0, 0,
+                (short) 3, 16,
+                (short) 10, 17);
+
 		// 期間（開始）書き込み
 		row = sheet.getRow(13);
 		cell = row.getCell(3);
@@ -80,7 +100,79 @@ public class ExcelOutDao {
 		cell.setCellValue("（　" + vacation.getTotalDay() + "　日間）");
 
 		// 区分書き込み
-		// 色々面倒な命令が必要なため現段階では省略
+		row = sheet.getRow(14);
+		cell = row.getCell(3);
+		String division = vacation.getDivision();
+		switch(division) {
+			case "有給休暇":
+				// オフセットを指定
+				anchor.setDx1(30);
+				anchor.setDy1(25);
+				anchor.setDx2(-5700); // 6750
+				anchor.setDy2(-800);
+
+				// break処理
+				break;
+			case "生理休暇":
+				// オフセットを指定
+				anchor.setDx1(30);
+				anchor.setDy1(25);
+				anchor.setDx2(-5700); // 6750
+				anchor.setDy2(-800);
+
+				// break処理
+				break;
+			case "慶弔休暇":
+				// オフセットを指定
+				anchor.setDx1(30);
+				anchor.setDy1(25);
+				anchor.setDx2(-5700); // 6750
+				anchor.setDy2(-800);
+
+				// break処理
+				break;
+			case "産前産後休暇":
+				// オフセットを指定
+				anchor.setDx1(30);
+				anchor.setDy1(25);
+				anchor.setDx2(-5700); // 6750
+				anchor.setDy2(-800);
+
+				// break処理
+				break;
+			case "転勤休暇":
+				// オフセットを指定
+				anchor.setDx1(30);
+				anchor.setDy1(25);
+				anchor.setDx2(-5700); // 6750
+				anchor.setDy2(-800);
+
+				// break処理
+				break;
+			case "特別休暇":
+				// オフセットを指定
+				anchor.setDx1(30);
+				anchor.setDy1(25);
+				anchor.setDx2(-5700); // 6750
+				anchor.setDy2(-800);
+
+				// break処理
+				break;
+			case "その他":
+				// オフセットを指定
+				anchor.setDx1(30);
+				anchor.setDy1(25);
+				anchor.setDx2(-5700); // 6750
+				anchor.setDy2(-800);
+
+				// break処理
+				break;
+		}
+
+		System.out.println(anchor.getDx1());
+		System.out.println(anchor.getDy1());
+		System.out.println(anchor.getDx2());
+		System.out.println(anchor.getDy2());
 
 		// 事由書き込み
 		row = sheet.getRow(18);
@@ -97,6 +189,16 @@ public class ExcelOutDao {
 		//Cell cellForDate = rowForDate.getCell(8);
 		//cal.getTime();
 		//cellForDate.setCellValue(cal);
+
+		// 円を指定したアンカー位置に作成
+		HSSFSimpleShape shape = patriarch.createSimpleShape(anchor);
+
+		// 円の設定
+        shape.setShapeType(HSSFSimpleShape.OBJECT_TYPE_OVAL);
+        shape.setNoFill(true);
+        shape.setLineStyleColor(0, 0, 0);
+        shape.setLineWidth(HSSFSimpleShape.LINEWIDTH_ONE_PT);
+        shape.setLineStyle(HSSFSimpleShape.LINESTYLE_SOLID);
 
 		// ファイル出力準備
 		FileOutputStream out = null;
