@@ -174,11 +174,6 @@ public class ExcelOutDao {
 				break;
 		}
 
-		System.out.println(anchor.getDx1());
-		System.out.println(anchor.getDy1());
-		System.out.println(anchor.getDx2());
-		System.out.println(anchor.getDy2());
-
 		// 事由書き込み
 		row = sheet.getRow(18);
 		cell = row.getCell(3);
@@ -199,11 +194,11 @@ public class ExcelOutDao {
 		HSSFSimpleShape shape = patriarch.createSimpleShape(anchor);
 
 		// 円の設定
-		shape.setShapeType(HSSFSimpleShape.OBJECT_TYPE_OVAL);
-		shape.setNoFill(true);
-		shape.setLineStyleColor(0, 0, 0);
-		shape.setLineWidth(HSSFSimpleShape.LINEWIDTH_ONE_PT);
-		shape.setLineStyle(HSSFSimpleShape.LINESTYLE_SOLID);
+		shape.setShapeType(HSSFSimpleShape.OBJECT_TYPE_OVAL);	// 図形の種類
+		shape.setNoFill(true);									// 中を透明化
+		shape.setLineStyleColor(0, 0, 0);						// 線の色
+		shape.setLineWidth(HSSFSimpleShape.LINEWIDTH_ONE_PT);	// 線の太さ
+		shape.setLineStyle(HSSFSimpleShape.LINESTYLE_SOLID);	// 線の種類
 
 		// ファイル出力準備
 		FileOutputStream out = null;
