@@ -74,13 +74,13 @@ public class ExcelOutDao {
 		Row row = sheet.getRow(0);
 		Cell cell = row.getCell(0);
 
-		// HSSFPAtriarchインスタンスを生成
+		// HSSFPatriarchインスタンスを生成
 		HSSFPatriarch patriarch = sheet.createDrawingPatriarch();
 
 		// HSSFClientAnchorインスタンスを生成
 		HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0, 0, 0,
-                (short) 3, 16,
-                (short) 10, 17);
+				(short) 3, 16,
+				(short) 10, 17);
 
 		// 期間（開始）書き込み
 		row = sheet.getRow(13);
@@ -100,8 +100,8 @@ public class ExcelOutDao {
 		cell.setCellValue("（　" + vacation.getTotalDay() + "　日間）");
 
 		// 区分書き込み
-		row = sheet.getRow(14);
-		cell = row.getCell(3);
+		//row = sheet.getRow(14);
+		//cell = row.getCell(3);
 		String division = vacation.getDivision();
 		switch(division) {
 			case "有給休暇":
@@ -115,28 +115,31 @@ public class ExcelOutDao {
 				break;
 			case "生理休暇":
 				// オフセットを指定
-				anchor.setDx1(1430);
+				anchor.setDx1(130);
 				anchor.setDy1(25);
-				anchor.setDx2(-4300); // 5350
+				anchor.setDx2(-4350); // 5400
 				anchor.setDy2(-800);
+				anchor.setCol1(4);
 
 				// break処理
 				break;
 			case "慶弔休暇":
 				// オフセットを指定
-				anchor.setDx1(2830);
+				anchor.setDx1(230);
 				anchor.setDy1(25);
-				anchor.setDx2(-2900); // 3950
+				anchor.setDx2(-3000); // 4050
 				anchor.setDy2(-800);
+				anchor.setCol1(5);
 
 				// break処理
 				break;
 			case "産前産後休暇":
 				// オフセットを指定
-				anchor.setDx1(4200);
+				anchor.setDx1(730);
 				anchor.setDy1(25);
-				anchor.setDx2(-1030); // 2580
+				anchor.setDx2(-1200); // 2550
 				anchor.setDy2(-800);
+				anchor.setCol1(6);
 
 				// break処理
 				break;
@@ -145,25 +148,27 @@ public class ExcelOutDao {
 				anchor.setDx1(30);
 				anchor.setDy1(150);
 				anchor.setDx2(-5700); // 6750
-				anchor.setDy2(-50);
+				anchor.setDy2(-100);
 
 				// break処理
 				break;
 			case "特別休暇":
 				// オフセットを指定
-				anchor.setDx1(1430);
-				anchor.setDy1(25);
-				anchor.setDx2(-4300); // 5350
-				anchor.setDy2(-50);
+				anchor.setDx1(130);
+				anchor.setDy1(150);
+				anchor.setDx2(-4350); // 5400
+				anchor.setDy2(-100);
+				anchor.setCol1(4);
 
 				// break処理
 				break;
 			case "その他":
 				// オフセットを指定
-				anchor.setDx1(2830);
-				anchor.setDy1(25);
-				anchor.setDx2(-2200); // 3250
-				anchor.setDy2(-50);
+				anchor.setDx1(230);
+				anchor.setDy1(150);
+				anchor.setDx2(-2100); // 3150
+				anchor.setDy2(-100);
+				anchor.setCol1(5);
 
 				// break処理
 				break;
@@ -194,11 +199,11 @@ public class ExcelOutDao {
 		HSSFSimpleShape shape = patriarch.createSimpleShape(anchor);
 
 		// 円の設定
-        shape.setShapeType(HSSFSimpleShape.OBJECT_TYPE_OVAL);
-        shape.setNoFill(true);
-        shape.setLineStyleColor(0, 0, 0);
-        shape.setLineWidth(HSSFSimpleShape.LINEWIDTH_ONE_PT);
-        shape.setLineStyle(HSSFSimpleShape.LINESTYLE_SOLID);
+		shape.setShapeType(HSSFSimpleShape.OBJECT_TYPE_OVAL);
+		shape.setNoFill(true);
+		shape.setLineStyleColor(0, 0, 0);
+		shape.setLineWidth(HSSFSimpleShape.LINEWIDTH_ONE_PT);
+		shape.setLineStyle(HSSFSimpleShape.LINESTYLE_SOLID);
 
 		// ファイル出力準備
 		FileOutputStream out = null;
