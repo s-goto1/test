@@ -8,6 +8,7 @@
 <title>休暇申請出力結果</title>
 <link rel="stylesheet" type="text/css"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="../css/circle.css"/>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript"
@@ -24,145 +25,148 @@
 
 		<p>※出力イメージ</p>
 
-		<%-- <c:forEach var="i" begin="0" end="${point}" step="1">
-			<table border="1" class="mb-4" style="font-size: 13px; border: solid 3px;">
+		<c:forEach var="item" items="${list}" begin="0" end="${size - 1}" step="1">
+			<table border="1" class="mb-2" style="font-size: 13px; border: solid 3px;">
 				<tbody style="border: black 2px">
 					<tr>
-						<th colspan="2" rowspan="2" width="50">
-							<div style="text-align: left; float: left;">月</div>
-							<div style="text-align: right;">日</div>
-						</th>
-
-						<th colspan="2" width="150">
-							<div style="text-align: left; float: left;">区</div>
-							<div style="text-align: right;">間</div>
-						</th>
-
-						<th rowspan="2" width="70">
-							<div class="text-center">交通機関</div>
-						</th>
-
-						<th rowspan="2" width="150">
-							<div class="text-center">訪問先</div>
-						</th>
-
-						<th rowspan="2" width="70">
-							<div class="text-center">交通費①</div>
-						</th>
-
-						<th rowspan="2" width="70">
-							<div class="text-center">日当②</div>
-						</th>
-
-						<th rowspan="2" width="150">
-							<div class="text-center">用　件</div>
-						</th>
-					</tr>
-					<tr>
-						<th width="75">
-							<div class="text-center">発　地</div>
-						</th>
-
-						<th width="75">
-							<div class="text-center">着　地</div>
-						</th>
-					</tr>
-
-					<c:forEach var="item" items="${list}" begin="${i * 21}" end="${(i + 1) * 21 - 1}" step="1">
-						<tr>
-							<td width="25"><c:if test="${not empty list}">
-									<div class="text-right">
-										<c:out value="${item.month}" />
-									</div>
-								</c:if></td>
-
-							<td width="25"><c:if test="${not empty list}">
-									<div class="text-right">
-										<c:out value="${item.day}" />
-									</div>
-								</c:if></td>
-
-							<td><c:if test="${not empty list}">
-									<div class="text-center">
-										<c:out value="${item.depature}" />
-									</div>
-								</c:if></td>
-
-							<td><c:if test="${not empty list}">
-									<div class="text-center">
-										<c:out value="${item.destination}" />
-									</div>
-								</c:if></td>
-
-							<td><c:if test="${not empty list}">
-									<div class="text-center">
-										<c:out value="${item.transportation}" />
-									</div>
-								</c:if></td>
-
-							<td><c:if test="${not empty list}">
-									<div class="text-center">
-										<c:out value="${item.place}" />
-									</div>
-								</c:if></td>
-
-							<td><c:if test="${not empty list}">
-									<div class="text-right">
-										<c:out value="${item.money}" />
-									</div>
-								</c:if></td>
-
-							<td></td>
-
-							<td><c:if test="${not empty list}">
-									<div class="text-center">
-										<c:out value="${item.purpose}" />
-									</div>
-								</c:if></td>
-						</tr>
-					</c:forEach>
-
-					<c:if test="${i eq point}">
-						<c:forEach var="j" begin="1" end="${size}" step="1">
-							<tr>
-								<td>　<!-- ${j} --></td>
-								<td>　<!-- ${j} --></td>
-								<td>　</td>
-								<td>　</td>
-								<td>　</td>
-								<td>　</td>
-								<td>　</td>
-								<td>　</td>
-								<td>　</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-
-					<tr>
-						<td colspan="6">
-							<div style="display: flex; justify-content: space-between;">
-								<span><c:out value="<<"/></span>
-								<span>合</span>
-								<span>計</span>
-								<span><c:out value=">>"/></span>
+						<td width="25" height="50">
+							<div class="text-center align-items-center">
+								期<br>間
 							</div>
 						</td>
 
-						<td>
-							<div style="text-align: left; float: left;">①</div>
-							<div style="text-align: right;">${total.get(i)}</div>
+						<td width="200" style="border-right: hidden;">
+							<c:if test="${not empty list}">
+								<div class="text-center" style="font-size:15px;">
+									<c:out value="${item.year}年" />
+									<c:out value="${item.fromMonth}月" />
+									<c:out value="${item.fromDay}日" />
+									<div class="mb-2"></div>
+									<c:out value="${item.year}年" />
+									<c:out value="${item.toMonth}月" />
+									<c:out value="${item.toDay}日" />
+								</div>
+							</c:if></td>
+
+						<td width="50">
+							<div class="text-right">
+								より
+								<div class="mb-2"></div>
+								まで
+							</div>
 						</td>
 
-						<td>
-							<div style="text-align: left; float: left;">②</div>
-							<div style="text-align: right;">0</div>
+						<td width="250" class="align-items-center">
+							<c:if test="${not empty list}">
+								(　<c:out value="${item.totalDay}　日間" />)
+							</c:if>
+						</td>
+					</tr>
+
+					<tr>
+						<td width="25" height="80">
+							<div class="text-center align-items-center">
+								区<br>分
+							</div>
+						</td>
+
+						<td colspan="3">
+							<div class="mt-2 mb-2">
+								<c:choose>
+									<c:when test="${item.division eq '有給休暇'}">
+										<div class="maru size_normal black">
+											<div class="letter">①有給休暇</div>
+										</div>
+										&ensp;②生理休暇　　③慶弔休暇　　④産前産後休暇
+										<div class="mb-3"></div>
+										&ensp;　⑤転勤休暇　　⑥特別休暇　　⑦その他（　　　　　　　）
+									</c:when>
+									<c:when test="${item.division eq '生理休暇'}">
+										&ensp;　①有給休暇&ensp;
+										<div class="maru size_normal black">
+											<div class="letter">②生理休暇</div>
+										</div>
+										&ensp;③慶弔休暇　　④産前産後休暇
+										<div class="mb-3"></div>
+										&ensp;　⑤転勤休暇　　⑥特別休暇　　⑦その他（　　　　　　　）
+									</c:when>
+									<c:when test="${item.division eq '慶弔休暇'}">
+										&ensp;　①有給休暇　　②生理休暇&ensp;
+										<div class="maru size_normal black">
+											<div class="letter">③慶弔休暇</div>
+										</div>
+										&ensp;④産前産後休暇
+										<div class="mb-3"></div>
+										&ensp;　⑤転勤休暇　　⑥特別休暇　　⑦その他（　　　　　　　）
+									</c:when>
+									<c:when test="${item.division eq '産前産後休暇'}">
+										&ensp;　①有給休暇　　②生理休暇　　③慶弔休暇&ensp;
+										<div class="maru size_large1 black">
+											<div class="letter">④産前産後休暇</div>
+										</div>
+										<div class="mb-3"></div>
+										&ensp;　⑤転勤休暇　　⑥特別休暇　　⑦その他（　　　　　　　）
+									</c:when>
+									<c:when test="${item.division eq '転勤休暇'}">
+										&ensp;　①有給休暇　　②生理休暇　　③慶弔休暇　　④産前産後休暇
+										<div class="mb-3"></div>
+										<div class="maru size_normal black">
+											<div class="letter">⑤転勤休暇</div>
+										</div>
+										&ensp;⑥特別休暇　　⑦その他（　　　　　　　）
+									</c:when>
+									<c:when test="${item.division eq '特別休暇'}">
+										&ensp;　①有給休暇　　②生理休暇　　③慶弔休暇　　④産前産後休暇
+										<div class="mb-3"></div>
+										&ensp;　⑤転勤休暇&ensp;
+										<div class="maru size_normal black">
+											<div class="letter">⑥特別休暇</div>
+										</div>
+										&ensp;⑦その他（　　　　　　　）
+									</c:when>
+									<c:otherwise>
+										&ensp;　①有給休暇　　②生理休暇　　③慶弔休暇　　④産前産後休暇
+										<div class="mb-3"></div>
+										&ensp;　⑤転勤休暇　　⑥特別休暇&ensp;
+										<div class="maru size_large2 black">
+											<div class="letter">⑦その他（　　　　　　　）</div>
+										</div>
+									</c:otherwise>
+								</c:choose>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table border="1" class="mb-4" style="font-size: 13px; border: solid 3px;">
+				<tbody style="border: black 2px">
+					<tr>
+						<td width="25" height="100">
+							<div class="text-center align-items-center">
+								事<br>由
+							</div>
+						</td>
+
+						<td width="500"><c:if test="${not empty list}">
+								<div class="text-center align-items-center">
+									<c:out value="${item.reason}" />
+								</div>
+							</c:if></td>
+					</tr>
+
+					<tr>
+						<td width="25" height="70">
+							<div class="text-center align-items-center">
+								備<br>考
+							</div>
 						</td>
 
 						<td></td>
 					</tr>
 				</tbody>
 			</table>
-		</c:forEach> --%>
+		</c:forEach>
 
 	<input type="button" class="btn btn-warning" onclick="location.href='Paging?page=${currentpage}'" value="戻る">
 

@@ -75,6 +75,7 @@ public class ExcelOutServlet extends HttpServlet {
 
 		request.setAttribute("excel", INPUT_DIR +"\\" + fileNameAfter);
 		request.setAttribute("list", list);
+		request.setAttribute("size", size);
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("/vacation/excelOutResult.jsp");
 		dispatch.forward(request, response);
