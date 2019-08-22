@@ -25,7 +25,7 @@
 
 		<p>※出力イメージ</p>
 
-		<c:forEach var="item" items="${list}" begin="0" end="${size - 1}" step="1">
+		<c:forEach var="item" items="${list}" varStatus="status" begin="0" end="${size - 1}" step="1">
 			<table border="1" class="mb-2" style="font-size: 13px; border: solid 3px;">
 				<tbody style="border: black 2px">
 					<tr>
@@ -101,7 +101,7 @@
 									</c:when>
 									<c:when test="${item.division eq '産前産後休暇'}">
 										&ensp;　①有給休暇　　②生理休暇　　③慶弔休暇&ensp;
-										<div class="maru size_large1 black">
+										<div class="maru size_large black">
 											<div class="letter">④産前産後休暇</div>
 										</div>
 										<div class="mb-3"></div>
@@ -128,8 +128,8 @@
 										&ensp;　①有給休暇　　②生理休暇　　③慶弔休暇　　④産前産後休暇
 										<div class="mb-3"></div>
 										&ensp;　⑤転勤休暇　　⑥特別休暇&ensp;
-										<div class="maru size_large2 black">
-											<div class="letter">⑦その他（　　　　　　　）</div>
+										<div class="maru black" style="width: ${lengthList.get(status.index) * 7 + 100}px; height: 25px;">
+											<div class="letter">⑦その他（${item.division}）</div>
 										</div>
 									</c:otherwise>
 								</c:choose>

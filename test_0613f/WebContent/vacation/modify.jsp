@@ -17,7 +17,7 @@
 <script type="text/javascript" src="../js/subtest.js"></script>
 </head>
 <body>
-	<div class="container col-md-9 col-md-offset-1 mt-4 mb-4">
+	<div class="container col-md-9 col-md-offset-1 mt-4 mb-2">
 
 		<form id="form1" name="form1" action="Update" method="post">
 			<p class="mt-3">
@@ -60,64 +60,15 @@
 								value="${item.toDay}" min="1" max="31" required>
 								<span style="display: inline-block;">日まで</span></td>
 
-							<td><select name="division" id="division">
-								<c:choose>
-									<c:when test="${item.division eq '有給休暇'}">
-										<option value="有給休暇" selected>有給休暇</option>
-									</c:when>
-									<c:otherwise>
-										<option value="有給休暇">有給休暇</option>
-									</c:otherwise>
-								</c:choose>
-								<c:choose>
-									<c:when test="${item.division eq '生理休暇'}">
-										<option value="生理休暇" selected>生理休暇</option>
-									</c:when>
-									<c:otherwise>
-										<option value="生理休暇">生理休暇</option>
-									</c:otherwise>
-								</c:choose>
-								<c:choose>
-									<c:when test="${item.division eq '慶弔休暇'}">
-										<option value="慶弔休暇" selected>慶弔休暇</option>
-									</c:when>
-									<c:otherwise>
-										<option value="慶弔休暇">慶弔休暇</option>
-									</c:otherwise>
-								</c:choose>
-								<c:choose>
-									<c:when test="${item.division eq '産前産後休暇'}">
-										<option value="産前産後休暇" selected>産前産後休暇</option>
-									</c:when>
-									<c:otherwise>
-										<option value="産前産後休暇">産前産後休暇</option>
-									</c:otherwise>
-								</c:choose>
-								<c:choose>
-									<c:when test="${item.division eq '転勤休暇'}">
-										<option value="転勤休暇" selected>転勤休暇</option>
-									</c:when>
-									<c:otherwise>
-										<option value="転勤休暇">転勤休暇</option>
-									</c:otherwise>
-								</c:choose>
-								<c:choose>
-									<c:when test="${item.division eq '特別休暇'}">
-										<option value="特別休暇" selected>特別休暇</option>
-									</c:when>
-									<c:otherwise>
-										<option value="特別休暇">特別休暇</option>
-									</c:otherwise>
-								</c:choose>
-								<c:choose>
-									<c:when test="${item.division eq 'その他'}">
-										<option value="その他" selected>その他</option>
-									</c:when>
-									<c:otherwise>
-										<option value="その他">その他</option>
-									</c:otherwise>
-								</c:choose>
-								</select></td>
+							<td><input type="text" name="division" id="division"
+									list="data" value="${item.division}">
+								<datalist id="data">
+									<c:forEach var="var" items="${divisionList}">
+										<option value="${var}">
+											${var}
+										</option>
+									</c:forEach>
+								</datalist></td>
 
 							<td><input type="text" name="reason" id="reason"
 								value="${item.reason}" size="25" required>
@@ -130,8 +81,14 @@
 
 				</tbody>
 			</table>
+
+			<p class="mb-4">
+		    	※休暇の区分がリストの選択肢に当てはまらない場合はご自身で記入して下さい。
+		    </p>
+
 			<input type="submit" name="uptest" class="btn btn-success mr-2" value="修正確定">
 			<input type="button" class="btn btn-warning" onclick="location.href='Paging?page=${currentpage}'" value="戻る">
+
 		</form>
 
 	</div>

@@ -12,13 +12,9 @@
   width: 100px;
   height: 25px;
 }
-.size_large1{
+.size_large{
   width: 120px;
   height :25px;
-}
-.size_large2{
-  width: 200px;
-  height: 25px;
 }
 /* 文字の大きさ */
 .letter {

@@ -17,7 +17,7 @@
 <script type="text/javascript" src="../js/subtest.js"></script>
 </head>
 <body>
-	<div class="container col-md-9 col-md-offset-2 mt-4 mb-4">
+	<div class="container col-md-9 col-md-offset-2 mt-4 mb-2">
 
 		<form action="Register" id="form" name="form" method="post">
 
@@ -53,15 +53,14 @@
 							value="" min="1" max="31" required>
 						<span style="display: inline-block;">日まで</span></td>
 
-						<td><select name="division" id="division">
-								<option value="有給休暇">有給休暇</option>
-								<option value="生理休暇">生理休暇</option>
-								<option value="慶弔休暇">慶弔休暇</option>
-								<option value="産前産後休暇">産前産後休暇</option>
-								<option value="転勤休暇">転勤休暇</option>
-								<option value="特別休暇">特別休暇</option>
-								<option value="その他">その他</option>
-							</select></td>
+						<td><input type="text" name="division" id="division" list="data">
+							<datalist id="data">
+								<c:forEach var="item" items="${divisionList}">
+									<option value="${item}">
+										${item}
+									</option>
+								</c:forEach>
+							</datalist></td>
 
 						<td><input type="text" name="reason" id="reason"
 							value="" size="15" required></td>
@@ -70,6 +69,10 @@
 			</table>
 
 		    <input type="hidden" name="id" value="${id}" size="">
+		    
+		    <p class="mb-4">
+		    	※休暇の区分がリストの選択肢に当てはまらない場合はご自身で記入して下さい。
+		    </p>
 
 			<input type="submit" id="regist" name="確認用" class="btn btn-primary mr-2" value="登録確定">
 			<input type="button" id="back" name="" class="btn btn-warning mr-4" onclick="location.href='Paging?page=${currentpage}'" value="戻る">

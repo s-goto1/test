@@ -1,6 +1,8 @@
 package servlet2.vacation;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -59,6 +61,7 @@ public class ExcelOutServlet extends HttpServlet {
 		GetPath gp = new GetPath();
 		String INPUT_DIR = gp.getDesktopPath();
 
+		List<Integer> lengthList = new ArrayList<>();
 		int sheetNum = 0;
 
 		List<Vacation> list = vacation.findAllByYearForIdFromAdmin(id, year);
@@ -71,14 +74,18 @@ public class ExcelOutServlet extends HttpServlet {
 			excelOut.excelOut(vacance, INPUT_DIR, name, fileNameAfter, sheetNum, size);
 
 			sheetNum += 1;
+
+			int length = vacance.getDivision().getBytes(Charset.forName("Shift_JIS")).length;
+
+			lengthList.add(length);
 		}
 
-		request.setAttribute("excel", INPUT_DIR +"\\" + fileNameAfter);
+		request.setAttribute("excel", INPUT_DIR + "\\" + fileNameAfter);
 		request.setAttribute("list", list);
 		request.setAttribute("size", size);
+		request.setAttribute("lengthList", lengthList);
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("/vacation/excelOutResult.jsp");
 		dispatch.forward(request, response);
 	}
-
 }

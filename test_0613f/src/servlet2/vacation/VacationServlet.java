@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import entity.Vacation;
 import test_0613f.vacation.VacationDao;
+import util.Division;
 
 /**
  * Servlet implementation class VacationServlet
@@ -69,11 +70,14 @@ public class VacationServlet extends HttpServlet {
 			// ページング設定
 			int number = (count + 5 - 1) / 5;
 
+
+
 			// セッションに情報をセット
 			session.setAttribute("year", year);
 			session.setAttribute("currentpage", 1);
 			session.setAttribute("number", number);
 			session.setAttribute("list", list);
+			session.setAttribute("divisionList", Division.listToDivision());
 			session.setAttribute("nolist", "登録されているデータがありません。");
 
 			// 休暇申請画面へ遷移
