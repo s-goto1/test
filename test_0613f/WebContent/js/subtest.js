@@ -184,7 +184,7 @@ jQuery(function($) {
 
 		// 入力フォームを取得
 		var month = document.getElementById('fromMonth');
-		var date = document.getElementById('fromDay');
+		var day = document.getElementById('fromDay');
 
 		// 明日の月日を表示
 		month.value = date.getMonth() + 1;
@@ -202,7 +202,7 @@ jQuery(function($) {
 
 		// 入力フォームを取得
 		var month = document.getElementById('toMonth');
-		var date = document.getElementById('toDay');
+		var day = document.getElementById('toDay');
 
 		// 昨日の月日を表示
 		month.value = date.getMonth() + 1;

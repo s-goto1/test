@@ -63,7 +63,7 @@
 							</datalist></td>
 
 						<td><input type="text" name="reason" id="reason"
-							value="" size="15" required></td>
+							value="" size="30" required></td>
 					</tr>
 				</tbody>
 			</table>
