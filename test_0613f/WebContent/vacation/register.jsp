@@ -38,7 +38,7 @@
 					</tr>
 					<tr>
 						<td><input type="number" name="fromMonth" id="fromMonth"
-							value="${fromMonth}" min="1" max="12" required>
+							value="" min="1" max="12" required>
 							<span style="display: inline-block;">月</span>
 
 						<input type="number" name="fromDay" id="fromDay"
@@ -46,7 +46,7 @@
 						<span style="display: inline-block;">日より</span></td>
 
 						<td><input type="number" name="toMonth" id="toMonth"
-							value="${fromMonth}" min="1" max="12" required>
+							value="" min="1" max="12" required>
 							<span style="display: inline-block;">月</span>
 
 						<input type="number" name="toDay" id="toDay"
@@ -69,7 +69,7 @@
 			</table>
 
 		    <input type="hidden" name="id" value="${id}" size="">
-		    
+
 		    <p class="mb-4">
 		    	※休暇の区分がリストの選択肢に当てはまらない場合はご自身で記入して下さい。
 		    </p>

@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Calendar;
 
 import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
@@ -100,8 +101,8 @@ public class ExcelOutDao {
 		cell.setCellValue("（　" + vacation.getTotalDay() + "　日間）");
 
 		// 区分書き込み
-		//row = sheet.getRow(14);
-		//cell = row.getCell(3);
+		row = sheet.getRow(16);
+		cell = row.getCell(3);
 		String division = vacation.getDivision();
 		switch(division) {
 			case "有給休暇":
@@ -162,13 +163,26 @@ public class ExcelOutDao {
 
 				// break処理
 				break;
-			case "その他":
+			default:
+				// バイト数判断
+				int length = division.getBytes(Charset.forName("Shift_JIS")).length * 3 / 2;
+
 				// オフセットを指定
 				anchor.setDx1(230);
 				anchor.setDy1(150);
-				anchor.setDx2(-2100); // 3150
+				anchor.setDx2(-3000 + length * 75); // 3150
 				anchor.setDy2(-100);
 				anchor.setCol1(5);
+
+				// 事由を記入
+				cell.setCellValue("　①有給休暇　　②生理休暇　　③慶弔休暇　　④産前産後休暇\r\n" +
+						"\r\n" +
+						"　⑤転勤休暇　　⑥特別休暇　　⑦その他（" + division + "）");
+
+				// 折り返して全体を表示するように設定する
+				//HSSFCellStyle style = wb.createCellStyle();
+				//style.setWrapText(true);
+				//cell.setCellStyle(style);
 
 				// break処理
 				break;
