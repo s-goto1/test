@@ -54,38 +54,51 @@ public class ExcelOutServlet extends HttpServlet {
 		String id = (String) session.getAttribute("id");
 		String name = (String) session.getAttribute("name");
 		Integer year = (Integer) session.getAttribute("year");
+		String[] vacation_id = request.getParameterValues("vacation_id");
 
-		ExcelOutDao excelOut = new ExcelOutDao();
-		VacationDao vacation = new VacationDao();
+		if (vacation_id.length == 1 && vacation_id[0].equals("")) {
+			// home.jspへ遷移
+			RequestDispatcher dispatch = request.getRequestDispatcher("/vacation/home.jsp");
+			dispatch.forward(request, response);
+		} else {
 
-		GetPath gp = new GetPath();
-		String INPUT_DIR = gp.getDesktopPath();
+			ExcelOutDao excelOut = new ExcelOutDao();
+			VacationDao vacation = new VacationDao();
 
-		List<Integer> lengthList = new ArrayList<>();
-		int sheetNum = 0;
+			GetPath gp = new GetPath();
+			String INPUT_DIR = gp.getDesktopPath();
 
-		List<Vacation> list = vacation.findAllByYearForIdFromAdmin(id, year);
+			List<Integer> lengthList = new ArrayList<>();
+			int sheetNum = 0;
 
-		int size = list.size();
+			List<Vacation> list = vacation.findAllByYearForIdFromAdmin(id, year);
 
-		String fileNameAfter = "休暇届_出力済.xls";
+			int size = vacation_id.length;
+			//list.size();
 
-		for (Vacation vacance : list) {
-			excelOut.excelOut(vacance, INPUT_DIR, name, fileNameAfter, sheetNum, size);
+			String fileNameAfter = "休暇届_出力済.xls";
 
-			sheetNum += 1;
+			for (String v : vacation_id) {
+				Integer vacationId = Integer.parseInt(v);
 
-			int length = vacance.getDivision().getBytes(Charset.forName("Shift_JIS")).length;
+				List<Vacation> excelList = vacation.findCheckedVid(vacationId);
 
-			lengthList.add(length);
+				excelOut.excelOut(excelList, INPUT_DIR, name, fileNameAfter, sheetNum, size);
+
+				sheetNum += 1;
+
+				int length = excelList.get(0).getDivision().getBytes(Charset.forName("Shift_JIS")).length;
+
+				lengthList.add(length);
+			}
+
+			request.setAttribute("excel", INPUT_DIR + "\\" + fileNameAfter);
+			request.setAttribute("list", list);
+			request.setAttribute("size", size);
+			request.setAttribute("lengthList", lengthList);
+
+			RequestDispatcher dispatch = request.getRequestDispatcher("/vacation/excelOutResult.jsp");
+			dispatch.forward(request, response);
 		}
-
-		request.setAttribute("excel", INPUT_DIR + "\\" + fileNameAfter);
-		request.setAttribute("list", list);
-		request.setAttribute("size", size);
-		request.setAttribute("lengthList", lengthList);
-
-		RequestDispatcher dispatch = request.getRequestDispatcher("/vacation/excelOutResult.jsp");
-		dispatch.forward(request, response);
 	}
 }

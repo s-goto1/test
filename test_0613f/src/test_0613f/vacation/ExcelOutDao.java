@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Calendar;
+import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
 import org.apache.poi.hssf.usermodel.HSSFPatriarch;
@@ -20,7 +21,7 @@ import org.apache.poi.ss.usermodel.Row;
 import entity.Vacation;
 
 public class ExcelOutDao {
-	public void excelOut(Vacation vacation, String path, String name,
+	public void excelOut(	List<Vacation> vacation , String path, String name,
 			String file, int sheetNum, int size) throws FileNotFoundException {
 
 		// 変更するエクセルファイルを指定
@@ -86,24 +87,24 @@ public class ExcelOutDao {
 		// 期間（開始）書き込み
 		row = sheet.getRow(13);
 		cell = row.getCell(3);
-		cal.set(vacation.getYear(), vacation.getFromMonth() - 1, vacation.getFromDay());
+		cal.set(vacation.get(0).getYear(), vacation.get(0).getFromMonth() - 1, vacation.get(0).getFromDay());
 		cell.setCellValue(cal);
 
 		// 期間（終了）書き込み
 		row = sheet.getRow(15);
 		cell = row.getCell(3);
-		cal.set(vacation.getYear(), vacation.getToMonth() - 1, vacation.getToDay());
+		cal.set(vacation.get(0).getYear(), vacation.get(0).getToMonth() - 1, vacation.get(0).getToDay());
 		cell.setCellValue(cal);
 
 		// 合計日数書き込み
 		row = sheet.getRow(13);
 		cell = row.getCell(6);
-		cell.setCellValue("（　" + vacation.getTotalDay() + "　日間）");
+		cell.setCellValue("（　" + vacation.get(0).getTotalDay() + "　日間）");
 
 		// 区分書き込み
 		row = sheet.getRow(16);
 		cell = row.getCell(3);
-		String division = vacation.getDivision();
+		String division = vacation.get(0).getDivision();
 		switch(division) {
 			case "有給休暇":
 				// オフセットを指定
@@ -191,7 +192,7 @@ public class ExcelOutDao {
 		// 事由書き込み
 		row = sheet.getRow(18);
 		cell = row.getCell(3);
-		cell.setCellValue(vacation.getReason());
+		cell.setCellValue(vacation.get(0).getReason());
 
 		// 名前を書き込み
 		Row rowForName = sheet.getRow(12);

@@ -55,7 +55,7 @@
 
 							<c:if test="${auth == 2}">
 								<th>
-									<div class="text-center">削除</div>
+									<div class="text-center">削除/excel出力</div>
 								</th>
 							</c:if>
 						</tr>
