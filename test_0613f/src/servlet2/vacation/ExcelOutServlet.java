@@ -56,7 +56,8 @@ public class ExcelOutServlet extends HttpServlet {
 		Integer year = (Integer) session.getAttribute("year");
 		String[] vacation_id = request.getParameterValues("vacation_id");
 
-		if (vacation_id.length == 1 && vacation_id[0].equals("")) {
+
+		if (vacation_id== null) {
 			// home.jspへ遷移
 			RequestDispatcher dispatch = request.getRequestDispatcher("/vacation/home.jsp");
 			dispatch.forward(request, response);
