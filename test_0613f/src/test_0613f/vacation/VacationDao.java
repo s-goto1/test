@@ -25,9 +25,9 @@ public class VacationDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:axiz_db",
-				"axizuser",
-				"axiz");) {
+				"jdbc:postgresql:postgres",
+				"postgres",
+				"Asdf123");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM vacation WHERE id = ? AND year = ? "
 					+ "ORDER BY from_month, vacation_id LIMIT 5 OFFSET ?";
@@ -76,9 +76,9 @@ public class VacationDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:axiz_db",
-				"axizuser",
-				"axiz");) {
+				"jdbc:postgresql:postgres",
+				"postgres",
+				"Asdf123");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM vacation AS v JOIN userinfo AS u ON v.id = u.id "
 					+ "WHERE u.name = ? AND v.year = ? ORDER BY v.from_month, "
@@ -127,9 +127,9 @@ public class VacationDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:axiz_db",
-				"axizuser",
-				"axiz");) {
+				"jdbc:postgresql:postgres",
+				"postgres",
+				"Asdf123");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT COUNT (*) FROM vacation WHERE id = ? AND year = ?";
 			presmt = conn.prepareStatement(sql);
@@ -163,15 +163,64 @@ public class VacationDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:axiz_db",
-				"axizuser",
-				"axiz");) {
+				"jdbc:postgresql:postgres",
+				"postgres",
+				"Asdf123");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM vacation WHERE id = ? AND year = ? "
 					+ "ORDER BY from_month, vacation_id";
 			presmt = conn.prepareStatement(sql);
 			presmt.setString(1, id);
 			presmt.setInt(2, year);
+			ResultSet rset = presmt.executeQuery();
+
+			// データベースから取得した値がある間、
+			while (rset.next()) {
+				Vacation vacation = new Vacation();
+
+				vacation.setVacation_id(rset.getInt("vacation_id"));
+				vacation.setId(rset.getString("id"));
+				vacation.setYear(rset.getInt("year"));
+				vacation.setFromMonth(rset.getInt("from_month"));
+				vacation.setFromDay(rset.getInt("from_day"));
+				vacation.setToMonth(rset.getInt("to_month"));
+				vacation.setToDay(rset.getInt("to_day"));
+				vacation.setTotalDay(rset.getInt("total_day"));
+				vacation.setDivision(rset.getString("division"));
+				vacation.setReason(rset.getString("reason"));
+				list.add(vacation);
+				// while文で次のレコードの処理へ?
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// DTOクラスのインスタンスのListを返す
+		return list;
+	}
+
+
+	public List<Vacation> findCheckedVid ( Integer vacation_id) {
+
+		List<Vacation> list = new ArrayList<>();
+
+		// JDBCドライバ読み込み
+		try {
+			// PostgreSQLドライバの読み込み
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		// データベースへの接続
+		try (Connection conn = DriverManager.getConnection(
+				"jdbc:postgresql:postgres",
+				"postgres",
+				"Asdf123");) {
+			PreparedStatement presmt = null;
+			String sql = "SELECT * FROM vacation WHERE vacation_id = ? "
+					+ "ORDER BY from_month, vacation_id";
+			presmt = conn.prepareStatement(sql);
+			presmt.setInt(1, vacation_id);
 			ResultSet rset = presmt.executeQuery();
 
 			// データベースから取得した値がある間、
@@ -212,9 +261,9 @@ public class VacationDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:axiz_db",
-				"axizuser",
-				"axiz");) {
+				"jdbc:postgresql:postgres",
+				"postgres",
+				"Asdf123");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM vacation AS v JOIN userinfo AS u ON v.id = u.id "
 					+ "WHERE u.name = ? AND v.year = ? ORDER BY v.from_month, "
