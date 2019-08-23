@@ -136,6 +136,8 @@ function checkInput1(){
 	id.value = arr1;
 }
 
+
+
 function checkInput2(){
 	// 配列を設定
 	const arr2 = [];
@@ -231,3 +233,23 @@ jQuery(function($) {
 });
 
 
+$(function(){
+
+	  var checkAll = '#all'; //「すべて」のチェックボックスのidを指定
+	  var checkBox = 'input[class="list"]'; //チェックボックスのnameを指定
+
+	  $( checkAll ).on('click', function() {
+	    $( checkBox ).prop('checked', $(this).is(':checked') );
+	  });
+
+	  $( checkBox ).on( 'click', function() {
+	    var boxCount = $( checkBox ).length; //全チェックボックスの数を取得
+	    var checked  = $( checkBox + ':checked' ).length; //チェックされているチェックボックスの数を取得
+	    if( checked === boxCount ) {
+	      $( checkAll ).prop( 'checked', true );
+	    } else {
+	      $( checkAll ).prop( 'checked', false );
+	    }
+	  });
+
+	});

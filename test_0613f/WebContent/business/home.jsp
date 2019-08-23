@@ -70,6 +70,7 @@
 
 							<th rowspan="3">
 								<div class="text-center">削除</div>
+								<input type="checkbox" id="all">
 							</th>
 						</tr>
 						<tr>
@@ -126,7 +127,7 @@
 								<c:if test="${auth == 2}">
 									<td><c:if test="${not empty list}">
 											<div class="text-center">
-												<input type="checkbox" name="totalM_id"
+												<input type="checkbox" class="list" name="totalM_id"
 													value="${item.totalM_id}">
 											</div>
 										</c:if></td>
