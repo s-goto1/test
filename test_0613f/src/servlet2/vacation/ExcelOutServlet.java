@@ -51,9 +51,9 @@ public class ExcelOutServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
+//		String id = (String) session.getAttribute("id");
 		String name = (String) session.getAttribute("name");
-		Integer year = (Integer) session.getAttribute("year");
+//		Integer year = (Integer) session.getAttribute("year");
 		String[] vacation_id = request.getParameterValues("vacation_id");
 
 
@@ -72,7 +72,10 @@ public class ExcelOutServlet extends HttpServlet {
 			List<Integer> lengthList = new ArrayList<>();
 			int sheetNum = 0;
 
-			List<Vacation> list = vacation.findAllByYearForIdFromAdmin(id, year);
+			//List<Vacation> list = vacation.findAllByYearForIdFromAdmin(id, year);
+
+			List<Vacation> list = new ArrayList<>();
+
 
 			int size = vacation_id.length;
 			//list.size();
@@ -91,6 +94,8 @@ public class ExcelOutServlet extends HttpServlet {
 				int length = excelList.get(0).getDivision().getBytes(Charset.forName("Shift_JIS")).length;
 
 				lengthList.add(length);
+				list.addAll(excelList);
+
 			}
 
 			request.setAttribute("excel", INPUT_DIR + "\\" + fileNameAfter);
