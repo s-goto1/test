@@ -1,5 +1,6 @@
 package servlet2.vacation;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
@@ -70,7 +71,10 @@ public class VacationServlet extends HttpServlet {
 			// ページング設定
 			int number = (count + 5 - 1) / 5;
 
-
+			String path1 = new File(".").getAbsoluteFile().getParent();
+	        System.out.println(path1);
+	        String path2 = System.getProperty("user.dir");
+	        System.out.println(path2);
 
 			// セッションに情報をセット
 			session.setAttribute("year", year);

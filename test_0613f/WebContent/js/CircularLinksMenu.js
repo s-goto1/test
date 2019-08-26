@@ -1,6 +1,6 @@
-var links = [{label: '出張精算', bg: '#c0392b'},
-             {label: '休暇申請', bg: '#16a085'},
-             {label: '準備中...', bg: '#8e44ad'},
+var links = [{label: '出勤退勤', bg: '#c0392b'},
+             {label: '出張精算', bg: '#16a085'},
+             {label: '休暇申請', bg: '#8e44ad'},
              {label: '準備中...', bg: '#27ae60'},
              {label: '準備中...', bg: '#f39c12'},
              {label: 'ログアウト', bg: '#2980b9'}];
@@ -39,11 +39,11 @@ function addLinks() {
     link = document.createElement('a'),
     hover = document.createElement('span');
     if(i === 0) {
-      link.href = './business';
+      link.href = './work';
     } else if(i === 1) {
-      link.href = './vacation';
+      link.href = './business';
     } else if(i === 2) {
-      link.href = '#';
+      link.href = './vacation';
     } else if(i === 3) {
       link.href = '#';
     } else if(i === 4) {

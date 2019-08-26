@@ -62,16 +62,16 @@
 								<div class="text-center">金額</div>
 							</th>
 
+							<th rowspan="3">
+								<div class="text-center">用件</div>
+							</th>
+
 							<c:if test="${auth == 2}">
 								<th rowspan="3">
-									<div class="text-center">用件</div>
+									<div class="text-center">削除</div>
+									<input type="checkbox" id="all">
 								</th>
 							</c:if>
-
-							<th rowspan="3">
-								<div class="text-center">削除</div>
-								<input type="checkbox" id="all">
-							</th>
 						</tr>
 						<tr>
 							<th rowspan="2">
@@ -267,7 +267,6 @@
 			</form>
 		</div>
 	</div>
-
 
 </body>
 </html>

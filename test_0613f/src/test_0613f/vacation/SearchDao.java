@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.TotalM;
 import entity.UserInfo;
+import entity.Vacation;
 
 public class SearchDao {
 	public List<String> findIdAll(String name) {
@@ -142,11 +142,11 @@ public class SearchDao {
 
 			// データベースから取得したレコード分必要な情報をセット
 			while (rset.next()) {
-				TotalM totalM = new TotalM();
+				Vacation vacation = new Vacation();
 
-				totalM.setId(rset.getString("id"));
+				vacation.setId(rset.getString("id"));
 
-				list.add(totalM.getId());
+				list.add(vacation.getId());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

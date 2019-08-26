@@ -78,7 +78,7 @@ public class DateServlet extends HttpServlet {
 
 			// データが1件でもある？
 			if(idList.size() > 0 && nameList.size() > 0) {
-				// 今月分の全社員の出張精算データを取得
+				// 今年分の全社員の休暇申請データを取得
 				map = idList.stream()
 						.collect(Collectors.toMap(
 								s -> s,

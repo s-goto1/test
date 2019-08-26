@@ -5,6 +5,7 @@ public class UserInfo {
 	private String id;
 	private String pass;
 	private String name;
+	private Integer emproyeeNum;
 	private Integer auth;
 
 	public String getPass() {
@@ -31,6 +32,14 @@ public class UserInfo {
 		this.name = name;
 	}
 
+	public Integer getEmproyeeNum() {
+		return emproyeeNum;
+	}
+
+	public void setEmproyeeNum(Integer emproyeeNum) {
+		this.emproyeeNum = emproyeeNum;
+	}
+
 	public Integer getAuth() {
 		return auth;
 	}
@@ -38,5 +47,4 @@ public class UserInfo {
 	public void setAuth(Integer auth) {
 		this.auth = auth;
 	}
-
 }
