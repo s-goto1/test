@@ -93,9 +93,17 @@ public class TestServlet extends HttpServlet {
 								s -> s,
 								s -> tmd.findAllByMonthForId(s, y, m, 0)));
 
+
+
+				List<String> nameList2 = new ArrayList<String>();
+				for (String key : map.keySet()) {
+
+					nameList2.addAll(search.findNameById(key)); ;
+				}
+
 				// セッションに情報をセット
 				session.setAttribute("map", map);
-				session.setAttribute("nameList", nameList);
+				session.setAttribute("nameList", nameList2);
 				// データが1件もない？
 			} else {
 				// セッションに情報をセット
