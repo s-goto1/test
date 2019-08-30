@@ -9,7 +9,6 @@
 <title>出勤退勤</title>
 <link rel="stylesheet" type="text/css"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="../css/iziModal.css">
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript"
@@ -17,7 +16,6 @@
 <script type="text/javascript"
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/subtest.js"></script>
-<script type="text/javascript" src="../js/iziModal.min.js"></script>
 </head>
 <body>
 	<div class="container col-md-10 col-md-offset-2 mt-4 mb-4">
@@ -259,9 +257,6 @@
 					<c:if test="${not empty list}">
 						<input type="button" id="excelout" class="btn btn-warning mr-2"
 							value="Excelに出力">
-						<input type="button" id="modal"
-							class="btn btn-danger open-options mr-2" onclick="checkInput3()"
-							value="削除">
 					</c:if>
 				</c:otherwise>
 			</c:choose>
@@ -272,26 +267,6 @@
 
 		</form>
 
-	</div>
-
-	<div class="iziModal" id="modal-options" data-izimodal-title="選択データの削除"
-		data-izimodal-subtitle="選択した出張精算データを削除します">
-		<div class="text-center mt-3">
-			一度削除したデータは再び復元する事ができません。<br> 本当に削除しますか？<br>
-			<div class="mb-3"></div>
-			<form id="formDelete" name="formDelete" action="Delete" method="post">
-				<input type="hidden" id="modal_work_id" name="work_id" value=""
-					readonly>
-				<ul class="text-center list-inline">
-					<li class="list-inline-item">
-						<button type="submit" id="delete" class="btn btn-danger">YES</button>
-					</li>
-					<li class="list-inline-item">
-						<button id="no" class="btn btn-primary" data-izimodal-close="">NO</button>
-					</li>
-				</ul>
-			</form>
-		</div>
 	</div>
 
 </body>
