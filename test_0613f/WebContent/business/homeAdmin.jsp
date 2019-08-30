@@ -37,9 +37,8 @@
 
 		<form id="form" name="form" action="Search" method="post">
 			<p class="mt-3">
-				<b>全社員</b>の出張清算一覧データ （
-				<c:out value="${year}年${month}月分" />
-				）
+				<b>全社員</b>の出張清算一覧データ
+				 （<c:out value="${year}年${month}月分" />）
 			</p>
 
 			<c:if test="${not empty map}">
@@ -166,38 +165,58 @@
 					<ul class="pagination justify-content-center">
 						<c:choose>
 							<c:when test="${currentpage == 1}">
-								<li class="page-item disabled"><a class="page-link"
-									href="#"> Prev </a></li>
+								<li class="page-item disabled">
+									<a class="page-link" href="#">
+									 Prev
+									</a>
+								</li>
 							</c:when>
 							<c:otherwise>
-								<li class="page-item"><a class="page-link"
-									href="PagingServTest?page=${currentpage - 1}"> Prev </a></li>
+								<li class="page-item">
+									<a class="page-link"
+										href="PagingServTest?page=${currentpage - 1}">
+										 Prev
+									</a>
+								</li>
 							</c:otherwise>
 						</c:choose>
 
 						<c:forEach begin="1" end="${number}" step="1" varStatus="status">
 							<c:choose>
 								<c:when test="${currentpage == status.index}">
-									<li class="page-item active"><span class="page-link">
-											${status.index} <span class="sr-only"> (current) </span>
-									</span></li>
+									<li class="page-item active">
+										<span class="page-link">
+											${status.index}
+											<span class="sr-only"> (current) </span>
+										</span>
+									</li>
 								</c:when>
 								<c:otherwise>
-									<li class="page-item"><a class="page-link"
-										href="PagingServTest?page=${status.index}">
-											${status.index} </a></li>
+									<li class="page-item">
+										<a class="page-link"
+											href="PagingServTest?page=${status.index}">
+											${status.index}
+										</a>
+									</li>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 
 						<c:choose>
 							<c:when test="${currentpage == number}">
-								<li class="page-item disabled"><a class="page-link"
-									href="#"> Next </a></li>
+								<li class="page-item disabled">
+									<a class="page-link" href="#">
+										Next
+									</a>
+								</li>
 							</c:when>
 							<c:otherwise>
-								<li class="page-item"><a class="page-link"
-									href="PagingServTest?page=${currentpage + 1}"> Next </a></li>
+								<li class="page-item">
+									<a class="page-link"
+										href="PagingServTest?page=${currentpage + 1}">
+										 Next
+									</a>
+								</li>
 							</c:otherwise>
 						</c:choose>
 					</ul>
