@@ -1,19 +1,24 @@
 package entity;
 
-public class UserInfo {
+import java.sql.Date;
 
+public class UserInfo {
 	private String id;
 	private String pass;
 	private String name;
-	private Integer emproyeeNum;
+	private Date joinCompany;
 	private Integer auth;
 
-	public String getPass() {
-		return pass;
+	public UserInfo() {
+
 	}
 
-	public void setPass(String pass) {
+	public UserInfo(String id, String pass, String name, Date joinCompany, Integer auth) {
+		this.id = id;
 		this.pass = pass;
+		this.name = name;
+		this.joinCompany = joinCompany;
+		this.auth = auth;
 	}
 
 	public String getId() {
@@ -24,6 +29,14 @@ public class UserInfo {
 		this.id = id;
 	}
 
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -32,12 +45,12 @@ public class UserInfo {
 		this.name = name;
 	}
 
-	public Integer getEmproyeeNum() {
-		return emproyeeNum;
+	public Date getJoinCompany() {
+		return joinCompany;
 	}
 
-	public void setEmproyeeNum(Integer emproyeeNum) {
-		this.emproyeeNum = emproyeeNum;
+	public void setJoinCompany(Date joinCompany) {
+		this.joinCompany = joinCompany;
 	}
 
 	public Integer getAuth() {

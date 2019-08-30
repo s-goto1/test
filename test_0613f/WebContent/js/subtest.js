@@ -20,6 +20,14 @@
 		$("#form").attr("action", "./modify.jsp").submit();
 	};
 
+	var update_onclick = function(event) {
+		$("#form").attr("action", "./update.jsp").submit();
+	};
+
+	var timetable_onclick = function(event) {
+		$("#form").attr("action", "./timeTable.jsp").submit();
+	};
+
 	var admin_onclick = function(event) {
 		$("#form").attr("action", "./search.jsp").submit();
 	};
@@ -30,6 +38,8 @@
 		$("#delete").on("click", delete_onclick);
 		$("#modify").on("click", modify_onclick);
 		$("#excelout").on("click", excelout_onclick);
+		$("#update").on("click", update_onclick);
+		$("#timetable").on("click", timetable_onclick);
 		$("#admin").on("click", admin_onclick);
 	};
 
@@ -136,8 +146,6 @@ function checkInput1(){
 	id.value = arr1;
 }
 
-
-
 function checkInput2(){
 	// 配列を設定
 	const arr2 = [];
@@ -154,6 +162,29 @@ function checkInput2(){
 		if(vacation_id[i].checked){ //(vacation_id[i].checked === true)と同じ
 			// チェックボックスのvalue値を配列にセット
 			arr2.push(vacation_id[i].value);
+		}
+	}
+
+	// 入力フォームに値をセット
+	id.value = arr2;
+}
+
+function checkInput3(){
+	// 配列を設定
+	const arr3 = [];
+
+	// チェックボックスを取得
+	const work_id = document.form.work_id;
+
+	// 入力フォームを取得
+	var id = document.getElementById('modal_work_id');
+
+	//チェックボックスの数分ループを回す
+	for (let i = 0; i < work_id.length; i++){
+		// チェックボックスが付いてる？
+		if(work_id[i].checked){ //(work_id[i].checked === true)と同じ
+			// チェックボックスのvalue値を配列にセット
+			arr2.push(workn_id[i].value);
 		}
 	}
 
