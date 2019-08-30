@@ -68,12 +68,6 @@
 							<th>
 								<div class="text-center">休暇</div>
 							</th>
-
-							<c:if test="${auth == 2}">
-								<th>
-									<div class="text-center">削除</div>
-								</th>
-							</c:if>
 						</tr>
 
 						<c:forEach var="item" items="${list}" varStatus="status" begin="${indexNum}" end="${lastNum}" step="1">
@@ -155,15 +149,6 @@
 											</c:otherwise>
 										</c:choose>
 									</c:if></td>
-
-								<c:if test="${auth == 2}">
-									<td><c:if test="${not empty list}">
-											<div class="text-center">
-												<input type="checkbox" name="work_id"
-													value="${item.work_id}">
-											</div>
-										</c:if></td>
-								</c:if>
 							</tr>
 						</c:forEach>
 
