@@ -119,7 +119,7 @@ public class SearchServlet extends HttpServlet {
 
 					//今月分の規定数の社員の出張精算データを取得
 					//Map<String, List<TotalM>>
-					Map<String, List<TotalM>>		map = idListLimit.stream()
+					Map<String, List<TotalM>> map = idListLimit.stream()
 							.collect(Collectors.toMap(
 									s -> s,
 									s -> totalM.findAllByMonthForIdFromAdmin(s, year, month)));
@@ -130,7 +130,8 @@ public class SearchServlet extends HttpServlet {
 
 					for (String key : map.keySet()) {
 
-						nameList2.addAll(search.findNameById(key)); ;
+						nameList2.addAll(search.findNameById(key));
+						;
 					}
 
 					// セッションに情報をセット
@@ -143,7 +144,7 @@ public class SearchServlet extends HttpServlet {
 					// データが1件もない？
 				} else {
 					// セッションに情報をセット
-					session.invalidate();
+					session.removeAttribute("map");
 					session.setAttribute("nomap", "登録されているデータがありません。");
 				}
 
@@ -204,6 +205,7 @@ public class SearchServlet extends HttpServlet {
 						// レコードが存在しない？
 					} else {
 						// セッションに情報をセット
+						session.removeAttribute("list");
 						session.setAttribute("nolist", "登録されているデータがありません。");
 					}
 					// home.jspに遷移
@@ -261,7 +263,7 @@ public class SearchServlet extends HttpServlet {
 
 					// 今月分の規定数の社員の出張精算データを取得
 					//Map<String, List<TotalM>>
-					Map<String, List<TotalM>>	map = nameListLimit.stream()
+					Map<String, List<TotalM>> map = nameListLimit.stream()
 							.collect(Collectors.toMap(
 									s -> s,
 									s -> totalM.findAllByMonthForNameFromAdmin(s, year, month)));
@@ -269,7 +271,8 @@ public class SearchServlet extends HttpServlet {
 					List<String> nameList2 = new ArrayList<String>();
 					for (String key : map.keySet()) {
 
-						nameList2.add(key); ;
+						nameList2.add(key);
+						;
 					}
 					// セッションに情報をセット
 					session.setAttribute("currentpage", 1);
@@ -283,7 +286,8 @@ public class SearchServlet extends HttpServlet {
 					// セッションに情報をセット
 
 					//他の人を検索後にここに来ると、その人のデータが保存されたまま（＝検索される）ので一旦破棄する
-					session.invalidate();
+					//session.invalidate();
+					session.removeAttribute("map");
 					session.setAttribute("nomap", "登録されているデータがありません。");
 				}
 
@@ -344,6 +348,8 @@ public class SearchServlet extends HttpServlet {
 						// レコードが存在しない？
 					} else {
 						// セッションに情報をセット
+						session.setAttribute("name", closest);
+						session.removeAttribute("list");
 						session.setAttribute("nolist", "登録されているデータがありません。");
 					}
 
