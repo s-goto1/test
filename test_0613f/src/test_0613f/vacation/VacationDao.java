@@ -76,9 +76,9 @@ public class VacationDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM vacation AS v JOIN userinfo AS u ON v.id = u.id "
 					+ "WHERE u.name = ? AND v.year = ? ORDER BY v.from_month, "
@@ -127,9 +127,9 @@ public class VacationDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT COUNT (*) FROM vacation WHERE id = ? AND year = ?";
 			presmt = conn.prepareStatement(sql);
@@ -163,9 +163,9 @@ public class VacationDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM vacation WHERE id = ? AND year = ? "
 					+ "ORDER BY from_month, vacation_id";
@@ -213,9 +213,9 @@ public class VacationDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axiz_db",
+				"axizuser",
+				"axiz");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM vacation WHERE vacation_id = ? "
 					+ "ORDER BY from_month, vacation_id";
@@ -261,9 +261,9 @@ public class VacationDao {
 
 		// データベースへの接続
 		try (Connection conn = DriverManager.getConnection(
-				"jdbc:postgresql:postgres",
-				"postgres",
-				"Asdf123");) {
+				"jdbc:postgresql:axi_db",
+				"axizuser",
+				"axiz");) {
 			PreparedStatement presmt = null;
 			String sql = "SELECT * FROM vacation AS v JOIN userinfo AS u ON v.id = u.id "
 					+ "WHERE u.name = ? AND v.year = ? ORDER BY v.from_month, "

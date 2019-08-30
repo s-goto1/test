@@ -152,11 +152,21 @@ public class WorkServlet extends HttpServlet {
 						if(timeTable.getVisitComeTime() != null && timeTable.getVisitLeaveTime() != null) {
 							// 休日？
 							if(off != null) {
-								// 仮のレコードを作成
-								insert.insert(id, year, month, i + 1, Time.valueOf("00:00:00"),
-										Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
-										Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
-										2, timeTable.getVisitName(), "休業日");
+								// 年末年始休暇？
+								if(off instanceof NewYear) {
+									// 仮のレコードを作成
+									insert.insert(id, year, month, i + 1, Time.valueOf("00:00:00"),
+											Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
+											Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
+											2, timeTable.getVisitName(), off.toString());
+								// 土日祝日？
+								} else {
+									// 仮のレコードを作成
+									insert.insert(id, year, month, i + 1, Time.valueOf("00:00:00"),
+											Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
+											Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
+											2, timeTable.getVisitName(), "休業日");
+								}
 							// 平日？
 							} else {
 								// 変数宣言
@@ -200,11 +210,21 @@ public class WorkServlet extends HttpServlet {
 						} else {
 							// 休日？
 							if(off != null) {
-								// 仮のレコードを作成
-								insert.insert(id, year, month, i + 1, Time.valueOf("00:00:00"),
-										Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
-										Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
-										1, "", "休業日");
+								// 年末年始休暇？
+								if(off instanceof NewYear) {
+									// 仮のレコードを作成
+									insert.insert(id, year, month, i + 1, Time.valueOf("00:00:00"),
+											Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
+											Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
+											1, "", off.toString());
+								// 土日祝日？
+								} else {
+									// 仮のレコードを作成
+									insert.insert(id, year, month, i + 1, Time.valueOf("00:00:00"),
+											Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
+											Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
+											1, "", "休業日");
+								}
 							// 平日？
 							} else {
 								// 仮のレコードを作成

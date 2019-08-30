@@ -101,9 +101,9 @@ public class UpdateServlet extends HttpServlet {
 				brakeTime[i] = timeTable.getVisitBrakeTime();
 			}
 
-			// 出社時刻、退社時刻共に入力済？
-			if(comeTime[i].length() > 2 &&
-					leaveTime[i].length() > 2) {
+			// 出社日？
+			if(vacation[i].equals("なし") || vacation[i].equals("午前休") ||
+					vacation[i].equals("午後休")) {
 				// 休憩時間を含めた勤務時間を算出
 				long diffTime1 = ChronoUnit.SECONDS.between
 						(LocalTime.parse(comeTime[i]), LocalTime.parse(leaveTime[i]));
@@ -113,7 +113,7 @@ public class UpdateServlet extends HttpServlet {
 
 				// 実働時間を算出
 				long diffTime2 = ChronoUnit.SECONDS.between
-						(localTime1, LocalTime.parse(brakeTime[i].toString()));
+						(LocalTime.parse(brakeTime[i].toString()), localTime1);
 
 				// Time型に変更
 				workTime[i] = Time.valueOf(LocalTime.ofSecondOfDay(diffTime2));
@@ -135,23 +135,15 @@ public class UpdateServlet extends HttpServlet {
 				ct = Time.valueOf(comeTime[i]);
 				lt = Time.valueOf(leaveTime[i]);
 
-			// 出社時刻か退社時刻が未入力？
+			// 休日？
 			} else {
-				// 出社時刻は入力済？
-				if(comeTime[i].length() > 2) {
-					// Time型に変換
-					ct = Time.valueOf(comeTime[i]);
-				}
+				// Time型に変換
+				ct = Time.valueOf(comeTime[i]);
+				lt = Time.valueOf(leaveTime[i]);
 
-				// 退社時刻は入力済？
-				if(leaveTime[i].length() > 2) {
-					// Time型に変換
-					lt = Time.valueOf(leaveTime[i]);
-				}
-
-				// nullをセット
-				workTime[i] = null;
-				overTime[i] = null;
+				// 適当な値をセット
+				workTime[i] = Time.valueOf("00:00:00");
+				overTime[i] = Time.valueOf("00:00:00");
 			}
 
 			// インスタンス生成
@@ -188,11 +180,11 @@ public class UpdateServlet extends HttpServlet {
 				.filter(t2 -> workListBefore.stream()
 						.allMatch(t1 -> t2.getMonth() != t1.getMonth() ||
 								t2.getDay() != t1.getDay() ||
-								t2.getComeTime() != t1.getComeTime() ||
-								t2.getLeaveTime() != t1.getLeaveTime() ||
-								t2.getBrakeTime() != t1.getBrakeTime() ||
-								t2.getWorkTime() != t1.getWorkTime() ||
-								t2.getOverTime() != t1.getOverTime() ||
+								t2.getComeTime().compareTo(t1.getComeTime()) != 0 ||
+								t2.getLeaveTime().compareTo(t1.getLeaveTime()) != 0 ||
+								t2.getBrakeTime().compareTo(t1.getBrakeTime()) != 0 ||
+								t2.getWorkTime().compareTo(t1.getWorkTime()) != 0 ||
+								t2.getOverTime().compareTo(t1.getOverTime()) != 0 ||
 								!t2.getVisit().equals(t1.getVisit()) ||
 								!t2.getNotes().equals(t1.getNotes()) ||
 								!t2.getVacation().equals(t1.getVacation())))
