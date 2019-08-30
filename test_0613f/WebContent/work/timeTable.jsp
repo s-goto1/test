@@ -34,7 +34,7 @@
 					</th>
 
 					<td>
-						<input type="text" name="visitName" value="${timetable.visitName}">
+						<input type="text" name="visitName" size="25" value="${timeTable.visitName}">
 					</td>
 				</tr>
 
@@ -44,7 +44,7 @@
 					</th>
 
 					<td>
-						<input type="time" name="visitComeTime" value="${timetable.comeTime}">
+						<input type="time" name="visitComeTime" value="${timeTable.visitComeTime}">
 					</td>
 				</tr>
 
@@ -54,7 +54,7 @@
 					</th>
 
 					<td>
-						<input type="time" name="visitLeaveTime" value="${timetable.leaveTime}">
+						<input type="time" name="visitLeaveTime" value="${timeTable.visitLeaveTime}">
 					</td>
 				</tr>
 
@@ -64,7 +64,7 @@
 					</th>
 
 					<td>
-						<input type="time" name="visitBrakeTime" value="${timetable.brakeTime}">
+						<input type="time" name="visitBrakeTime" value="${timeTable.visitBrakeTime}">
 					</td>
 				</tr>
 
@@ -76,7 +76,7 @@
 					<td>
 						<select name="roundTime" id="roundTime">
 							<c:choose>
-								<c:when test="${timetable.roundTime eq '5'}">
+								<c:when test="${timeTable.roundTime eq '5'}">
 									<option value="5" selected>5分</option>
 								</c:when>
 								<c:otherwise>
@@ -84,7 +84,7 @@
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
-								<c:when test="${timetable.roundTime eq '10'}">
+								<c:when test="${timeTable.roundTime eq '10'}">
 									<option value="10" selected>10分</option>
 								</c:when>
 								<c:otherwise>
@@ -92,7 +92,7 @@
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
-								<c:when test="${timetable.roundTime eq '15'}">
+								<c:when test="${timeTable.roundTime eq '15'}">
 									<option value="15" selected>15分</option>
 								</c:when>
 								<c:otherwise>
@@ -100,7 +100,7 @@
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
-								<c:when test="${timetable.roundTime eq '20'}">
+								<c:when test="${timeTable.roundTime eq '20'}">
 									<option value="20" selected>20分</option>
 								</c:when>
 								<c:otherwise>
@@ -108,7 +108,7 @@
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
-								<c:when test="${timetable.roundTime eq '30'}">
+								<c:when test="${timeTable.roundTime eq '30'}">
 									<option value="30" selected>30分</option>
 								</c:when>
 								<c:otherwise>
@@ -126,13 +126,13 @@
 
 					<td>
 						<input type="number" name="companyNum"
-							 value="${timetable.companyNum}" min="0" max="999">
+							 value="${timeTable.companyNum}" min="0" max="999">
 					</td>
 				</tr>
 			</tbody>
 		</table>
 
-		<input type="submit" name="timetable" class="btn btn-success mr-2" value="修正確定">
+		<input type="submit" name="timetable" class="btn btn-primary mr-2" value="変更確定">
 		<input type="button" class="btn btn-warning" onclick="location.href='Paging?page=${currentpage}'" value="戻る">
 
 		</form>

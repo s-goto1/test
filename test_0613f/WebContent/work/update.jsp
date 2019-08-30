@@ -187,7 +187,8 @@
 			</table>
 
 			<div class="mb-2">
-				※休日の場合は休暇欄の「休業日」を選択して下さい。出社時刻、退社時刻は適当に埋めて下さい。
+				※休日の場合は休暇欄の「休業日」を選択して下さい。出社時刻、退社時刻は適当に埋めて下さい。<br>
+				※有給休暇は残り<span style="color: red;">${timeTable.vacationDay}</span>日存在します。
 			</div>
 
 			<input type="submit" name="update" class="btn btn-success mr-2" value="修正確定">

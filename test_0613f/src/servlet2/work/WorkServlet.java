@@ -99,6 +99,7 @@ public class WorkServlet extends HttpServlet {
 			// Listを生成
 			List<Work> list = new ArrayList<>();
 			List<String> weekList = new ArrayList<>();
+			List<OffProvider.Off> offList = new ArrayList<>();
 
 			// タイムテーブルが存在しない？
 			if(timeTable.getId() == null) {
@@ -113,11 +114,6 @@ public class WorkServlet extends HttpServlet {
 			OffProvider myCompanyOff = new OffProvider(true, Week.SATURDAY, Week.SUNDAY);
 
 			try {
-				// 12/29～1/3を年末年始休暇とする
-				AJD from = new AJD(2000, 12, 29);
-				AJD to = new AJD(2000, 1, 3);
-				myCompanyOff.addOffEveryYear(from, to, new NewYear());
-
 				// Month型の年月を取得
 				Month mon = new Month(year, month);
 
@@ -125,7 +121,18 @@ public class WorkServlet extends HttpServlet {
 				for(AJD date : mon.getDays()) {
 					// 曜日をリストにセット
 					weekList.add(date.getWeek().getJpName());
+
+					// 月日を代入
+					OffProvider.Off off = myCompanyOff.getOff(date);
+
+					// 休日判定をリストにセット
+					offList.add(off);
 				}
+
+				// 12/29～1/3を年末年始休暇とする
+				AJD from = new AJD(2000, 12, 29);
+				AJD to = new AJD(2000, 1, 3);
+				myCompanyOff.addOffEveryYear(from, to, new NewYear());
 			} catch(AJDException e) {
 				e.printStackTrace();
 			}
@@ -238,6 +245,7 @@ public class WorkServlet extends HttpServlet {
 			session.setAttribute("timeTable", timeTable);
 			session.setAttribute("list", list);
 			session.setAttribute("weekList", weekList);
+			session.setAttribute("offList", offList);
 			session.setAttribute("nolist", "登録されているデータがありません。");
 
 			// 出勤退勤画面へ遷移

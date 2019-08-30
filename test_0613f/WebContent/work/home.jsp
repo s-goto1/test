@@ -80,43 +80,66 @@
 
 						<c:forEach var="item" items="${list}" varStatus="status" begin="${indexNum}" end="${lastNum}" step="1">
 							<tr>
-								<td>
+								<td style="border-right: hidden;">
 									<c:out value="${month}月" />
 								</td>
 
-								<td>
+								<td style="border-right: hidden;">
 									<c:out value="${status.index + 1}日" />
 								</td>
 
-								<td>
+								<td
+								<c:choose>
+									<c:when test="${weekList.get(status.index).equals('土')}">
+										style="color: blue;"
+									</c:when>
+									<c:when test="${weekList.get(status.index).equals('日')}">
+										style="color: red;"
+									</c:when>
+									<c:when test="${offList.get(status.index) != null}">
+										style="color: red;"
+									</c:when>
+									<c:otherwise>
+										<%-- 何も設定しない --%>
+									</c:otherwise>
+								</c:choose>
+								>
 									<c:out value="(${weekList.get(status.index)})" />
 								</td>
 
 								<td><c:if test="${not empty list}">
 										<c:if test="${item.vacation.equals('なし') || item.vacation.equals('午前休') ||
 											item.vacation.equals('午後休')}">
-											<fmt:formatDate value="${item.comeTime}" type="TIME" timeStyle="SHORT" />
+											<div class="text-center">
+												<fmt:formatDate value="${item.comeTime}" type="TIME" timeStyle="SHORT" />
+											</div>
 										</c:if>
 									</c:if></td>
 
 								<td><c:if test="${not empty list}">
 										<c:if test="${item.vacation.equals('なし') || item.vacation.equals('午前休') ||
 											item.vacation.equals('午後休')}">
-											<fmt:formatDate value="${item.leaveTime}" type="TIME" timeStyle="SHORT" />
+											<div class="text-center">
+												<fmt:formatDate value="${item.leaveTime}" type="TIME" timeStyle="SHORT" />
+											</div>
 										</c:if>
 									</c:if></td>
 
 								<td><c:if test="${not empty list}">
 										<c:if test="${item.vacation.equals('なし') || item.vacation.equals('午前休') ||
 											item.vacation.equals('午後休')}">
-											<fmt:formatDate value="${item.workTime}" type="TIME" timeStyle="SHORT" />
+											<div class="text-center">
+												<fmt:formatDate value="${item.workTime}" type="TIME" timeStyle="SHORT" />
+											</div>
 										</c:if>
 									</c:if></td>
 
 								<td><c:if test="${not empty list}">
 										<c:if test="${item.vacation.equals('なし') || item.vacation.equals('午前休') ||
 											item.vacation.equals('午後休')}">
-											<fmt:formatDate value="${item.overTime}" type="TIME" timeStyle="SHORT" />
+											<div class="text-center">
+												<fmt:formatDate value="${item.overTime}" type="TIME" timeStyle="SHORT" />
+											</div>
 										</c:if>
 									</c:if></td>
 
@@ -125,7 +148,14 @@
 									</c:if></td>
 
 								<td><c:if test="${not empty list}">
-										<c:out value="${item.vacation}" />
+										<c:choose>
+											<c:when test="${item.vacation.equals('なし')}">
+												<!-- 非表示 -->
+											</c:when>
+											<c:otherwise>
+												<c:out value="${item.vacation}" />
+											</c:otherwise>
+										</c:choose>
 									</c:if></td>
 
 								<c:if test="${auth == 2}">
