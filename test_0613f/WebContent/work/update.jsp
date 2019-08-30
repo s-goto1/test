@@ -28,7 +28,7 @@
 			<table border="1" class="table table-striped" style="border: solid 3px;">
 				<tbody style="border: black 2px">
 					<tr>
-						<th colspan="2">
+						<th colspan="3">
 							<div class="text-center">月日</div>
 						</th>
 
@@ -56,13 +56,32 @@
 					<c:forEach var="item" items="${list}" varStatus="status" begin="${indexNum}" end="${lastNum}" step="1">
 						<tr>
 
-							<td><input type="number" name="month"
+							<td style="border-right: hidden;"><input type="hidden" name="month"
 								value="${month}" min="1" max="12" readonly>
-								<span style="display: inline-block;">月</span></td>
+								<span style="display: inline-block;">${month}月</span></td>
 
-							<td><input type="number" name="day"
+							<td style="border-right: hidden;"><input type="hidden" name="day"
 								value="${status.index + 1}" min="1" max="31" readonly>
-								<span style="display: inline-block;">日</span></td>
+								<span style="display: inline-block;">${status.index + 1}日</span></td>
+
+							<td
+							<c:choose>
+								<c:when test="${weekList.get(status.index).equals('土')}">
+									style="color: blue;"
+								</c:when>
+								<c:when test="${weekList.get(status.index).equals('日')}">
+									style="color: red;"
+								</c:when>
+								<c:when test="${offList.get(status.index) != null}">
+									style="color: red;"
+								</c:when>
+								<c:otherwise>
+									<%-- 何も設定しない --%>
+								</c:otherwise>
+							</c:choose>
+							>
+								<c:out value="(${weekList.get(status.index)})" />
+							</td>
 
 							<td><input type="time" name="comeTime"
 								value="${item.comeTime}" required></td>
