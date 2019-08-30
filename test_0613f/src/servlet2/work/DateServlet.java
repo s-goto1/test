@@ -1,7 +1,10 @@
 package servlet2.work;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +24,10 @@ import ajd4jp.AJDException;
 import ajd4jp.Month;
 import ajd4jp.OffProvider;
 import ajd4jp.Week;
+import entity.TimeTable;
 import entity.Work;
 import test_0613f.vacation.SearchDao;
+import test_0613f.work.InsertDao;
 import test_0613f.work.WorkDao;
 import util.NewYear;
 
@@ -62,6 +67,7 @@ public class DateServlet extends HttpServlet {
 
 		// セッションから情報を取得
 		String id = (String) session.getAttribute("id");
+		TimeTable timeTable = (TimeTable) session.getAttribute("tiemTable");
 		Map<String, List<Work>> map = (Map<String, List<Work>>) session.getAttribute("map");
 
 		// 入力値を取得
@@ -75,6 +81,7 @@ public class DateServlet extends HttpServlet {
 		// DAOの宣言
 		WorkDao work = new WorkDao();
 		SearchDao search = new SearchDao();
+		InsertDao insert = new InsertDao();
 
 		// homeAdmin.jspから遷移した？
 		if(map != null) {
@@ -114,7 +121,7 @@ public class DateServlet extends HttpServlet {
 		// home.jspから遷移した？
 		} else {
 			// 該当年月の出勤退勤データ取得
-			List<Work> list = work.findAllByMonthForId(id, y, m);
+			List<Work> workList = work.findAllByMonthForId(id, y, m);
 
 			// オブジェクト生成
 			LocalDate localDate = LocalDate.of(y, m, 1);
@@ -122,8 +129,10 @@ public class DateServlet extends HttpServlet {
 			// 日数を取得
 			int lastDay = localDate.with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth();
 
-			// String型のListを生成
+			// Listを生成
+			List<Work> list = new ArrayList<>();
 			List<String> weekList = new ArrayList<>();
+			List<OffProvider.Off> offList = new ArrayList<>();
 
 			// 土日祝日を休日とする
 			OffProvider myCompanyOff = new OffProvider(true, Week.SATURDAY, Week.SUNDAY);
@@ -146,19 +155,110 @@ public class DateServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 
+			// レコードが存在しない？
+			if(workList.isEmpty()) {
+				// 最終日まで繰り返す
+				for(int i = 0; i < lastDay; i++) {
+					try {
+						// AJD型の月日を取得
+						AJD today = new AJD(y, m , i + 1);
+
+						// 月日を代入
+						OffProvider.Off off = myCompanyOff.getOff(today);
+
+						// 現場に出向している（とみなす）？
+						if(timeTable.getVisitComeTime() != null && timeTable.getVisitLeaveTime() != null) {
+							// 休日？
+							if(off != null) {
+								// 仮のレコードを作成
+								insert.insert(id, y, m, i + 1, Time.valueOf("00:00:00"),
+										Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
+										Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
+										2, timeTable.getVisitName(), "休業日");
+							// 平日？
+							} else {
+								// 変数宣言
+								Time workTime = null;
+								Time overTime = null;
+
+								// 休憩時間を含めた勤務時間を算出
+								long diffTime1 = ChronoUnit.SECONDS.between
+										(LocalTime.parse(timeTable.getVisitComeTime().toString()),
+												LocalTime.parse(timeTable.getVisitLeaveTime().toString()));
+
+								// LocalTime型に変更
+								LocalTime localTime1 = LocalTime.ofSecondOfDay(diffTime1);
+
+								// 実働時間を算出
+								long diffTime2 = ChronoUnit.SECONDS.between
+										(localTime1, LocalTime.parse(timeTable.getVisitBrakeTime().toString()));
+
+								// Time型に変更
+								workTime = Time.valueOf(LocalTime.ofSecondOfDay(diffTime2));
+
+								// 実働時間が8時間を超過？
+								if(LocalTime.ofSecondOfDay(diffTime2).isAfter(LocalTime.of(8, 00))) {
+									// 残業時間を算出
+									LocalTime localTime2 = LocalTime.ofSecondOfDay(diffTime2).minusHours(8);
+
+									// Time型に変更
+									overTime = Time.valueOf(localTime2);
+								// 実働時間が8時間以内？
+								} else {
+									// 残業時間をセット
+									overTime = Time.valueOf("00:00:00");
+								}
+
+								// 仮のレコードを作成
+								insert.insert(id, y, m, i + 1, timeTable.getVisitComeTime(),
+										timeTable.getVisitLeaveTime(), timeTable.getVisitBrakeTime(),
+										workTime, overTime, 2, timeTable.getVisitName(), "なし");
+							}
+						// JSD東京支店に出社している？
+						} else {
+							// 休日？
+							if(off != null) {
+								// 仮のレコードを作成
+								insert.insert(id, y, m, i + 1, Time.valueOf("00:00:00"),
+										Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
+										Time.valueOf("00:00:00"), Time.valueOf("00:00:00"),
+										1, "", "休業日");
+							// 平日？
+							} else {
+								// 仮のレコードを作成
+								insert.insert(id, y, m, i + 1, Time.valueOf("09:00:00"),
+										Time.valueOf("17:40:00"), Time.valueOf("00:45:00"),
+										Time.valueOf("07:55:00"), Time.valueOf("00:00:00"),
+										1, "", "なし");
+							}
+						}
+					} catch(AJDException e) {
+						e.printStackTrace();
+					}
+				}
+
+				// 該当年月の出勤退勤データ取得
+				list = work.findAllByMonthForId(id, y, m);
+			// レコードが存在する？
+			} else {
+				// 出勤退勤データをリストにセット
+				list = workList;
+			}
+
 			// ページング設定
 			int number = (lastDay + 7 - 1) / 7;
 
 			// セッションに情報をセット
-			session.setAttribute("currentpage", 1);
 			session.setAttribute("year", y);
 			session.setAttribute("month", m);
+			session.setAttribute("currentpage", 1);
 			session.setAttribute("number", number);
 			session.setAttribute("indexNum", 0);
 			session.setAttribute("lastNum", 6);
 			session.setAttribute("lastDay", lastDay);
 			session.setAttribute("list", list);
 			session.setAttribute("weekList", weekList);
+			session.setAttribute("offList", offList);
 
 			// home.jspに遷移
 			RequestDispatcher dispatch = request.getRequestDispatcher("/work/home.jsp");

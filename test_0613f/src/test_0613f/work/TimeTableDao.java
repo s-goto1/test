@@ -126,7 +126,7 @@ public class TimeTableDao {
 			// SQL文
 			String sql = "UPDATE timetable SET company_num = ?, visit_name = ?, "
 					+ "visit_come_time = ?, visit_leave_time = ?, visit_brake_time = ?,"
-					+ " round_time = ?, WHERE timetable_id = ?";
+					+ " round_time = ? WHERE timetable_id = ?";
 
 			// SQL文をセット
 			presmt = conn.prepareStatement(sql);

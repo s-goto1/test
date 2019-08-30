@@ -17,7 +17,7 @@ import test_0613f.work.TimeTableDao;
 /**
  * Servlet implementation class TimeTableServlet
  */
-@WebServlet("/TimeTable")
+@WebServlet("/work/TimeTable")
 public class TimeTableServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

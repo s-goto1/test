@@ -41,9 +41,11 @@
 					</th>
 
 					<td>
-						<div class="text-center">
-							<fmt:formatDate value="${timeTable.visitComeTime}" type="TIME" timeStyle="SHORT" />
-						</div>
+						<c:if test="${timeTable.visitComeTime != null}">
+							<div class="text-center">
+								<fmt:formatDate value="${timeTable.visitComeTime}" type="TIME" timeStyle="SHORT" />
+							</div>
+						</c:if>
 					</td>
 				</tr>
 
@@ -53,9 +55,11 @@
 					</th>
 
 					<td>
-						<div class="text-center">
-							<fmt:formatDate value="${timeTable.visitLeaveTime}" type="TIME" timeStyle="SHORT" />
-						</div>
+						<c:if test="${timeTable.visitLeaveTime != null}">
+							<div class="text-center">
+								<fmt:formatDate value="${timeTable.visitLeaveTime}" type="TIME" timeStyle="SHORT" />
+							</div>
+						</c:if>
 					</td>
 				</tr>
 
@@ -65,9 +69,11 @@
 					</th>
 
 					<td>
-						<div class="text-center">
-							<fmt:formatDate value="${timeTable.visitBrakeTime}" type="TIME" timeStyle="SHORT" />
-						</div>
+						<c:if test="${timeTable.visitBrakeTime != null}">
+							<div class="text-center">
+								<fmt:formatDate value="${timeTable.visitBrakeTime}" type="TIME" timeStyle="SHORT" />
+							</div>
+						</c:if>
 					</td>
 				</tr>
 
